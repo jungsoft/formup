@@ -1,5 +1,7 @@
-import createSchema from "./yup/createSchema";
+import useFormikForm from './formik/useFormikForm';
+import createSchema from './yup/createSchema';
 
-export {
+export default {
+  useFormikForm,
   createSchema,
 };
