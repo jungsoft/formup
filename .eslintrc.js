@@ -4,6 +4,19 @@ module.exports = {
     es6: true,
     node: true,
   },
+  settings: {
+    "import/resolver": {
+      node: {
+        paths: ["src"],
+        extensions: [
+          ".js",
+          ".ts",
+          ".jsx",
+          ".tsx",
+        ],
+      },
+    },
+  },
   extends: [
     'plugin:react/recommended',
     'airbnb',
