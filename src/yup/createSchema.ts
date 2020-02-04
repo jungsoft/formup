@@ -1,11 +1,11 @@
-import * as yup from "yup";
+import * as yup from 'yup';
 
 const createSchema = (payload: yup.ObjectSchemaDefinition<any>, locale?: yup.LocaleObject) => {
   if (locale) {
     yup.setLocale(locale);
   }
 
-  yup.object().shape(payload);
+  return yup.object().shape(payload);
 };
 
 export default createSchema;
