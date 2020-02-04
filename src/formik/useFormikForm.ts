@@ -1,7 +1,7 @@
 import { useFormik, FormikConfig } from 'formik';
-import * as yup from 'yup';
 
 import mapFieldsToObject from '../utils/mapFieldsToObject';
+import { YupSchema } from '../yup/types';
 
 /**
  * Creates a formik form with useFormik hook.
@@ -9,7 +9,7 @@ import mapFieldsToObject from '../utils/mapFieldsToObject';
  * @param payload Payload of options to create the formik form.
  */
 const useFormikForm = (
-  schema: yup.SchemaDescription,
+  schema: YupSchema,
   payload?: FormikConfig<any>,
 ) => useFormik<any>({
   ...payload,
