@@ -39,5 +39,6 @@ module.exports = {
   ],
   rules: {
     "import/extensions": 0,
+    "no-unused-vars": 0,
   },
 };
