@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { useFormContext } from '../../contexts/FormContext/FormContext';
+
 export interface ValidatedFormInputProps {
   component: React.ElementType;
-  form: any;
   name: string;
   type?: string;
   value?: any;
@@ -19,7 +20,7 @@ export interface ValidatedFormInputProps {
  * allowing you to render any type of component
  * while still maintaining all validation functionality.
  *
- * You need to pass in "form" and "name" (name of the field on the form)
+ * You need to pass in "name" (name of the field on the form)
  * in order to correctly render and use this component.
  * @param param0 Options.
  */
@@ -29,16 +30,17 @@ const ValidatedFormInput = ({
   children,
   onChange,
   onBlur,
-  form,
   name,
   ...props
 }: ValidatedFormInputProps) => {
   if (!name) {
-    throw new Error('Invalid form information. You need to provide the "name" prop.');
+    throw new Error('You need to provide the "name" prop.');
   }
 
+  const form = useFormContext();
+
   if (!form) {
-    throw new Error('Invalid form information. You need to provide the "form" prop.');
+    throw new Error('You need to provide a <Form /> component enclosing ValidatedFormInput.');
   }
 
   const { value, defaultValue } = props;

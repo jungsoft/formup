@@ -1,11 +1,9 @@
 import ValidatedFormInput from './components/ValidatedFormInput/ValidatedFormInput';
-import useFormikForm from './formik/useFormikForm';
 import createSchema from './yup/createSchema';
-import validateForm from './yup/validateForm';
+import Form from './components/Form/Form';
 
 export {
   ValidatedFormInput,
-  useFormikForm,
   createSchema,
-  validateForm,
+  Form,
 };
