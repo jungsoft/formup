@@ -1,7 +1,21 @@
 import React from 'react';
 
-const DefaultInputComponent = (props: React.Props<any>) => (
-  <input {...props} />
+export interface DefaultInputComponentProps extends React.Props<any> {
+  label?: string,
+}
+
+const DefaultInputComponent = ({
+  label,
+  ...props
+}: DefaultInputComponentProps) => (
+  <>
+    {
+      label && (
+        <p>{label}</p>
+      )
+    }
+    <input {...props} />
+  </>
 );
 
 export default DefaultInputComponent;
