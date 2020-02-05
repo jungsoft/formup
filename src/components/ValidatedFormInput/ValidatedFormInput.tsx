@@ -1,8 +1,9 @@
 import React from 'react';
 
+import DefaultInputComponent from '../DefaultInputComponent/DefaultInputComponent';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
 
-export interface ValidatedFormInputProps {
+export interface ValidatedFormInputProps extends React.Props<any> {
   component: React.ElementType;
   name: string;
   type?: string;
@@ -25,7 +26,7 @@ export interface ValidatedFormInputProps {
  * @param param0 Options.
  */
 const ValidatedFormInput = ({
-  component: Component,
+  component: Component = DefaultInputComponent,
   type = 'text',
   children,
   onChange,
@@ -45,23 +46,15 @@ const ValidatedFormInput = ({
 
   const { value, defaultValue } = props;
 
-  const [
-    formInputProps,
-    inputMetadata,
-  ] = form.getFieldProps(name, type);
+  const formInputProps = form.getFieldProps(name);
+  const formInputMeta = form.getFieldMeta(name);
 
   formInputProps.type = type;
-
-  const isUntouched = (
-    (value || defaultValue)
-    && !inputMetadata.touch
-    && !inputMetadata.initialValue
-  );
 
   const inputProps = {
     ...props,
     ...formInputProps,
-    danger: inputMetadata.touch && inputMetadata.error,
+    danger: formInputMeta.touch && formInputMeta.error,
     onChange: (event: any) => {
       const {
         target: {
@@ -86,6 +79,12 @@ const ValidatedFormInput = ({
       }
     },
   };
+
+  const isUntouched = (
+    (value || defaultValue)
+    && !formInputMeta.touch
+    && !formInputMeta.initialValue
+  );
 
   if (isUntouched) {
     form.setFieldValue(name, value || defaultValue);

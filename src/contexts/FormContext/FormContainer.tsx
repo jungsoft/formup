@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormProvider } from './FormContext';
 
-export interface FormContainerProps {
+export interface FormContainerProps extends React.Props<any> {
   children?: React.ReactChild,
   form: any,
 }
