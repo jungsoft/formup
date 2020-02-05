@@ -11,6 +11,7 @@ export interface FormProps extends FormikConfig<any> {
   onSubmit: (values: object) => void,
   onError?: (errors: string[]) => void,
   children?: React.ReactChild,
+  className?: any,
 }
 
 /**
@@ -19,6 +20,7 @@ export interface FormProps extends FormikConfig<any> {
  * component ValidatedFormInput.
  */
 const Form = ({
+  className,
   children,
   onSubmit,
   onError,
@@ -59,7 +61,7 @@ const Form = ({
 
   return (
     <FormContainer form={form}>
-      <form onSubmit={handleOnSubmit}>
+      <form onSubmit={handleOnSubmit} className={className}>
         {children}
       </form>
     </FormContainer>
