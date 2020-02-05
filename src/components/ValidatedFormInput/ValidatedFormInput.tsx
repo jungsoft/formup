@@ -8,6 +8,7 @@ export interface ValidatedFormInputProps {
   value?: any;
   defaultValue?: any;
   children?: React.ReactChild;
+  onBlur?: (arg0: React.FormEvent<HTMLInputElement>) => void;
   onChange?: (arg0: React.FormEvent<HTMLInputElement>) => void;
 }
 
@@ -20,6 +21,7 @@ const ValidatedFormInput = ({
   type = 'text',
   children,
   onChange,
+  onBlur,
   form,
   name,
   ...props
@@ -43,16 +45,27 @@ const ValidatedFormInput = ({
     ...props,
     ...formInputProps,
     danger: inputMetadata.touch && inputMetadata.error,
-    onChange: ({
-      target: {
-        value: newValue,
-      },
-    }: any) => {
+    onChange: (event: any) => {
+      const {
+        target: {
+          value: newValue,
+        },
+      } = event;
+
       form.setFieldValue(name, newValue);
       form.setFieldTouched(name, true);
 
       if (onChange) {
-        onChange(newValue);
+        onChange(event);
+      }
+    },
+    onBlur: (event: any) => {
+      if (formInputProps.onBlur) {
+        formInputProps.onBlur(event);
+      }
+
+      if (onBlur) {
+        onBlur(event);
       }
     },
   };
