@@ -33,6 +33,14 @@ const ValidatedFormInput = ({
   name,
   ...props
 }: ValidatedFormInputProps) => {
+  if (!name) {
+    throw new Error('Invalid form information. You need to provide the "name" prop.');
+  }
+
+  if (!form) {
+    throw new Error('Invalid form information. You need to provide the "form" prop.');
+  }
+
   const { value, defaultValue } = props;
 
   const [
