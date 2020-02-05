@@ -24,14 +24,13 @@
     "example": "cd ./example && yarn start"
   },
   "dependencies": {
-    "formik": "^2.1.3",
-    "yup": "^0.28.1"
+    "formik": "2.1.3",
+    "yup": "0.28.1"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
-    "yup": "^0.28.1"
+    "yup": "0.28.1"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
