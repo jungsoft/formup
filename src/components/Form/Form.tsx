@@ -37,12 +37,14 @@ const Form = ({
 
   const form = useFormik({
     ...props,
-    onSubmit: () => {},
+    onSubmit,
     validationSchema: schema,
     initialValues: mapFieldsToObject(schema.fields),
   });
 
-  const handleOnSubmit = () => {
+  const handleOnSubmit = (e: any) => {
+    e.preventDefault();
+
     const {
       isValid,
       errors,
@@ -56,7 +58,7 @@ const Form = ({
       return;
     }
 
-    onSubmit(form.values);
+    form.handleSubmit();
   };
 
   return (
