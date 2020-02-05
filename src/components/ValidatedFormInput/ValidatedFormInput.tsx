@@ -14,6 +14,13 @@ export interface ValidatedFormInputProps {
 
 /**
  * Input that auto-validates itself within the form.
+ *
+ * Can be ovewritten with the "component" prop,
+ * allowing you to render any type of component
+ * while still maintaining all validation functionality.
+ *
+ * You need to pass in "form" and "name" (name of the field on the form)
+ * in order to correctly render and use this component.
  * @param param0 Options.
  */
 const ValidatedFormInput = ({
