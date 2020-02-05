@@ -57,15 +57,15 @@ const App = () => {
       email,
       password,
       confirmPassword,
-     } = values;
+    } = values;
 
-     console.log('Form values', {
+    console.warn('Form validation success!', {
       name,
       phone,
       email,
       password,
       confirmPassword,
-     });
+    });
 
      // Submit your form to your backend or any API here! =).
      return true;
@@ -95,7 +95,7 @@ const App = () => {
         <ValidatedFormInput type="password" className="form-input" name="authentication.password" label="Password" />
         <ValidatedFormInput type="password" className="form-input" name="authentication.confirmPassword" label="Confirm Password" />
 
-        <button className="form-button" type="button">
+        <button className="form-button" type="submit">
           Submit!
         </button>
       </Form>
