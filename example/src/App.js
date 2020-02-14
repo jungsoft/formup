@@ -1,9 +1,8 @@
 import React from 'react';
 import * as yup from 'yup';
-import {
-  ValidatedFormInput,
+
+import useFormup, {
   createSchema,
-  Form,
 } from "formup";
 
 // You can customize your locale to support multiple languages easily using createSchema!
@@ -13,6 +12,7 @@ const locale = {
   },
 };
 
+// You don't need this if you're not customizing your locale. You can use yup instead.
 const schema = createSchema({
   // Your schema supports simple field
   name: yup.string()
@@ -50,6 +50,7 @@ const App = () => {
     console.warn('Form validation error!', errors);
   };
 
+  // Here we'll handle submiting the form
   const handleSubmitForm = (values) => {
     const {
       name,
@@ -59,7 +60,7 @@ const App = () => {
       confirmPassword,
     } = values;
 
-    console.warn('Form validation success!', {
+    console.warn('Form is valid! Submitting information...', {
       name,
       phone,
       email,
@@ -71,6 +72,17 @@ const App = () => {
      return true;
   };
 
+  // Initialize your Formup form
+  const {
+    submitForm,
+    FormInput,
+    Form,
+  } = useFormup(schema, {
+    // Formik options
+    onError: handleValidationError,
+    onSubmit: handleSubmitForm,
+  });
+
   return (
     <div>
       <Form
@@ -81,21 +93,22 @@ const App = () => {
       >
         <h2>
           Formup is awesome
-          <span role="img" aria-label="Awesome"> 😆</span>
+          <span role="img" aria-label="Formup is awesome"> 😆</span>
         </h2>
 
         {/*
-          ValidatedFormInput will take care of all validation!
+          FormInput will take care of all validation!
           Simply provide the "name" prop.
         */}
-        <ValidatedFormInput className="form-input" name="name" label="Name" />
-        <ValidatedFormInput className="form-input" name="email" label="Email" />
-        <ValidatedFormInput className="form-input" name="phone" label="Phone" />
 
-        <ValidatedFormInput type="password" className="form-input" name="authentication.password" label="Password" />
-        <ValidatedFormInput type="password" className="form-input" name="authentication.confirmPassword" label="Confirm Password" />
+        <FormInput className="form-input" name="name" label="Name" />
+        <FormInput className="form-input" name="email" label="Email" />
+        <FormInput className="form-input" name="phone" label="Phone" />
 
-        <button className="form-button" type="submit">
+        <FormInput type="password" className="form-input" name="authentication.password" label="Password" />
+        <FormInput type="password" className="form-input" name="authentication.confirmPassword" label="Confirm Password" />
+
+        <button className="form-button" onClick={submitForm}>
           Submit!
         </button>
       </Form>
