@@ -19,6 +19,6 @@
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
   },
-  "include": ["src"],
+  "include": ["./formup/src"],
   "exclude": ["node_modules", "build", "dist", "example", "rollup.config.js"]
 }
