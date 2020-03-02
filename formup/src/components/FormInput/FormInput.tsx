@@ -3,7 +3,7 @@ import React from 'react';
 import DefaultInputComponent from '../DefaultInputComponent/DefaultInputComponent';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
 
-export interface ValidatedFormInputProps extends React.Props<any> {
+export interface FormInputProps extends React.Props<any> {
   component: React.ElementType;
   name: string;
   type?: string;
@@ -25,7 +25,7 @@ export interface ValidatedFormInputProps extends React.Props<any> {
  * in order to correctly render and use this component.
  * @param param0 Options.
  */
-const ValidatedFormInput = ({
+const FormInput = ({
   component: Component = DefaultInputComponent,
   type = 'text',
   children,
@@ -33,7 +33,7 @@ const ValidatedFormInput = ({
   onBlur,
   name,
   ...props
-}: ValidatedFormInputProps) => {
+}: FormInputProps) => {
   if (!name) {
     throw new Error('You need to provide the "name" prop.');
   }
@@ -41,7 +41,7 @@ const ValidatedFormInput = ({
   const form = useFormContext();
 
   if (!form) {
-    throw new Error('You need to provide a <Form /> component enclosing ValidatedFormInput.');
+    throw new Error('You need to provide a <Form /> component enclosing FormInput.');
   }
 
   const { value, defaultValue } = props;
@@ -100,4 +100,4 @@ const ValidatedFormInput = ({
   );
 };
 
-export default ValidatedFormInput;
+export default FormInput;

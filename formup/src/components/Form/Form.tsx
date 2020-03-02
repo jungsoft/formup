@@ -15,9 +15,8 @@ export interface FormProps extends FormikConfig<any> {
 }
 
 /**
- * Form component that will make use of Formik to validate all inputs
- * declared as its children. The inputs should be enclosed by the
- * component ValidatedFormInput.
+ * Form component that will make use of Formik to validate all inputs declared as its children.
+ * The inputs should be enclosed by the FormInput component.
  */
 const Form = ({
   className,
