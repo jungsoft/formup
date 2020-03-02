@@ -5,15 +5,27 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "formup": "link:..",
-    "react": "link:../node_modules/react",
-    "react-dom": "link:../node_modules/react-dom",
+    "@formup/core": "^1.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-scripts": "^1.1.4"
   },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "gh-pages": "^2.2.0"
+  },
   "scripts": {
+    "lint": "./node_modules/.bin/eslint ./src --ext .js,.jsx",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   }
 }
