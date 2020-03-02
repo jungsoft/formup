@@ -3,12 +3,12 @@ import * as yup from 'yup';
 
 import useFormup, {
   createSchema,
-} from "formup";
+} from '@formup/core';
 
 // You can customize your locale to support multiple languages easily using createSchema!
 const locale = {
   mixed: {
-    default: "Invalid field!",
+    default: 'Invalid field!',
   },
 };
 
@@ -17,30 +17,30 @@ const schema = createSchema({
   // Your schema supports simple field
   name: yup.string()
     .required()
-    .label("Name"),
+    .label('Name'),
 
   // Or a field with custom validations
   email: yup.string()
     .required()
     .email()
-    .label("Email"),
+    .label('Email'),
 
   // Optional fields too
   phone: yup.string()
     .required()
-    .label("Phone"),
+    .label('Phone'),
 
   // And even multi-level nested fields!
   authentication: yup.object().shape({
     password: yup.string()
       .required()
       .min(5)
-      .label("Password"),
+      .label('Password'),
     confirmPassword: yup.string()
       .required()
       .min(5)
-      .oneOf([yup.ref("password"), null])
-      .label("Confirm your password"),
+      .oneOf([yup.ref('password'), null])
+      .label('Confirm your password'),
   }),
 }, locale);
 
@@ -68,8 +68,8 @@ const App = () => {
       confirmPassword,
     });
 
-     // Submit your form to your backend or any API here! =).
-     return true;
+    // Submit your form to your backend or any API here! =).
+    return true;
   };
 
   // Initialize your Formup form
@@ -108,7 +108,7 @@ const App = () => {
         <FormInput type="password" className="form-input" name="authentication.password" label="Password" />
         <FormInput type="password" className="form-input" name="authentication.confirmPassword" label="Confirm Password" />
 
-        <button className="form-button" onClick={submitForm}>
+        <button type="submit" className="form-button" onClick={submitForm}>
           Submit!
         </button>
       </Form>

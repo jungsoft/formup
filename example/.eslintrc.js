@@ -39,5 +39,6 @@ module.exports = {
     "react/jsx-filename-extension": 0,
     "react/jsx-props-no-spreading": 0,
     "import/extensions": 0,
+    "no-console": 0,
   },
 };
