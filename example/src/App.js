@@ -104,7 +104,7 @@ const App = () => {
       <FormInput type="password" className="form-input" name="authentication.password" label="Password" />
       <FormInput type="password" className="form-input" name="authentication.confirmPassword" label="Confirm Password" />
 
-      <button type="submit" className="form-button" onClick={submitForm}>
+      <button type="button" className="form-button" onClick={submitForm}>
         Submit!
         <span role="img" aria-label="Formup is awesome"> 🚀</span>
       </button>
