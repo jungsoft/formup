@@ -4,14 +4,11 @@ import classNames from 'classnames';
 import { FORMUP_FORM_CLASS_NAME } from '../../constants/identifiers';
 import FormContainer from '../../contexts/FormContext/FormContainer';
 
-export interface FormPublicProps {
+export interface FormProps {
+  onSubmit?: (payload: any) => void,
   children?: React.ReactChild,
-  className?: any,
-}
-
-interface FormProps extends FormPublicProps {
-  handleOnSubmit: (payload: any) => void,
   formikForm: any,
+  className?: any,
 }
 
 /**
@@ -19,16 +16,20 @@ interface FormProps extends FormPublicProps {
  * The inputs should be enclosed by the FormInput component.
  */
 const Form = ({
-  handleOnSubmit,
   formikForm,
   className,
   children,
+  onSubmit,
 }: FormProps) => {
+  if (!formikForm) {
+    throw new Error('You need to provide the "formikForm" prop.');
+  }
+
   const formClassName = classNames(FORMUP_FORM_CLASS_NAME, className);
 
   return (
     <FormContainer form={formikForm}>
-      <form onSubmit={handleOnSubmit} className={formClassName}>
+      <form onSubmit={onSubmit} className={formClassName}>
         {children}
       </form>
     </FormContainer>

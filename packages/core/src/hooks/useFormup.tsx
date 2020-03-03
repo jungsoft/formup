@@ -2,9 +2,8 @@ import * as React from 'react';
 import { useFormik, FormikConfig } from 'formik';
 
 import FormInput, { FormInputProps } from '../components/FormInput/FormInput';
-import { FORMUP_FORM_CLASS_NAME } from '../constants/identifiers';
-import Form, { FormPublicProps } from '../components/Form/Form';
 import mapFieldsToObject from '../utils/mapFieldsToObject';
+import Form, { FormProps } from '../components/Form/Form';
 import validateForm from '../yup/validateForm';
 import { YupSchema } from '../yup/types';
 
@@ -15,8 +14,9 @@ export interface UseFormupOptions extends FormikConfig<any> {
 
 export interface UseFormupResult {
   FormInput: React.FunctionComponent<FormInputProps>,
-  Form: React.FunctionComponent<FormPublicProps>,
+  Form: React.FunctionComponent<FormProps>,
   submitForm: () => void,
+  formikForm: any,
 }
 
 /**
@@ -72,19 +72,11 @@ const useFormup = (
     schema,
   ]);
 
-  const FormComponent = (formProps: FormPublicProps) => (
-    <Form
-      handleOnSubmit={handleOnSubmit}
-      key={FORMUP_FORM_CLASS_NAME}
-      formikForm={formikForm}
-      {...formProps}
-    />
-  );
-
   return {
     submitForm: () => handleOnSubmit(null),
-    Form: FormComponent,
+    formikForm,
     FormInput,
+    Form,
   };
 };
 
