@@ -63,10 +63,11 @@ const useFormup = (
     schema,
   ]);
 
-  const FormComponent = React.useCallback(() => (
+  const FormComponent = React.useCallback((formProps) => (
     <Form
       handleOnSubmit={handleOnSubmit}
       formikForm={formikForm}
+      {...formProps}
     />
   ), [
     handleOnSubmit,
