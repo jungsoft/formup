@@ -1,7 +1,9 @@
-import React from 'react';
+import * as React from 'react';
+import classNames from 'classnames';
 
 import DefaultInputComponent from '../DefaultInputComponent/DefaultInputComponent';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
+import { FORMUP_INPUT_CLASS_NAME } from '../../constants/identifiers';
 
 export interface FormInputProps extends React.Props<any> {
   component: React.ElementType;
@@ -12,6 +14,7 @@ export interface FormInputProps extends React.Props<any> {
   children?: React.ReactChild;
   onBlur?: (arg0: React.FormEvent<HTMLInputElement>) => void;
   onChange?: (arg0: React.FormEvent<HTMLInputElement>) => void;
+  className?: any,
 }
 
 /**
@@ -28,6 +31,7 @@ export interface FormInputProps extends React.Props<any> {
 const FormInput = ({
   component: Component = DefaultInputComponent,
   type = 'text',
+  className,
   children,
   onChange,
   onBlur,
@@ -92,6 +96,8 @@ const FormInput = ({
 
     inputProps.defaultValue = undefined;
   }
+
+  inputProps.className = classNames(FORMUP_INPUT_CLASS_NAME, className);
 
   return (
     <Component {...inputProps}>
