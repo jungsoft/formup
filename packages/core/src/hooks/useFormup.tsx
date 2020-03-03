@@ -1,11 +1,7 @@
 import * as React from 'react';
-
 import { useFormik, FormikConfig } from 'formik';
-import classNames from 'classnames';
 
-import { FORMUP_FORM_CLASS_NAME, FORM_KEY_PREFIX } from '../constants/identifiers';
-import FormContainer from '../contexts/FormContext/FormContainer';
-import Form, { FormPublicProps } from '../components/Form/Form';
+import Form from '../components/Form/Form';
 import mapFieldsToObject from '../utils/mapFieldsToObject';
 import FormInput from '../components/FormInput/FormInput';
 import validateForm from '../yup/validateForm';
@@ -26,11 +22,6 @@ const useFormup = (
   schema: YupSchema,
   options: UseFormupOptions,
 ) => {
-  const [formKey] = React.useState(() => {
-    const { length: formupFormsCount } = document.getElementsByClassName(FORMUP_FORM_CLASS_NAME);
-    return `${FORM_KEY_PREFIX}${formupFormsCount + 1}`;
-  });
-
   if (!schema) {
     throw new Error('You need to provide the "schema" prop.');
   }
@@ -72,26 +63,14 @@ const useFormup = (
     schema,
   ]);
 
-  const FormComponent = React.useCallback(({
-    className,
-    children,
-  }: FormPublicProps) => {
-    const formClassName = classNames(FORMUP_FORM_CLASS_NAME, className);
-
-    return (
-      <FormContainer form={formikForm} key={formKey}>
-        <Form
-          handleOnSubmit={handleOnSubmit}
-          className={formClassName}
-        >
-          {children}
-        </Form>
-      </FormContainer>
-    );
-  }, [
+  const FormComponent = React.useCallback(() => (
+    <Form
+      handleOnSubmit={handleOnSubmit}
+      formikForm={formikForm}
+    />
+  ), [
     handleOnSubmit,
     formikForm,
-    formKey,
   ]);
 
   return {

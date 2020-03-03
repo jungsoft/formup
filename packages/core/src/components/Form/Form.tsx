@@ -1,4 +1,8 @@
 import React from 'react';
+import classNames from 'classnames';
+
+import { FORMUP_FORM_CLASS_NAME } from '../../constants/identifiers';
+import FormContainer from '../../contexts/FormContext/FormContainer';
 
 export interface FormPublicProps {
   children?: React.ReactChild,
@@ -7,6 +11,7 @@ export interface FormPublicProps {
 
 interface FormProps extends FormPublicProps {
   handleOnSubmit: (payload: any) => void,
+  formikForm: any,
 }
 
 /**
@@ -15,12 +20,19 @@ interface FormProps extends FormPublicProps {
  */
 const Form = ({
   handleOnSubmit,
+  formikForm,
   className,
   children,
-}: FormProps) => (
-  <form onSubmit={handleOnSubmit} className={className}>
-    {children}
-  </form>
-);
+}: FormProps) => {
+  const formClassName = classNames(FORMUP_FORM_CLASS_NAME, className);
+
+  return (
+    <FormContainer form={formikForm}>
+      <form onSubmit={handleOnSubmit} className={formClassName}>
+        {children}
+      </form>
+    </FormContainer>
+  );
+};
 
 export default Form;
