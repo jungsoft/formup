@@ -13,7 +13,7 @@ const locale = {
   },
 };
 
-// You don't need this if you're not customizing your locale. You can use yup instead.
+// You don't need to use useSchema if you're not customizing your locale. You can use yup instead.
 const schema = useSchema({
   // Your schema supports simple field
   name: yup.string()
@@ -85,35 +85,29 @@ const App = () => {
   });
 
   return (
-    <div>
-      <Form
-        schema={schema}
-        className="form"
-        onSubmit={handleSubmitForm}
-        onError={handleValidationError}
-      >
-        <h2>
-          Formup is awesome
-          <span role="img" aria-label="Formup is awesome"> 😆</span>
-        </h2>
+    <Form className="form">
+      <h2>
+        Formup is awesome
+        <span role="img" aria-label="Formup is awesome"> 😆</span>
+      </h2>
 
-        {/*
-          FormInput will take care of all validation!
-          Simply provide the "name" prop.
-        */}
+      {/*
+        FormInput will take care of all validation!
+        Simply provide the "name" prop.
+      */}
 
-        <FormInput className="form-input" name="name" label="Name" />
-        <FormInput className="form-input" name="email" label="Email" />
-        <FormInput className="form-input" name="phone" label="Phone" />
+      <FormInput className="form-input" name="name" label="Name" />
+      <FormInput className="form-input" name="email" label="Email" />
+      <FormInput className="form-input" name="phone" label="Phone" />
 
-        <FormInput type="password" className="form-input" name="authentication.password" label="Password" />
-        <FormInput type="password" className="form-input" name="authentication.confirmPassword" label="Confirm Password" />
+      <FormInput type="password" className="form-input" name="authentication.password" label="Password" />
+      <FormInput type="password" className="form-input" name="authentication.confirmPassword" label="Confirm Password" />
 
-        <button type="submit" className="form-button" onClick={submitForm}>
-          Submit!
-        </button>
-      </Form>
-    </div>
+      <button type="submit" className="form-button" onClick={submitForm}>
+        Submit!
+        <span role="img" aria-label="Formup is awesome"> 🚀</span>
+      </button>
+    </Form>
   );
 };
 
