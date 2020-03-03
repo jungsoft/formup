@@ -1,9 +1,9 @@
 import FormInput from './components/FormInput/FormInput';
-import createSchema from './yup/createSchema';
 import Form from './components/Form/Form';
+import useSchema from './yup/useSchema';
 
 export {
-  createSchema,
+  useSchema,
   FormInput,
   Form,
 };
