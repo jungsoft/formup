@@ -1,15 +1,22 @@
 import * as React from 'react';
 import { useFormik, FormikConfig } from 'formik';
 
-import Form from '../components/Form/Form';
+import FormInput, { FormInputProps } from '../components/FormInput/FormInput';
+import { FORMUP_FORM_CLASS_NAME } from '../constants/identifiers';
+import Form, { FormPublicProps } from '../components/Form/Form';
 import mapFieldsToObject from '../utils/mapFieldsToObject';
-import FormInput from '../components/FormInput/FormInput';
 import validateForm from '../yup/validateForm';
 import { YupSchema } from '../yup/types';
 
 export interface UseFormupOptions extends FormikConfig<any> {
   onError?: (errors: string[]) => void,
   onSubmit: (values: object) => void,
+}
+
+export interface UseFormupResult {
+  FormInput: React.FunctionComponent<FormInputProps>,
+  Form: React.FunctionComponent<FormPublicProps>,
+  submitForm: () => void,
 }
 
 /**
@@ -21,7 +28,7 @@ export interface UseFormupOptions extends FormikConfig<any> {
 const useFormup = (
   schema: YupSchema,
   options: UseFormupOptions,
-) => {
+): UseFormupResult => {
   if (!schema) {
     throw new Error('You need to provide the "schema" prop.');
   }
@@ -63,18 +70,17 @@ const useFormup = (
     schema,
   ]);
 
-  const FormComponent = React.useCallback((formProps) => (
+  const FormComponent = (formProps: FormPublicProps) => (
     <Form
       handleOnSubmit={handleOnSubmit}
+      key={FORMUP_FORM_CLASS_NAME}
       formikForm={formikForm}
       {...formProps}
     />
-  ), [
-    handleOnSubmit,
-    formikForm,
-  ]);
+  );
 
   return {
+    submitForm: () => handleOnSubmit,
     Form: FormComponent,
     FormInput,
   };
