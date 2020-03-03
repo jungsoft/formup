@@ -35,6 +35,7 @@ module.exports = {
   },
   plugins: [
     'react',
+    'react-hooks',
     '@typescript-eslint',
   ],
   rules: {
@@ -42,5 +43,7 @@ module.exports = {
     "react/jsx-props-no-spreading": 0,
     "import/extensions": 0,
     "no-unused-vars": 0,
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
   },
 };

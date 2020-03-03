@@ -25,11 +25,12 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@formup/core@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@formup/core/-/core-1.0.0.tgz#ed424a80d9a86d30d341942a834e99f4f295fda9"
-  integrity sha512-MpJKkf5MhjG2H4r/mKMMpzKDJghp01YJk3zK1qdbuhwadAzld7xFBFjIxiy8c7KdGL7djw11URfj93y9YsI/cw==
+"@formup/core@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@formup/core/-/core-1.0.3.tgz#5876d940b222554605338c657b67732d80e990ae"
+  integrity sha512-bnX8ypkE9cvc2F+K53/6+HviB5/wqbAvlDC53bz4Dw9FvfO5Dis6fgmW2US/uRt2iHDWPD/aew4L7PYja9C/8w==
   dependencies:
+    classnames "^2.2.6"
     formik "2.1.3"
     scheduler "^0.18.0"
     yup "0.28.1"
@@ -1738,6 +1739,11 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+
 clean-css@4.2.x:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.3.tgz#507b5de7d97b48ee53d84adb0160ff6216380f78"
@@ -2910,10 +2916,10 @@ eslint-plugin-jsx-a11y@^6.2.3:
     has "^1.0.3"
     jsx-ast-utils "^2.2.1"
 
-eslint-plugin-react-hooks@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.7.0.tgz#6210b6d5a37205f0b92858f895a4e827020a7d04"
-  integrity sha512-iXTCFcOmlWvw4+TOE8CLWj6yX1GwzT0Y6cUfHHZqWnSk144VmVIRcVGtUAzrLES7C798lmvnt02C7rxaOX1HNA==
+eslint-plugin-react-hooks@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.5.0.tgz#c50ab7ca5945ce6d1cf8248d9e185c80b54171b6"
+  integrity sha512-bzvdX47Jx847bgAYf0FPX3u1oxU+mKU8tqrpj4UX9A96SbAmj/HVEefEy6rJUog5u8QIlOPTKZcBpGn5kkKfAQ==
 
 eslint-plugin-react@7.4.0:
   version "7.4.0"
