@@ -12,7 +12,6 @@ import { YupSchema } from '../yup/types';
 interface UseFormupOptions extends FormikConfig<any> {
   onError?: (errors: string[]) => void,
   onSubmit: (values: object) => void,
-  formClassName?: any,
 }
 
 /**
@@ -34,7 +33,6 @@ const useFormup = (
   }
 
   const {
-    formClassName,
     onError,
   } = options || {};
 
@@ -45,6 +43,7 @@ const useFormup = (
   });
 
   const FormComponent = React.useCallback(({
+    className,
     children,
   }: FormPublicProps) => {
     const handleOnSubmit = (e: any) => {
@@ -70,14 +69,13 @@ const useFormup = (
       <FormContainer form={formikForm}>
         <Form
           handleOnSubmit={handleOnSubmit}
-          className={formClassName}
+          className={className}
         >
           {children}
         </Form>
       </FormContainer>
     );
   }, [
-    formClassName,
     formikForm,
   ]);
 
