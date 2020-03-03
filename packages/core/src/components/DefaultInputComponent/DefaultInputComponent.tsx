@@ -4,6 +4,10 @@ export interface DefaultInputComponentProps extends React.Props<any> {
   label?: string,
 }
 
+/**
+ * Default Formup input component.
+ * @param param0 Options.
+*/
 const DefaultInputComponent = ({
   label,
   ...props

@@ -15,6 +15,12 @@ interface UseFormupOptions extends FormikConfig<any> {
   formClassName?: any,
 }
 
+/**
+ * Hook to use formup.
+ * Returns <Form /> & <FormInput /> components, so that you can make your form easily.
+ * @param schema Yup validation schema
+ * @param options Formup options
+ */
 const useFormup = (
   schema: YupSchema,
   options: UseFormupOptions,
