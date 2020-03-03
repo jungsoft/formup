@@ -5,7 +5,7 @@ export interface FormPublicProps {
   className?: any,
 }
 
-export interface FormProps extends FormPublicProps {
+interface FormProps extends FormPublicProps {
   handleOnSubmit: (payload: any) => void,
 }
 
