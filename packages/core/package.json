@@ -1,6 +1,6 @@
 {
   "name": "@formup/core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Formik + Yup integrated form validation.",
   "author": "pedro-lb",
   "license": "MIT",
