@@ -85,7 +85,7 @@ const App = () => {
   });
 
   return (
-    <Form className="form">
+    <Form>
       <h2>
         Formup is awesome
         <span role="img" aria-label="Formup is awesome"> 😆</span>
