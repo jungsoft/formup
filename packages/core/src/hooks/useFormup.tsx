@@ -49,29 +49,33 @@ const useFormup = (
     initialValues: mapFieldsToObject(schema.fields),
   });
 
+  const handleOnSubmit = React.useCallback((e: any) => {
+    e.preventDefault();
+
+    const {
+      isValid,
+      errors,
+    } = validateForm(schema, formikForm);
+
+    if (!isValid) {
+      if (onError) {
+        onError(errors);
+      }
+
+      return;
+    }
+
+    formikForm.handleSubmit();
+  }, [
+    formikForm,
+    onError,
+    schema,
+  ]);
+
   const FormComponent = React.useCallback(({
     className,
     children,
   }: FormPublicProps) => {
-    const handleOnSubmit = (e: any) => {
-      e.preventDefault();
-
-      const {
-        isValid,
-        errors,
-      } = validateForm(schema, formikForm);
-
-      if (!isValid) {
-        if (onError) {
-          onError(errors);
-        }
-
-        return;
-      }
-
-      formikForm.handleSubmit();
-    };
-
     const formClassName = classNames(FORMUP_FORM_CLASS_NAME, className);
 
     return (
@@ -85,7 +89,9 @@ const useFormup = (
       </FormContainer>
     );
   }, [
+    handleOnSubmit,
     formikForm,
+    formKey,
   ]);
 
   return {
