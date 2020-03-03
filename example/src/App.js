@@ -3,18 +3,19 @@ import * as yup from 'yup';
 
 import {
   useFormup,
-  useSchema,
+  createSchema,
 } from '@formup/core';
 
-// You can customize your locale to support multiple languages easily using useSchema!
+// You can customize your locale to support multiple languages easily using createSchema!
 const locale = {
   mixed: {
     default: 'Invalid field!',
   },
 };
 
-// You don't need to use useSchema if you're not customizing your locale. You can use yup instead.
-const schema = useSchema({
+// You don't need to use createSchema if you're not customizing your locale.
+// You can use yup instead, no problems!
+const schema = createSchema({
   // Your schema supports simple field
   name: yup.string()
     .required()

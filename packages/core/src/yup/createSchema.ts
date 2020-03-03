@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const useSchema = (
+const createSchema = (
   payload: yup.ObjectSchemaDefinition<any>,
   locale?: yup.LocaleObject,
 ) => {
@@ -11,4 +11,4 @@ const useSchema = (
   return yup.object().shape(payload);
 };
 
-export default useSchema;
+export default createSchema;
