@@ -1,17 +1,12 @@
 import React from 'react';
-import { useFormik, FormikConfig } from 'formik';
 
-import FormContainer from '../../contexts/FormContext/FormContainer';
-import mapFieldsToObject from '../../utils/mapFieldsToObject';
-import validateForm from '../../yup/validateForm';
-import { YupSchema } from '../../yup/types';
-
-export interface FormProps extends FormikConfig<any> {
-  schema: YupSchema,
-  onSubmit: (values: object) => void,
-  onError?: (errors: string[]) => void,
+export interface FormPublicProps {
   children?: React.ReactChild,
   className?: any,
+}
+
+export interface FormProps extends FormPublicProps {
+  handleOnSubmit: (payload: any) => void,
 }
 
 /**
@@ -19,54 +14,13 @@ export interface FormProps extends FormikConfig<any> {
  * The inputs should be enclosed by the FormInput component.
  */
 const Form = ({
+  handleOnSubmit,
   className,
   children,
-  onSubmit,
-  onError,
-  schema,
-  ...props
-}: FormProps) => {
-  if (!schema) {
-    throw new Error('You need to provide the "schema" prop.');
-  }
-
-  if (!onSubmit) {
-    throw new Error('You need to provide the "onSubmit" prop.');
-  }
-
-  const form = useFormik({
-    ...props,
-    onSubmit,
-    validationSchema: schema,
-    initialValues: mapFieldsToObject(schema.fields),
-  });
-
-  const handleOnSubmit = (e: any) => {
-    e.preventDefault();
-
-    const {
-      isValid,
-      errors,
-    } = validateForm(schema, form);
-
-    if (!isValid) {
-      if (onError) {
-        onError(errors);
-      }
-
-      return;
-    }
-
-    form.handleSubmit();
-  };
-
-  return (
-    <FormContainer form={form}>
-      <form onSubmit={handleOnSubmit} className={className}>
-        {children}
-      </form>
-    </FormContainer>
-  );
-};
+}: FormProps) => (
+  <form onSubmit={handleOnSubmit} className={className}>
+    {children}
+  </form>
+);
 
 export default Form;
