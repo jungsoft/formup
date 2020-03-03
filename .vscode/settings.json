@@ -1,3 +1,6 @@
 {
-  "eslint.workingDirectories": ["./formup/", "./example/"]
+  "eslint.workingDirectories": [
+    "./packages/core/",
+    "./example/"
+  ]
 }
