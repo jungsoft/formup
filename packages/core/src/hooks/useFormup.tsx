@@ -47,8 +47,10 @@ const useFormup = (
     initialValues: mapFieldsToObject(schema.fields),
   });
 
-  const handleOnSubmit = React.useCallback((e: any) => {
-    e.preventDefault();
+  const handleOnSubmit = React.useCallback((event: any) => {
+    if (event) {
+      event.preventDefault();
+    }
 
     const {
       isValid,
@@ -80,7 +82,7 @@ const useFormup = (
   );
 
   return {
-    submitForm: () => handleOnSubmit,
+    submitForm: () => handleOnSubmit(null),
     Form: FormComponent,
     FormInput,
   };
