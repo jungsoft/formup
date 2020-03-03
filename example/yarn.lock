@@ -25,10 +25,10 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@formup/core@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@formup/core/-/core-1.0.3.tgz#5876d940b222554605338c657b67732d80e990ae"
-  integrity sha512-bnX8ypkE9cvc2F+K53/6+HviB5/wqbAvlDC53bz4Dw9FvfO5Dis6fgmW2US/uRt2iHDWPD/aew4L7PYja9C/8w==
+"@formup/core@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@formup/core/-/core-1.0.14.tgz#0192d6271d43ab9d16f0fab2159829c2f24ae390"
+  integrity sha512-l2itRr5IUe5gKyGWdvbq1hyeKYWAo+WUrK05iJtN/Mdhmnfldh68NeXH5WXkcrezrv2F7o0h2sewGyu5f6GwvQ==
   dependencies:
     classnames "^2.2.6"
     formik "2.1.3"

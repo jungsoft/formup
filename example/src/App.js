@@ -76,6 +76,7 @@ const App = () => {
 
   // Initialize your Formup form
   const {
+    formikForm,
     submitForm,
     FormInput,
     Form,
@@ -86,7 +87,7 @@ const App = () => {
   });
 
   return (
-    <Form>
+    <Form formikForm={formikForm}>
       <h2>
         Formup is awesome
         <span role="img" aria-label="Formup is awesome"> 😆</span>
