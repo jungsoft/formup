@@ -31,17 +31,83 @@ npm install --save formup
 TODO
 
 ```tsx
-import * as React from 'react'
+import * as React from 'react';
+import * as yup from 'yup';
 
-import MyComponent from 'formup'
+import { useFormup } from '@formup/core';
 
-class Example extends React.Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
-}
+const schema = yup.object().shape({
+  name: yup
+    .string()
+    .required()
+    .label('Name'),
+  email: yup.string()
+    .required()
+    .email()
+    .label('Email'),
+  age: yup
+    .number()
+    .integer()
+    .positive()
+    .required()
+    .label('Age'),
+});
+
+const MyComponent = () => {
+  const handleValidationError = (errors) => {
+    console.warn('Form validation error!', errors);
+  };
+
+  const handleSubmitForm = (values) => {
+    const {
+      name,
+      phone,
+      email,
+      password,
+      confirmPassword,
+    } = values;
+
+    console.warn('Form is valid! Submitting information...', {
+      name,
+      phone,
+      email,
+      password,
+      confirmPassword,
+    });
+
+    // Submit your form to your backend or any API here! =).
+    return true;
+  };
+
+  const {
+    formikForm,
+    submitForm,
+    FormInput,
+    Form,
+  } = useFormup(schema, {
+    onError: handleValidationError,
+    onSubmit: handleSubmitForm,
+  });
+
+  return (
+    <Form formikForm={formikForm}>
+      {/*
+        FormInput will take care of all validation!
+        Simply provide the "name" prop.
+      */}
+
+      <FormInput name="name" label="Name" />
+      <FormInput name="email" label="Email" />
+      <FormInput name="age" label="Age" />
+
+      <button type="button" className="form-button" onClick={submitForm}>
+        Submit!
+      </button>
+    </Form>
+  );
+};
+
+export default MyComponent;
 ```
 
 ## Contributing
