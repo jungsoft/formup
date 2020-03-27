@@ -28,8 +28,6 @@ npm install --save formup
 
 ## Usage
 
-TODO
-
 ```tsx
 import * as React from 'react';
 import * as yup from 'yup';
