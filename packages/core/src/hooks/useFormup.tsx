@@ -35,6 +35,13 @@ const useFormup = (
     initialValues: mapFieldsToObject(schema.fields),
   });
 
+  const handleValidateForm = React.useCallback(() => (
+    validateForm(schema, formikForm)
+  ), [
+    formikForm,
+    schema,
+  ]);
+
   const submitForm = React.useCallback((event: any) => {
     if (event?.preventDefault) {
       event.preventDefault();
@@ -43,7 +50,7 @@ const useFormup = (
     const {
       isValid,
       error,
-    } = validateForm(schema, formikForm);
+    } = handleValidateForm();
 
     if (!isValid) {
       if (onError) {
@@ -55,12 +62,13 @@ const useFormup = (
 
     formikForm.handleSubmit();
   }, [
+    handleValidateForm,
     formikForm,
     onError,
-    schema,
   ]);
 
   return {
+    validateForm: handleValidateForm,
     submitForm,
     formikForm,
     FormInput,
