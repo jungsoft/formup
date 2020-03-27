@@ -1,6 +1,6 @@
 import defaultValidationOptions from '../constants/defaultValidationOptions';
+import { YupSchema, ValidateFormOptions } from '../interfaces';
 import setFieldsTouched from '../utils/setFieldsTouched';
-import { YupSchema, ValidateFormOptions } from './types';
 
 /**
  * Executes the form validation, and returns a summary of results.

@@ -1,23 +1,11 @@
 import * as React from 'react';
-import { useFormik, FormikConfig } from 'formik';
+import { useFormik } from 'formik';
 
-import FormInput, { FormInputProps } from '../components/FormInput/FormInput';
+import { YupSchema, UseFormupResult, UseFormupOptions } from '../interfaces';
 import mapFieldsToObject from '../utils/mapFieldsToObject';
-import Form, { FormProps } from '../components/Form/Form';
+import FormInput from '../components/FormInput/FormInput';
 import validateForm from '../yup/validateForm';
-import { YupSchema } from '../yup/types';
-
-export interface UseFormupOptions extends FormikConfig<any> {
-  onError?: (errors: string[]) => void,
-  onSubmit: (values: object) => void,
-}
-
-export interface UseFormupResult {
-  FormInput: React.FunctionComponent<FormInputProps>,
-  Form: React.FunctionComponent<FormProps>,
-  submitForm: () => void,
-  formikForm: any,
-}
+import Form from '../components/Form/Form';
 
 /**
  * Hook to use formup.
