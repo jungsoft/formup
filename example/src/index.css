@@ -22,3 +22,8 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+.custom-input-error-label {
+  color: red;
+  font-size: 12px;
+}

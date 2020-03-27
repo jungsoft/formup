@@ -6,6 +6,8 @@ import {
   createSchema,
 } from '@formup/core';
 
+import CustomInput from './components/CustomInput';
+
 // You can customize your locale to support multiple languages easily using createSchema!
 const locale = {
   mixed: {
@@ -31,6 +33,9 @@ const schema = createSchema({
   phone: yup.string()
     .required()
     .label('Phone'),
+
+  nickname: yup.string()
+    .required(),
 
   // And even multi-level nested fields!
   authentication: yup.object().shape({
@@ -102,8 +107,18 @@ const App = () => {
       <FormInput name="email" label="Email" />
       <FormInput name="phone" label="Phone" />
 
+      {/*
+        It will take care of nested fiels too!
+      */}
+
       <FormInput type="password" name="authentication.password" label="Password" />
       <FormInput type="password" name="authentication.confirmPassword" label="Confirm Password" />
+
+      {/*
+        And of course, you can render custom inputs =).
+      */}
+
+      <FormInput name="nickname" title="Your nickname goes below" component={CustomInput} />
 
       <button type="button" className="form-button" onClick={submitForm}>
         Submit!
