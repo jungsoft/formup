@@ -35,8 +35,8 @@ const useFormup = (
     initialValues: mapFieldsToObject(schema.fields),
   });
 
-  const handleOnSubmit = React.useCallback((event: any) => {
-    if (event) {
+  const submitForm = React.useCallback((event: any) => {
+    if (event?.preventDefault) {
       event.preventDefault();
     }
 
@@ -61,7 +61,7 @@ const useFormup = (
   ]);
 
   return {
-    submitForm: () => handleOnSubmit(null),
+    submitForm,
     formikForm,
     FormInput,
     Form,

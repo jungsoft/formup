@@ -51,6 +51,6 @@ export interface UseFormupOptions extends FormikConfig<any> {
 export interface UseFormupResult {
   FormInput: React.FunctionComponent<FormInputProps>,
   Form: React.FunctionComponent<FormProps>,
-  submitForm: () => void,
+  submitForm: (event?: any) => void,
   formikForm: any,
 }
