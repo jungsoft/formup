@@ -42,12 +42,12 @@ const useFormup = (
 
     const {
       isValid,
-      errors,
+      error,
     } = validateForm(schema, formikForm);
 
     if (!isValid) {
       if (onError) {
-        onError(errors);
+        onError(error);
       }
 
       return;

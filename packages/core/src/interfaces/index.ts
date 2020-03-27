@@ -12,6 +12,17 @@ export interface FormupYupSchema extends yup.Schema<any> {
 }
 
 /**
+ * Validation error returned by validateForm.
+ */
+export interface FormupValidationError extends yup.ValidationError {
+  /**
+   * Describes errors for each form input, in a dictionary pattern.
+   * Array of inputName: [errors].
+   */
+  formElements: object,
+}
+
+/**
  * Options for validateForm.
  */
 export interface ValidateFormOptions extends yup.ValidateOptions {
@@ -19,10 +30,18 @@ export interface ValidateFormOptions extends yup.ValidateOptions {
 }
 
 /**
+ * Result returned by validateForm.
+ */
+export interface ValidateFormResult extends yup.ValidateOptions {
+  isValid: boolean,
+  error?: FormupValidationError | undefined,
+}
+
+/**
  * Options for useFormup.
  */
 export interface UseFormupOptions extends FormikConfig<any> {
-  onError?: (errors: string[]) => void,
+  onError?: (error: FormupValidationError | undefined) => void,
   onSubmit: (values: object) => void,
 }
 

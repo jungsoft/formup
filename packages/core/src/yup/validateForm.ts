@@ -1,5 +1,7 @@
+import { ValidationError } from 'yup';
+
+import { FormupYupSchema, ValidateFormOptions, ValidateFormResult } from '../interfaces';
 import defaultValidationOptions from '../constants/defaultValidationOptions';
-import { FormupYupSchema, ValidateFormOptions } from '../interfaces';
 import setFieldsTouched from '../utils/setFieldsTouched';
 
 /**
@@ -12,10 +14,10 @@ const validateForm = (
   schema: FormupYupSchema,
   form: any,
   options: ValidateFormOptions = defaultValidationOptions,
-) => {
-  const result = {
+): ValidateFormResult => {
+  const result: ValidateFormResult = {
+    error: undefined,
     isValid: true,
-    errors: [],
   };
 
   let validatePaths: string[] = [];
@@ -57,8 +59,25 @@ const validateForm = (
       );
     }
   } catch (error) {
-    result.errors = error.errors;
     result.isValid = false;
+
+    const exceptionError = error as ValidationError;
+
+    if (exceptionError) {
+      const formElements = exceptionError.inner
+        .reduce((prev, acc) => ({
+          ...prev,
+          [acc.path]: [
+            ...(prev[acc.path] || []),
+            ...acc.errors,
+          ],
+        }), {});
+
+      result.error = {
+        ...exceptionError,
+        formElements,
+      };
+    }
   }
 
   return result;
