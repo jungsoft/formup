@@ -1,9 +1,9 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
+import { FORMUP_INPUT_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../constants/identifiers';
 import DefaultInputComponent from '../DefaultInputComponent/DefaultInputComponent';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
-import { FORMUP_INPUT_CLASS_NAME } from '../../constants/identifiers';
 
 export interface FormInputProps extends React.Props<any> {
   component: React.ElementType;
@@ -58,7 +58,6 @@ const FormInput = ({
   const inputProps = {
     ...props,
     ...formInputProps,
-    danger: formInputMeta.touch && formInputMeta.error,
     onChange: (event: any) => {
       const {
         target: {
@@ -97,7 +96,9 @@ const FormInput = ({
     inputProps.defaultValue = undefined;
   }
 
-  inputProps.className = classNames(FORMUP_INPUT_CLASS_NAME, className);
+  inputProps.className = classNames(FORMUP_INPUT_CLASS_NAME, className, {
+    [FORMUP_INPUT_DANGER_CLASS_NAME]: formInputMeta.touch && formInputMeta.error,
+  });
 
   return (
     <Component {...inputProps}>
