@@ -108,6 +108,69 @@ const MyComponent = () => {
 export default MyComponent;
 ```
 
+## Usage - Rendering Custom Inputs
+
+```tsx
+import * as React from 'react';
+import * as yup from 'yup';
+
+import { useFormup } from '@formup/core';
+
+const schema = yup.object().shape({
+  name: yup
+    .string()
+    .required()
+    .label('Name'),
+});
+
+// We can easily render custom components using Formup!
+const CustomInput = ({
+  error, // Yup validation error
+  title, // Custom property
+  ...props
+}) => (
+  <div>
+    <p>{title}</p>
+    <p>{error}</p>
+    <input {...props} />
+  </div>
+);
+
+const MyComponent = () => {
+  const handleSubmitForm = (values) => {
+    console.warn('Form is valid! Submitting information...', values);
+
+    // Submit your form to your backend or any API here! =).
+    return true;
+  };
+
+  const {
+    formikForm,
+    submitForm,
+    FormInput,
+    Form,
+  } = useFormup(schema, {
+    onSubmit: handleSubmitForm,
+  });
+
+  return (
+    <Form formikForm={formikForm}>
+      {/*
+        Here we'll render FormInput, but with a custom component!
+      */}
+
+      <FormInput name="name" component={CustomInput} />
+
+      <button type="button" className="form-button" onClick={submitForm}>
+        Submit!
+      </button>
+    </Form>
+  );
+};
+
+export default MyComponent;
+```
+
 ## Contributing
 
 Pull requests are welcome!
