@@ -85,7 +85,7 @@ const FormInput = ({
 
   const isUntouched = (
     (value || defaultValue)
-    && !formInputMeta.touch
+    && !formInputMeta.touched
     && !formInputMeta.initialValue
   );
 
@@ -97,7 +97,7 @@ const FormInput = ({
   }
 
   inputProps.className = classNames(FORMUP_INPUT_CLASS_NAME, className, {
-    [FORMUP_INPUT_DANGER_CLASS_NAME]: formInputMeta.touch && formInputMeta.error,
+    [FORMUP_INPUT_DANGER_CLASS_NAME]: !!(formInputMeta.touched && formInputMeta.error),
   });
 
   return (
