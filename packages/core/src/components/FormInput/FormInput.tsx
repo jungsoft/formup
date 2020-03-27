@@ -81,6 +81,7 @@ const FormInput = ({
         onBlur(event);
       }
     },
+    error: formInputMeta?.error,
   };
 
   const isUntouched = (
