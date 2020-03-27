@@ -98,12 +98,12 @@ const App = () => {
         Simply provide the "name" prop.
       */}
 
-      <FormInput className="form-input" name="name" label="Name" />
-      <FormInput className="form-input" name="email" label="Email" />
-      <FormInput className="form-input" name="phone" label="Phone" />
+      <FormInput name="name" label="Name" />
+      <FormInput name="email" label="Email" />
+      <FormInput name="phone" label="Phone" />
 
-      <FormInput type="password" className="form-input" name="authentication.password" label="Password" />
-      <FormInput type="password" className="form-input" name="authentication.confirmPassword" label="Confirm Password" />
+      <FormInput type="password" name="authentication.password" label="Password" />
+      <FormInput type="password" name="authentication.confirmPassword" label="Confirm Password" />
 
       <button type="button" className="form-button" onClick={submitForm}>
         Submit!
