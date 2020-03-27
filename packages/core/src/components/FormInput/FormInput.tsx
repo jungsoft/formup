@@ -38,11 +38,11 @@ const FormInput = ({
   name,
   ...props
 }: FormInputProps) => {
+  const form = useFormContext();
+
   if (!name) {
     throw new Error('You need to provide the "name" prop.');
   }
-
-  const form = useFormContext();
 
   if (!form) {
     throw new Error('You need to provide a <Form /> component enclosing FormInput.');
