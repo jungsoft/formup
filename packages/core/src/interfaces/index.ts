@@ -7,7 +7,7 @@ import { FormProps } from '../components/Form/Form';
 /**
  * Yup schema as used by Formup.
  */
-export interface YupSchema extends yup.Schema<any> {
+export interface FormupYupSchema extends yup.Schema<any> {
   fields: object;
 }
 

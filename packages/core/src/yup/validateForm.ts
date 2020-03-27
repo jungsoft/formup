@@ -1,5 +1,5 @@
 import defaultValidationOptions from '../constants/defaultValidationOptions';
-import { YupSchema, ValidateFormOptions } from '../interfaces';
+import { FormupYupSchema, ValidateFormOptions } from '../interfaces';
 import setFieldsTouched from '../utils/setFieldsTouched';
 
 /**
@@ -9,7 +9,7 @@ import setFieldsTouched from '../utils/setFieldsTouched';
  * @param paths Paths to be validated. Optional.
  */
 const validateForm = (
-  schema: YupSchema,
+  schema: FormupYupSchema,
   form: any,
   options: ValidateFormOptions = defaultValidationOptions,
 ) => {

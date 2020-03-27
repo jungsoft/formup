@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useFormik } from 'formik';
 
-import { YupSchema, UseFormupResult, UseFormupOptions } from '../interfaces';
+import { FormupYupSchema, UseFormupResult, UseFormupOptions } from '../interfaces';
 import mapFieldsToObject from '../utils/mapFieldsToObject';
 import FormInput from '../components/FormInput/FormInput';
 import validateForm from '../yup/validateForm';
@@ -14,7 +14,7 @@ import Form from '../components/Form/Form';
  * @param options Formup options
  */
 const useFormup = (
-  schema: YupSchema,
+  schema: FormupYupSchema,
   options: UseFormupOptions,
 ): UseFormupResult => {
   if (!schema) {
