@@ -161,7 +161,11 @@ const MyComponent = () => {
         Here we'll render FormInput, but with a custom component!
       */}
 
-      <FormInput name="name" component={CustomInput} />
+      <FormInput
+        name="name"
+        component={CustomInput}
+        title="Sign your name here, please!"
+      />
 
       <button type="button" className="form-button" onClick={submitForm}>
         Submit!
