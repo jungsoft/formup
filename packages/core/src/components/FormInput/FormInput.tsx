@@ -5,8 +5,12 @@ import { FORMUP_INPUT_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../c
 import DefaultInputComponent from '../DefaultInputComponent/DefaultInputComponent';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
 
+export interface FormInputComponentProps extends React.Props<any> {
+  error: boolean,
+}
+
 export interface FormInputProps extends React.Props<any> {
-  component: React.ElementType;
+  component: React.ElementType<FormInputComponentProps>;
   name: string;
   type?: string;
   value?: any;
@@ -82,7 +86,6 @@ const FormInput = ({
       }
     },
     error: !!formInputMeta?.error,
-    errorMessage: formInputMeta?.error,
   };
 
   const isUntouched = (

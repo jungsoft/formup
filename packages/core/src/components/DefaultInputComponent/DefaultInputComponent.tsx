@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface DefaultInputComponentProps extends React.Props<any> {
   label?: string,
+  error?: boolean,
 }
 
 /**
@@ -10,14 +11,18 @@ export interface DefaultInputComponentProps extends React.Props<any> {
 */
 const DefaultInputComponent = ({
   label,
+  error,
   ...props
 }: DefaultInputComponentProps) => (
   <div>
     {
       label && (
-        <p>{label}</p>
+        <p>
+          {label}
+        </p>
       )
     }
+
     <input {...props} />
   </div>
 );
