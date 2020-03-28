@@ -114,8 +114,6 @@ You can render any custom component while still keeping all validation from Form
 
 To do this, you just need to pass the `component` prop to `FormInput`. 🙋
 
-For example, you may want to render the `Error` that comes from `yup` validation. Formup natively passes this as a prop named `error` to your custom input component.
-
 ```tsx
 import * as React from 'react';
 import * as yup from 'yup';
@@ -131,13 +129,11 @@ const schema = yup.object().shape({
 
 // We can easily render custom components using Formup!
 const CustomInput = ({
-  error, // Yup validation error
   title, // Custom property
   ...props
 }) => (
   <div>
     <p>{title}</p>
-    <p>{error}</p>
     <input {...props} />
   </div>
 );
