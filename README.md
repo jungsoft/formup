@@ -185,7 +185,7 @@ If you have any feedback, issue or suggestion, feel free to open [a new issue](h
 
 ## License
 
-MIT © [pedro-lb](https://github.com/pedro-lb)
+MIT © [formup](https://www.npmjs.com/org/formup)
 
 ## Special Thanks
 
