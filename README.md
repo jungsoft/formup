@@ -192,3 +192,6 @@ MIT © [formup](https://www.npmjs.com/org/formup)
 Thanks to [jaredpalmer](https://github.com/jaredpalmer/) and all maintainers for developing [formik](https://github.com/jaredpalmer/formik).
 
 Thanks to [jquense](https://github.com/jquense/) and all maintainers for developing [yup](https://github.com/jquense/yup).
+
+
+Made with ❤️ by [Pedro Bini](https://github.com/pedro-lb/) @ [Jungsoft](https://jungsoft.io/).
