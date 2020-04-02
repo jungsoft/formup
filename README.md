@@ -17,13 +17,13 @@ Online example [here](https://pedro-lb.github.io/formup/).
 You can use `yarn`
 
 ```bash
-yarn add formup
+yarn add @formup/core
 ```
 
 Or `npm`, it's totally up to you!
 
 ```bash
-npm install --save formup
+npm install --save @formup/core
 ```
 
 ## Usage
