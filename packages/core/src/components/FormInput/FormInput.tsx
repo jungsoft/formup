@@ -63,11 +63,7 @@ const FormInput = ({
     ...props,
     ...formInputProps,
     onChange: (event: any) => {
-      const {
-        target: {
-          value: newValue,
-        },
-      } = event;
+      const newValue = event?.target?.value || event;
 
       form.setFieldValue(name, newValue);
       form.setFieldTouched(name, true);
