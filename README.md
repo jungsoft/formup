@@ -10,7 +10,7 @@ Of course, you'll still have all validation options and functionality from Yup a
 
 ## Online Example
 
-Online example [here](https://pedro-lb.github.io/formup/).
+Online example [here](https://jungsoft.github.io/formup/).
 
 ## Installation
 
@@ -181,7 +181,7 @@ export default MyComponent;
 
 Pull requests are welcome!
 
-If you have any feedback, issue or suggestion, feel free to open [a new issue](https://github.com/pedro-lb/formup/issues/new) so we can talk about it 💬.
+If you have any feedback, issue or suggestion, feel free to open [a new issue](https://github.com/jungsoft/formup/issues/new) so we can talk about it 💬.
 
 ## License
 
