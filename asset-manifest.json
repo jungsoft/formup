@@ -1,6 +1,22 @@
 {
-  "main.css": "static/css/main.c13f6512.css",
-  "main.css.map": "static/css/main.c13f6512.css.map",
-  "main.js": "static/js/main.343f9de1.js",
-  "main.js.map": "static/js/main.343f9de1.js.map"
+  "files": {
+    "main.css": "/formup/static/css/main.1593959f.chunk.css",
+    "main.js": "/formup/static/js/main.d5f9f306.chunk.js",
+    "main.js.map": "/formup/static/js/main.d5f9f306.chunk.js.map",
+    "runtime-main.js": "/formup/static/js/runtime-main.db7e77a7.js",
+    "runtime-main.js.map": "/formup/static/js/runtime-main.db7e77a7.js.map",
+    "static/js/2.b580bbd6.chunk.js": "/formup/static/js/2.b580bbd6.chunk.js",
+    "static/js/2.b580bbd6.chunk.js.map": "/formup/static/js/2.b580bbd6.chunk.js.map",
+    "index.html": "/formup/index.html",
+    "precache-manifest.ef1fcbe7c3c1160858826223caf035c9.js": "/formup/precache-manifest.ef1fcbe7c3c1160858826223caf035c9.js",
+    "service-worker.js": "/formup/service-worker.js",
+    "static/css/main.1593959f.chunk.css.map": "/formup/static/css/main.1593959f.chunk.css.map",
+    "static/js/2.b580bbd6.chunk.js.LICENSE.txt": "/formup/static/js/2.b580bbd6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.db7e77a7.js",
+    "static/js/2.b580bbd6.chunk.js",
+    "static/css/main.1593959f.chunk.css",
+    "static/js/main.d5f9f306.chunk.js"
+  ]
 }
