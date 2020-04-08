@@ -18,6 +18,7 @@ export interface FormInputProps extends React.Props<any> {
   children?: React.ReactChild;
   onBlur?: (arg0: React.FormEvent<HTMLInputElement>) => void;
   onChange?: (arg0: React.FormEvent<HTMLInputElement>) => void;
+  onKeyPress?: (arg0: React.FormEvent<HTMLInputElement>) => void;
   className?: any,
 }
 
@@ -35,6 +36,7 @@ export interface FormInputProps extends React.Props<any> {
 const FormInput = ({
   component: Component = DefaultInputComponent,
   type = 'text',
+  onKeyPress,
   className,
   children,
   onChange,
@@ -74,6 +76,15 @@ const FormInput = ({
 
       if (onChange) {
         onChange(event);
+      }
+    },
+    onKeyPress: (event: any) => {
+      if (formInputProps.onKeyPress) {
+        formInputProps.onKeyPress(event);
+      }
+
+      if (onKeyPress) {
+        onKeyPress(event);
       }
     },
     onBlur: (event: any) => {
