@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { FORMUP_INPUT_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../constants/identifiers';
 import DefaultInputComponent from '../DefaultInputComponent/DefaultInputComponent';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
+import composeInputEvent from '../../utils/composeInputEvent';
 
 export interface FormInputComponentProps extends React.Props<any> {
   error: boolean,
@@ -78,24 +79,16 @@ const FormInput = ({
         onChange(event);
       }
     },
-    onKeyPress: (event: any) => {
-      if (formInputProps.onKeyPress) {
-        formInputProps.onKeyPress(event);
-      }
-
-      if (onKeyPress) {
-        onKeyPress(event);
-      }
-    },
-    onBlur: (event: any) => {
-      if (formInputProps.onBlur) {
-        formInputProps.onBlur(event);
-      }
-
-      if (onBlur) {
-        onBlur(event);
-      }
-    },
+    onKeyPress: (event: any) => composeInputEvent(
+      event,
+      formInputProps?.onKeyPress,
+      onKeyPress,
+    ),
+    onBlur: (event: any) => composeInputEvent(
+      event,
+      formInputProps?.onBlur,
+      onBlur,
+    ),
     error: !!(formInputMeta?.touched && formInputMeta?.error),
   };
 
