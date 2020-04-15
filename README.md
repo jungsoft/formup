@@ -1,6 +1,6 @@
 # Formup
 
-[![NPM](https://img.shields.io/npm/v/formup.svg)](https://www.npmjs.com/package/formup) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/formup.svg)](https://www.npmjs.com/package/@formup/core) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 Formup integrates Formik with Yup, reducing the code overhead needed to create your forms to zero!
 
