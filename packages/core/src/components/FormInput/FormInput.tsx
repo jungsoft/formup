@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { FORMUP_INPUT_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../constants/identifiers';
 import DefaultInputComponent from '../DefaultInputComponent/DefaultInputComponent';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
+import checkFormInputError from '../../utils/checkFormInputError';
 import composeInputEvent from '../../utils/composeInputEvent';
 import extractEventValue from '../../utils/extractEventValue';
 
@@ -87,7 +88,7 @@ const FormInput = ({
       formInputProps?.onBlur,
       onBlur,
     ),
-    error: !!(formInputMeta?.touched && formInputMeta?.error),
+    error: checkFormInputError(formInputMeta),
   };
 
   const isUntouched = (
