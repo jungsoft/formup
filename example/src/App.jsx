@@ -128,9 +128,9 @@ const App = () => {
               {' Default inputs'}
             </Typography>
 
-            <Typography variant="body1" align="left">
-              <p> FormInput will take care of all validation! </p>
-              <p> Simply provide the name prop. </p>
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              FormInput will take care of all validation, according to your yup schema!
+              Simply provide the <strong>name</strong> prop to link with your schema field.
             </Typography>
 
             <FormInput name="name" label="Name" />
@@ -140,9 +140,12 @@ const App = () => {
               {' Custom inputs'}
             </Typography>
 
-            <Typography variant="body1" align="left">
-              <p> You can render ANY custom input as a component! =) </p>
-              <p> You can pass any custom props to your components too. </p>
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              You can render <strong>ANY</strong> custom input as a component!
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              You can pass any custom props to your components too. =)
             </Typography>
 
             <FormInput
@@ -159,9 +162,12 @@ const App = () => {
               {' Yup nested inputs'}
             </Typography>
 
-            <Typography variant="body1" align="left">
-              <p> Formup also supports unlimited nesting with yup! </p>
-              <p> The inputs below all belong to an object named authentication in the schema. </p>
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              Formup also supports <strong>unlimited</strong> nesting with yup!
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              The inputs below all belong to an object named authentication in the schema.
             </Typography>
 
             <FormInput
@@ -183,9 +189,13 @@ const App = () => {
               {' Single-choice inputs'}
             </Typography>
 
-            <Typography variant="body1" align="left">
-              <p> With Formup, you can control single-choice inputs easily! </p>
-              <p> You can use FormInputGroup & FormInputGroup components for this. </p>
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              With Formup, you can control single-choice inputs easily!
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              You can use <strong>FormInputGroup</strong> and
+              <strong> FormInputGroup</strong> components for this.
             </Typography>
 
             <FormInputGroup name="gender">
@@ -214,11 +224,16 @@ const App = () => {
               {' Multiple-choice inputs'}
             </Typography>
 
-            <Typography variant="body1" align="left">
-              <p> What did you expect? Well, of course we support multiple-choice inputs too! </p>
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              What did you expect? Well, of course we support multiple-choice inputs too!
             </Typography>
 
-            <FormInputGroup name="favouriteFood" multi>
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              Oh, did I mention you can use <strong>initialValue </strong>
+              to set the initial checked items?
+            </Typography>
+
+            <FormInputGroup name="favouriteFood" multi initialValue={['Cupcake', 'Donut']}>
               <Typography variant="body2" align="left" className={classes.marginTop2}>
                 What's favourite food? You can pick as many as you want!
               </Typography>
@@ -279,8 +294,8 @@ const App = () => {
               {' Form value'}
             </Typography>
 
-            <Typography variant="body1" align="left">
-              <p> Here's your fancy form value in a beaultiful real-time JSON string </p>
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              Here's your fancy form value in a beaultiful real-time JSON string.
             </Typography>
 
             <TextField
@@ -296,8 +311,8 @@ const App = () => {
               {' Form submission result'}
             </Typography>
 
-            <Typography variant="body1" align="left">
-              <p> If you press the button below you'll see the results here! </p>
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              If you press the button below you'll see the results here!
             </Typography>
 
             <TextField
@@ -324,7 +339,7 @@ const App = () => {
       </Grid>
 
       <Grid item xs={12} className={classNames(classes.marginTop2, classes.centerContent)}>
-        <Typography variant="body1">
+        <Typography variant="body1" className={classes.subtitle}>
           <span>
             {'Made with '}
             <span role="img" aria-label="github">❤️</span>

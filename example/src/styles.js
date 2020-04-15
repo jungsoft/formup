@@ -37,6 +37,10 @@ const useStyles = makeStyles((theme) => ({
   fullWidth: {
     width: '100%',
   },
+  subtitle: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(0.5),
+  },
 }));
 
 export default useStyles;
