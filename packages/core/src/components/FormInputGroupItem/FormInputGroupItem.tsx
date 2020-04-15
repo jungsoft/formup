@@ -46,7 +46,7 @@ const FormInputGroupItem = ({
     multi,
   }] = useFormGroupContext();
 
-  if (!value) {
+  if (value === undefined) {
     throw new Error('You need to provide the "value" prop.');
   }
 
