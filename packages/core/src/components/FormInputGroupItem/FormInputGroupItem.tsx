@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import DefaultInputGroupItemComponent from '../DefaultInputComponents/DefaultInputGroupItemComponent';
 import { useFormGroupContext } from '../../contexts/FormGroupContext/FormGroupContext';
+import { useFormContext } from '../../contexts/FormContext/FormContext';
 import {
   FORMUP_INPUT_GROUP_ITEM_CLASS_NAME,
   FORMUP_INPUT_DANGER_CLASS_NAME,
@@ -10,14 +11,14 @@ import {
 } from '../../constants/identifiers';
 
 export interface FormInputGroupComponentProps extends React.Props<any> {
-  multi?: boolean;
+  type: string;
 }
 
 export interface FormInputGroupItemProps extends React.Props<any> {
   component: React.ElementType<FormInputGroupComponentProps>;
   containerClassName?: any;
   className?: any;
-  value: string;
+  value: any;
 }
 
 /**
@@ -42,9 +43,14 @@ const FormInputGroupItem = ({
   ...props
 }: FormInputGroupItemProps) => {
   const [, setFormGroupValue, {
+    name,
     error,
     multi,
   }] = useFormGroupContext();
+
+  const form = useFormContext();
+
+  const { value: formGroupValue } = form.getFieldProps(name);
 
   if (value === undefined) {
     throw new Error('You need to provide the "value" prop.');
@@ -66,14 +72,25 @@ const FormInputGroupItem = ({
     value,
   ]);
 
+  const inputType = multi ? 'checkbox' : 'radio';
+
+  const isChecked = (
+    multi
+      ? Array.isArray(formGroupValue) && formGroupValue.includes(value)
+      : formGroupValue === value
+  );
+
   const inputProps = {
     ...props,
+    onClick: handleSetFormGroupValue,
     className: inputClassName,
+    checked: isChecked,
+    type: inputType,
   };
 
   return (
-    <div className={inputContainerClassName} onClick={handleSetFormGroupValue}>
-      <Component {...inputProps} multi={multi} />
+    <div className={inputContainerClassName}>
+      <Component {...inputProps} />
     </div>
   );
 };
