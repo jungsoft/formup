@@ -43,5 +43,6 @@ module.exports = {
     "no-console": 0,
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error",
+    "react/jsx-boolean-value": 0,
   },
 };
