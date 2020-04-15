@@ -45,6 +45,7 @@ const FormInput = ({
   name,
   ...props
 }: FormInputProps) => {
+  const isInitializedRef = React.useRef(false);
   const form = useFormContext();
 
   if (!name) {
@@ -93,15 +94,16 @@ const FormInput = ({
   };
 
   const isUntouched = (
-    (value || defaultValue)
+    (value || defaultValue || formInputMeta.initialValue)
     && !formInputMeta.touched
-    && !formInputMeta.initialValue
+    && !isInitializedRef.current
   );
 
   if (isUntouched) {
-    form.setFieldValue(name, value || defaultValue);
+    form.setFieldValue(name, value || defaultValue || formInputMeta.initialValue);
 
     inputProps.defaultValue = undefined;
+    isInitializedRef.current = true;
   }
 
   inputProps.className = classNames(FORMUP_INPUT_CLASS_NAME, className, {
