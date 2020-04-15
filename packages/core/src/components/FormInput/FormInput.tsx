@@ -100,7 +100,6 @@ const FormInput = ({
 
   if (isUntouched) {
     form.setFieldValue(name, value || defaultValue);
-    form.setFieldTouched(name, true);
 
     inputProps.defaultValue = undefined;
   }
