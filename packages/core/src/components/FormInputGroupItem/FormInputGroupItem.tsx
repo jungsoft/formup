@@ -84,6 +84,7 @@ const FormInputGroupItem = ({
     ...props,
     onClick: handleSetFormGroupValue,
     className: inputClassName,
+    onChange: () => {},
     checked: isChecked,
     type: inputType,
   };
