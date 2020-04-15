@@ -7,9 +7,7 @@ const CustomInput = ({
   title, // Custom property
   ...props
 }) => (
-  <div>
-    <TextField label={title} {...props} />
-  </div>
+  <TextField label={title} {...props} />
 );
 
 CustomInput.propTypes = {

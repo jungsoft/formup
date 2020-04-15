@@ -44,5 +44,6 @@ module.exports = {
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react/jsx-boolean-value": 0,
+    "react/no-unescaped-entities": 0,
   },
 };
