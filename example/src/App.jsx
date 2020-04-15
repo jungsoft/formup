@@ -140,7 +140,7 @@ const App = () => {
               {' Default inputs'}
             </Typography>
 
-            <Typography variant="body2" align="left" className={classes.marginTop2}>
+            <Typography variant="body1" align="left">
               <p> FormInput will take care of all validation! </p>
               <p> Simply provide the name prop. </p>
             </Typography>
@@ -152,7 +152,7 @@ const App = () => {
               {' Custom inputs'}
             </Typography>
 
-            <Typography variant="body2" align="left">
+            <Typography variant="body1" align="left">
               <p> You can render ANY custom input as a component! =) </p>
               <p> You can pass any custom props to your components too. </p>
             </Typography>
@@ -171,7 +171,7 @@ const App = () => {
               {' Yup nested inputs'}
             </Typography>
 
-            <Typography variant="body2" align="left" className={classes.marginTop2}>
+            <Typography variant="body1" align="left">
               <p> Formup also supports unlimited nesting with yup! </p>
               <p> The inputs below all belong to an object named authentication in the schema. </p>
             </Typography>
@@ -195,7 +195,7 @@ const App = () => {
               {' Single-choice inputs'}
             </Typography>
 
-            <Typography variant="body2" align="left" className={classes.marginTop2}>
+            <Typography variant="body1" align="left">
               <p> With Formup, you can control single-choice inputs easily! </p>
               <p> You can use FormInputGroup & FormInputGroup components for this. </p>
             </Typography>
@@ -226,7 +226,7 @@ const App = () => {
               {' Multiple-choice inputs'}
             </Typography>
 
-            <Typography variant="body2" align="left" className={classes.marginTop2}>
+            <Typography variant="body1" align="left">
               <p> What did you expect? Well, of course we support multiple-choice inputs too! </p>
             </Typography>
 
@@ -291,7 +291,7 @@ const App = () => {
               {' Form value'}
             </Typography>
 
-            <Typography variant="body2" align="left" className={classes.marginTop2}>
+            <Typography variant="body1" align="left">
               <p> Here's your fancy form value in a beaultiful real-time JSON string </p>
             </Typography>
 
