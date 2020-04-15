@@ -5,6 +5,7 @@ import { FORMUP_INPUT_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../c
 import DefaultInputComponent from '../DefaultInputComponent/DefaultInputComponent';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
 import composeInputEvent from '../../utils/composeInputEvent';
+import extractEventValue from '../../utils/extractEventValue';
 
 export interface FormInputComponentProps extends React.Props<any> {
   error: boolean,
@@ -67,11 +68,7 @@ const FormInput = ({
     ...props,
     ...formInputProps,
     onChange: (event: any) => {
-      const newValue = (
-        event?.target
-          ? event.target.value
-          : event
-      );
+      const newValue = extractEventValue(event);
 
       form.setFieldValue(name, newValue);
       form.setFieldTouched(name, true);
