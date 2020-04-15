@@ -55,3 +55,16 @@ export interface UseFormupResult {
   submitForm: (event?: any) => void,
   formikForm: any,
 }
+
+/**
+ * Value returned by FormGroup Context API.
+ */
+export type FormGroupContextValue = [
+  any,
+  (event: any) => void,
+  {
+    multi?: boolean;
+    error: boolean;
+    name: string;
+  },
+]
