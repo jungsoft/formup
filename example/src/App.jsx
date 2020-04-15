@@ -195,7 +195,7 @@ const App = () => {
 
             <Typography variant="body1" align="left" className={classes.subtitle}>
               You can use <strong>FormInputGroup</strong> and
-              <strong> FormInputGroup</strong> components for this.
+              <strong> FormInputGroupItem</strong> components for this.
             </Typography>
 
             <FormInputGroup name="gender">
