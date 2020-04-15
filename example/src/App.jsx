@@ -55,6 +55,10 @@ const schema = createSchema({
   gender: yup.string()
     .label('Gender'),
 
+  acceptedTerms: yup.boolean()
+    .default(false)
+    .label('Accepted terms'),
+
   // You can control single choice fields using Form Groups
   favouriteFood: yup.string()
     .label('Favourite Food'),
@@ -216,6 +220,26 @@ const App = () => {
               <FormControlLabel
                 control={<FormInputGroupItem value="Non-binary" component={Radio} />}
                 label="Non-binary"
+              />
+            </FormInputGroup>
+
+            <Typography variant="h5" align="left" className={classes.marginTop5}>
+              <span role="img" aria-label="Check">✅</span>
+              {' Single-choice toggle inputs'}
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              You can render a single-choice input with only one option too!
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              It will toggle between `initialValue` and its `value`.
+            </Typography>
+
+            <FormInputGroup name="acceptedTerms" initialValue={false}>
+              <FormControlLabel
+                control={<FormInputGroupItem value={true} component={Checkbox} />}
+                label="I've accepted the terms of service (which I didn't read)"
               />
             </FormInputGroup>
 
