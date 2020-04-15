@@ -1,6 +1,8 @@
 import * as yup from 'yup';
 import { FormikConfig } from 'formik';
 
+import { FormInputGroupItemProps } from '../components/FormInputGroupItem/FormInputGroupItem';
+import { FormInputGroupProps } from '../components/FormInputGroup/FormInputGroup';
 import { FormInputProps } from '../components/FormInput/FormInput';
 import { FormProps } from '../components/Form/Form';
 
@@ -49,6 +51,8 @@ export interface UseFormupOptions extends FormikConfig<any> {
  * Result returned by useFormup.
  */
 export interface UseFormupResult {
+  FormInputGroupItem: React.FunctionComponent<FormInputGroupItemProps>,
+  FormInputGroup: React.FunctionComponent<FormInputGroupProps>,
   FormInput: React.FunctionComponent<FormInputProps>,
   Form: React.FunctionComponent<FormProps>,
   validateForm: () => ValidateFormResult,

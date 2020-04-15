@@ -3,6 +3,8 @@ import { useFormik } from 'formik';
 
 import { FormupYupSchema, UseFormupResult, UseFormupOptions } from '../interfaces';
 import mapFieldsToObject from '../utils/mapFieldsToObject';
+import FormInputGroupItem from '../components/FormInputGroupItem/FormInputGroupItem';
+import FormInputGroup from '../components/FormInputGroup/FormInputGroup';
 import FormInput from '../components/FormInput/FormInput';
 import validateForm from '../yup/validateForm';
 import Form from '../components/Form/Form';
@@ -69,6 +71,8 @@ const useFormup = (
 
   return {
     validateForm: handleValidateForm,
+    FormInputGroupItem,
+    FormInputGroup,
     submitForm,
     formikForm,
     FormInput,
