@@ -14,7 +14,7 @@ const DefaultInputComponent = ({
   error,
   ...props
 }: DefaultInputComponentProps) => (
-  <div>
+  <>
     {
       label && (
         <p>
@@ -24,7 +24,7 @@ const DefaultInputComponent = ({
     }
 
     <input {...props} />
-  </div>
+  </>
 );
 
 export default DefaultInputComponent;
