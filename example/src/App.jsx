@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as yup from 'yup';
 import classNames from 'classnames';
 
@@ -74,28 +74,16 @@ const schema = createSchema({
 }, locale);
 
 const App = () => {
+  const [submissionResult, setSubmissionResult] = useState('');
+
   // You can add custom error handling if your validation fails
   const handleValidationError = (errors) => {
-    console.warn('Form validation error!', errors);
+    setSubmissionResult(`Form validation errors! \n ${JSON.stringify(errors, null, 2)}`);
   };
 
   // Here we'll handle submiting the form
   const handleSubmitForm = (values) => {
-    const {
-      name,
-      phone,
-      email,
-      password,
-      confirmPassword,
-    } = values;
-
-    console.warn('Form is valid! Submitting information...', {
-      name,
-      phone,
-      email,
-      password,
-      confirmPassword,
-    });
+    setSubmissionResult(`Form is valid! \n ${JSON.stringify(values, null, 2)}`);
 
     // Submit your form to your backend or any API here! =).
     return true;
@@ -301,6 +289,23 @@ const App = () => {
               variant="outlined"
               className={classes.fullWidth}
               value={JSON.stringify(formikForm.values, null, 2)}
+            />
+
+            <Typography variant="h5" align="left" className={classes.marginTop5}>
+              <span role="img" aria-label="Check">📝</span>
+              {' Form submission result'}
+            </Typography>
+
+            <Typography variant="body1" align="left">
+              <p> If you press the button below you'll see the results here! </p>
+            </Typography>
+
+            <TextField
+              multiline
+              rows={5}
+              variant="outlined"
+              className={classes.fullWidth}
+              value={submissionResult}
             />
 
             <Divider />
