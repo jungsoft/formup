@@ -1,9 +1,9 @@
 import React from 'react';
 
-export interface DefaultInputGroupItemComponentProps extends React.Props<any> {
+import { FormInputGroupComponentProps } from '../FormInputGroupItem/FormInputGroupItem';
+
+export interface DefaultInputGroupItemComponentProps extends FormInputGroupComponentProps {
   label?: string,
-  error?: boolean,
-  multi?: boolean;
 }
 
 /**
@@ -12,25 +12,19 @@ export interface DefaultInputGroupItemComponentProps extends React.Props<any> {
 */
 const DefaultInputGroupItemComponent = ({
   label,
-  error,
-  multi,
   ...props
-}: DefaultInputGroupItemComponentProps) => {
-  const inputType = multi ? 'checkbox' : 'radio';
-
-  return (
-    <>
-      {
+}: DefaultInputGroupItemComponentProps) => (
+  <>
+    {
         label && (
-          <p>
+          <label>
             {label}
-          </p>
+          </label>
         )
       }
 
-      <input type={inputType} {...props} />
-    </>
-  );
-};
+    <input {...props} />
+  </>
+);
 
 export default DefaultInputGroupItemComponent;
