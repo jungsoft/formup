@@ -49,7 +49,7 @@ const FormGroupContainer = ({
     const newValue = extractEventValue(event);
 
     if (!multi) {
-      setFormGroupValue(newValue);
+      setFormGroupValue(formGroupValue === newValue ? initialValue : newValue);
       return;
     }
 
@@ -75,6 +75,7 @@ const FormGroupContainer = ({
   }, [
     setFormGroupValue,
     formGroupValue,
+    initialValue,
     multi,
   ]);
 
