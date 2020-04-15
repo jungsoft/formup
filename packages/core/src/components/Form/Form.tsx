@@ -9,6 +9,7 @@ export interface FormProps {
   children?: React.ReactChild,
   formikForm: any,
   className?: any,
+  renderAsDiv?: boolean,
 }
 
 /**
@@ -16,6 +17,7 @@ export interface FormProps {
  * The inputs should be enclosed by the FormInput component.
  */
 const Form = ({
+  renderAsDiv = false,
   formikForm,
   className,
   children,
@@ -29,9 +31,19 @@ const Form = ({
 
   return (
     <FormContainer form={formikForm}>
-      <form onSubmit={onSubmit} className={formClassName}>
-        {children}
-      </form>
+      {
+        renderAsDiv
+          ? (
+            <div className={formClassName}>
+              {children}
+            </div>
+          )
+          : (
+            <form onSubmit={onSubmit} className={formClassName}>
+              {children}
+            </form>
+          )
+      }
     </FormContainer>
   );
 };
