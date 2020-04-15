@@ -24,10 +24,26 @@ const FormGroupContainer = ({
   multi,
   name,
 }: FormGroupContainerProps) => {
-  const [formGroupValue, setFormGroupValue] = React.useState(initialValue);
   const form = useFormContext();
 
+  const { value: formGroupValue } = form.getFieldProps(name);
   const formInputMeta = form.getFieldMeta(name);
+
+  const setFormGroupValue = React.useCallback((newValue) => {
+    if (form) {
+      form.setFieldValue(name, newValue);
+    }
+  }, [
+    form,
+    name,
+  ]);
+
+  React.useEffect(() => {
+    if (initialValue) {
+      setFormGroupValue(initialValue);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSetFormGroupValue = React.useCallback((event: any) => {
     const newValue = extractEventValue(event);
@@ -57,6 +73,7 @@ const FormGroupContainer = ({
       }));
     }
   }, [
+    setFormGroupValue,
     formGroupValue,
     multi,
   ]);
