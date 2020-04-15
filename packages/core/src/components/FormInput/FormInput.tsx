@@ -2,7 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 
 import { FORMUP_INPUT_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../constants/identifiers';
-import DefaultInputComponent from '../DefaultInputComponent/DefaultInputComponent';
+import DefaultInputComponent from '../DefaultInputComponents/DefaultInputComponent';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
 import checkFormInputError from '../../utils/checkFormInputError';
 import composeInputEvent from '../../utils/composeInputEvent';
