@@ -19,7 +19,7 @@ const DefaultInputGroupItemComponent = ({
   const inputType = multi ? 'checkbox' : 'radio';
 
   return (
-    <div>
+    <>
       {
         label && (
           <p>
@@ -29,7 +29,7 @@ const DefaultInputGroupItemComponent = ({
       }
 
       <input type={inputType} {...props} />
-    </div>
+    </>
   );
 };
 
