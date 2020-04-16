@@ -3,7 +3,6 @@ import classNames from 'classnames';
 
 import { FORMUP_INPUT_GROUP_CONTAINER_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../constants/identifiers';
 import { useFormGroupContext } from '../../contexts/FormGroupContext/FormGroupContext';
-import checkFormInputGroupError from '../../utils/checkFormInputGroupError';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
 
 export interface FormInputGroupContentProps extends React.Props<any> {
@@ -29,21 +28,13 @@ const FormInputGroupContent = ({
 }: FormInputGroupContentProps) => {
   const form = useFormContext();
 
-  const [formGroupValue,, {
-    multi,
-    name,
+  const [,, {
+    hasError,
   }] = useFormGroupContext();
 
   if (!form) {
     throw new Error('You need to provide a <Form /> component enclosing FormInputGroup.');
   }
-
-  const hasError = checkFormInputGroupError({
-    formGroupValue,
-    multi,
-    name,
-    form,
-  });
 
   const containerClasses = classNames(FORMUP_INPUT_GROUP_CONTAINER_CLASS_NAME, className, {
     [FORMUP_INPUT_DANGER_CLASS_NAME]: hasError,
