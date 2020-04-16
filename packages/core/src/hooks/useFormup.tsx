@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { useFormik } from 'formik';
 
-import { FormupYupSchema, UseFormupResult, UseFormupOptions } from '../interfaces';
+import {
+  FormupYupSchema,
+  UseFormupResult,
+  UseFormupOptions,
+  FormupFormikForm,
+} from '../interfaces';
 import mapFieldsToObject from '../utils/mapFieldsToObject';
 import FormInputGroupItem from '../components/FormInputGroupItem/FormInputGroupItem';
 import FormInputGroup from '../components/FormInputGroup/FormInputGroup';
@@ -27,15 +32,18 @@ const useFormup = (
     throw new Error('You need to provide the "onSubmit" option.');
   }
 
-  const {
-    onError,
-  } = options || {};
+  const { onError } = options || {};
 
-  const formikForm = useFormik({
+  const useFormikResult = useFormik({
     ...options,
     validationSchema: schema,
     initialValues: mapFieldsToObject(schema.fields),
   });
+
+  const formikForm: FormupFormikForm = {
+    ...useFormikResult,
+    schema,
+  };
 
   const handleValidateForm = React.useCallback(() => (
     validateForm(schema, formikForm)

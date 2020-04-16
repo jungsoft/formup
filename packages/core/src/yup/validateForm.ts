@@ -1,6 +1,11 @@
 import { ValidationError } from 'yup';
 
-import { FormupYupSchema, ValidateFormOptions, ValidateFormResult } from '../interfaces';
+import {
+  FormupYupSchema,
+  ValidateFormOptions,
+  ValidateFormResult,
+  FormupFormikForm,
+} from '../interfaces';
 import defaultValidationOptions from '../constants/defaultValidationOptions';
 import setFieldsTouched from '../utils/setFieldsTouched';
 
@@ -12,7 +17,7 @@ import setFieldsTouched from '../utils/setFieldsTouched';
  */
 const validateForm = (
   schema: FormupYupSchema,
-  form: any,
+  form: FormupFormikForm,
   options: ValidateFormOptions = defaultValidationOptions,
 ): ValidateFormResult => {
   const result: ValidateFormResult = {

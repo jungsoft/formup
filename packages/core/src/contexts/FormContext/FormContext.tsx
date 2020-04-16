@@ -1,7 +1,10 @@
 import * as React from 'react';
 
+import { FormContextResult } from '../../interfaces';
+
 const FormContext = React.createContext({});
 
 export const FormProvider = FormContext.Provider;
 
-export const useFormContext: any = () => React.useContext(FormContext);
+// @ts-ignore
+export const useFormContext: () => FormContextResult = () => React.useContext(FormContext);

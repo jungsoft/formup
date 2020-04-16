@@ -2,17 +2,11 @@ import * as React from 'react';
 
 import { FormGroupContextValue } from '../../interfaces';
 
-const FormGroupContextInitialValue: FormGroupContextValue = [
-  null,
-  (_) => {},
-  {
-    error: false,
-    name: '',
-  },
-];
-
-const FormGroupContext = React.createContext<FormGroupContextValue>(FormGroupContextInitialValue);
+const FormGroupContext = React.createContext({});
 
 export const FormGroupProvider = FormGroupContext.Provider;
 
-export const useFormGroupContext = () => React.useContext(FormGroupContext);
+export const useFormGroupContext: () => FormGroupContextValue = (
+  // @ts-ignore
+  () => React.useContext(FormGroupContext)
+);

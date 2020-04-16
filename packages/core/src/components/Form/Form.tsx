@@ -3,11 +3,12 @@ import classNames from 'classnames';
 
 import { FORMUP_FORM_CLASS_NAME } from '../../constants/identifiers';
 import FormContainer from '../../contexts/FormContext/FormContainer';
+import { FormupFormikForm } from '../../interfaces';
 
 export interface FormProps {
   onSubmit?: (payload: any) => void,
   children?: React.ReactChild,
-  formikForm: any,
+  formikForm: FormupFormikForm,
   className?: any,
   renderAsForm?: boolean,
 }

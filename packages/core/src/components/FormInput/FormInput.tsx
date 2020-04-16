@@ -63,7 +63,7 @@ const FormInput = ({
   const formInputProps = form.getFieldProps(name);
   const formInputMeta = form.getFieldMeta(name);
 
-  formInputProps.type = type;
+  formInputProps['type'] = type;
 
   const inputProps = {
     ...props,
@@ -80,7 +80,7 @@ const FormInput = ({
     },
     onKeyPress: (event: any) => composeInputEvent(
       event,
-      formInputProps?.onKeyPress,
+      formInputProps['onKeyPress'],
       onKeyPress,
     ),
     onBlur: (event: any) => composeInputEvent(
@@ -104,7 +104,7 @@ const FormInput = ({
     isInitializedRef.current = true;
   }
 
-  inputProps.className = classNames(FORMUP_INPUT_CLASS_NAME, className, {
+  inputProps['className'] = classNames(FORMUP_INPUT_CLASS_NAME, className, {
     [FORMUP_INPUT_DANGER_CLASS_NAME]: !!(formInputMeta.touched && formInputMeta.error),
   });
 

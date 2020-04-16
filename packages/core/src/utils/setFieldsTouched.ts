@@ -1,4 +1,5 @@
 import tryGetFunctionValue from './tryGetFunctionValue';
+import { FormupFormikForm } from '../interfaces';
 
 /**
  * Updates a Formik form to set fields as touched.
@@ -7,7 +8,7 @@ import tryGetFunctionValue from './tryGetFunctionValue';
  * @param parentPath Relative path.
  */
 const setFieldsTouched = (
-  form: any,
+  form: FormupFormikForm,
   fields: object,
   parentPath: string = '',
 ) => Object.keys(fields).forEach((key) => {

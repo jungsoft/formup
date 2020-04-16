@@ -1,9 +1,11 @@
 import React from 'react';
+
+import { FormupFormikForm } from '../../interfaces';
 import { FormProvider } from './FormContext';
 
 export interface FormContainerProps extends React.Props<any> {
   children?: React.ReactChild,
-  form: any,
+  form: FormupFormikForm,
 }
 
 /**
