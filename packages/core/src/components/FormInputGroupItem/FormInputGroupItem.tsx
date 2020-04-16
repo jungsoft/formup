@@ -82,9 +82,9 @@ const FormInputGroupItem = ({
 
   const inputProps = {
     ...props,
+    onChange: () => {}, // no-op to suppress React error, since onChange is not needed here
     onClick: handleSetFormGroupValue,
     className: inputClassName,
-    onChange: () => {},
     checked: isChecked,
     type: inputType,
   };
