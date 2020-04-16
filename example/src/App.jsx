@@ -53,6 +53,7 @@ const schema = createSchema({
 
   // You can control single choice fields using Form Groups
   gender: yup.string()
+    .required()
     .label('Gender'),
 
   acceptedTerms: yup.boolean()
