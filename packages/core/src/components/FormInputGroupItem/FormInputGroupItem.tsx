@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import DefaultInputGroupItemComponent from '../DefaultInputComponents/DefaultInputGroupItemComponent';
 import { useFormGroupContext } from '../../contexts/FormGroupContext/FormGroupContext';
+import checkFormInputGroupError from '../../utils/checkFormInputGroupError';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
 import {
   FORMUP_INPUT_GROUP_ITEM_CLASS_NAME,
@@ -42,27 +43,34 @@ const FormInputGroupItem = ({
   value,
   ...props
 }: FormInputGroupItemProps) => {
-  const [, setFormGroupValue, {
-    name,
-    error,
+  const [formGroupValue, setFormGroupValue, {
     multi,
+    name,
   }] = useFormGroupContext();
 
   const form = useFormContext();
-
-  const { value: formGroupValue } = form.getFieldProps(name);
 
   if (value === undefined) {
     throw new Error('You need to provide the "value" prop.');
   }
 
+  const hasError = checkFormInputGroupError({
+    formGroupValue,
+    multi,
+    name,
+    form,
+  });
+
   const inputContainerClassName = classNames(
     FORMUP_INPUT_GROUP_ITEM_CLASS_NAME,
     containerClassName,
+    {
+      [FORMUP_INPUT_DANGER_CLASS_NAME]: hasError,
+    },
   );
 
   const inputClassName = classNames(FORMUP_INPUT_CLASS_NAME, className, {
-    [FORMUP_INPUT_DANGER_CLASS_NAME]: error,
+    [FORMUP_INPUT_DANGER_CLASS_NAME]: hasError,
   });
 
   const handleSetFormGroupValue = React.useCallback(() => {
