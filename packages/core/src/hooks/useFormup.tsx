@@ -24,6 +24,14 @@ const useFormup = (
   schema: FormupYupSchema,
   options: UseFormupOptions,
 ): UseFormupResult => {
+  const [initialValues] = React.useState(() => {
+    if (schema) {
+      return mapFieldsToObject(schema.fields);
+    }
+
+    return null;
+  });
+
   if (!schema) {
     throw new Error('You need to provide the "schema" prop.');
   }
@@ -37,7 +45,7 @@ const useFormup = (
   const useFormikResult = useFormik({
     ...options,
     validationSchema: schema,
-    initialValues: mapFieldsToObject(schema.fields),
+    initialValues,
   });
 
   const formikForm: FormupFormikForm = {
