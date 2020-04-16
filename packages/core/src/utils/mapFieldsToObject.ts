@@ -1,4 +1,15 @@
-import tryGetFunctionValue from './tryGetFunctionValue';
+import tryGetSchemaValue from './tryGetSchemaValue';
+
+/**
+ * Default values for mapping object types.
+ */
+const MAP_DEFAULTS = {
+  string: '',
+  boolean: false,
+  number: 0,
+  date: new Date(),
+  object: {},
+};
 
 /**
  * Recursively create an object mapping the fields of one schema.
@@ -10,20 +21,20 @@ const mapFieldsToObject = (fields: object) => {
   }
 
   return fields && Object.keys(fields).reduce((acc, key) => {
-    const description = tryGetFunctionValue(fields[key], 'describe', {});
-    const defaultValue = tryGetFunctionValue(fields[key], 'default');
+    const description = tryGetSchemaValue(fields[key], 'describe', {});
+    const defaultValue = tryGetSchemaValue(fields[key], 'default');
 
-    const addKeyValue = (value: any) => ({
+    const addKeyValue = (value: any, fallbackValue: any) => ({
       ...acc,
-      [key]: value,
+      [key]: value !== undefined ? value : fallbackValue,
     });
 
     const descriptionTypeMapper = (type: string): object => ({
-      string: addKeyValue(defaultValue || ''),
-      boolean: addKeyValue(defaultValue || true),
-      number: addKeyValue(defaultValue || 0),
-      date: addKeyValue(defaultValue || new Date()),
-      object: addKeyValue(mapFieldsToObject(fields[key].fields)),
+      object: addKeyValue(mapFieldsToObject(fields[key].fields), MAP_DEFAULTS.object),
+      boolean: addKeyValue(defaultValue, MAP_DEFAULTS.boolean),
+      string: addKeyValue(defaultValue, MAP_DEFAULTS.string),
+      number: addKeyValue(defaultValue, MAP_DEFAULTS.number),
+      date: addKeyValue(defaultValue, MAP_DEFAULTS.date),
     })[type] || acc;
 
     return descriptionTypeMapper(description.type);

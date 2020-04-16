@@ -1,4 +1,4 @@
-import tryGetFunctionValue from './tryGetFunctionValue';
+import tryGetSchemaValue from './tryGetSchemaValue';
 import { FormupFormikForm } from '../interfaces';
 
 /**
@@ -12,7 +12,7 @@ const setFieldsTouched = (
   fields: object,
   parentPath: string = '',
 ) => Object.keys(fields).forEach((key) => {
-  const description = tryGetFunctionValue(fields[key], 'describe', {});
+  const description = tryGetSchemaValue(fields[key], 'describe', {});
 
   if (description) {
     const path = `${parentPath && `${parentPath}.`}${key}`;
