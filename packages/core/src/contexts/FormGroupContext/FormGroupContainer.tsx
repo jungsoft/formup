@@ -1,7 +1,6 @@
 import * as React from 'react';
 import update from 'immutability-helper';
 
-import checkFormInputError from '../../utils/checkFormInputError';
 import extractEventValue from '../../utils/extractEventValue';
 import { useFormContext } from '../FormContext/FormContext';
 import { FormGroupContextValue } from '../../interfaces';
@@ -27,11 +26,11 @@ const FormGroupContainer = ({
   const form = useFormContext();
 
   const { value: formGroupValue } = form.getFieldProps(name);
-  const formInputMeta = form.getFieldMeta(name);
 
   const setFormGroupValue = React.useCallback((newValue) => {
     if (form) {
       form.setFieldValue(name, newValue);
+      form.setFieldTouched(name, true);
     }
   }, [
     form,
@@ -83,14 +82,12 @@ const FormGroupContainer = ({
     formGroupValue,
     handleSetFormGroupValue,
     {
-      error: checkFormInputError(formInputMeta),
       multi,
       name,
     },
   ], [
     handleSetFormGroupValue,
     formGroupValue,
-    formInputMeta,
     multi,
     name,
   ]);
