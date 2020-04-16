@@ -1,9 +1,7 @@
 import * as React from 'react';
-import classNames from 'classnames';
 
-import { FORMUP_INPUT_GROUP_CONTAINER_CLASS_NAME } from '../../constants/identifiers';
 import FormGroupContainer from '../../contexts/FormGroupContext/FormGroupContainer';
-import { useFormContext } from '../../contexts/FormContext/FormContext';
+import FormInputGroupContent from './FormInputGroupContent';
 
 export interface FormInputGroupProps extends React.Props<any> {
   children?: React.ReactChild;
@@ -32,22 +30,16 @@ const FormInputGroup = ({
   children,
   name,
 }: FormInputGroupProps) => {
-  const form = useFormContext();
-
   if (!name) {
     throw new Error('You need to provide the "name" prop.');
   }
 
-  if (!form) {
-    throw new Error('You need to provide a <Form /> component enclosing FormInputGroup.');
-  }
-
   return (
-    <div className={classNames(FORMUP_INPUT_GROUP_CONTAINER_CLASS_NAME, className)}>
-      <FormGroupContainer initialValue={initialValue} name={name} multi={multi}>
+    <FormGroupContainer initialValue={initialValue} name={name} multi={multi}>
+      <FormInputGroupContent className={className}>
         {children}
-      </FormGroupContainer>
-    </div>
+      </FormInputGroupContent>
+    </FormGroupContainer>
   );
 };
 
