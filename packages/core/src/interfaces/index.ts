@@ -73,6 +73,7 @@ export type FormGroupContextValue = [
   any,
   (event: any) => void,
   {
+    hasError?: boolean;
     multi?: boolean;
     name: string;
   },

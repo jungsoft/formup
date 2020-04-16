@@ -1,6 +1,7 @@
 import * as React from 'react';
 import update from 'immutability-helper';
 
+import checkFormInputGroupError from '../../utils/checkFormInputGroupError';
 import extractEventValue from '../../utils/extractEventValue';
 import { useFormContext } from '../FormContext/FormContext';
 import { FormGroupContextValue } from '../../interfaces';
@@ -78,16 +79,25 @@ const FormGroupContainer = ({
     multi,
   ]);
 
+  const hasError = checkFormInputGroupError({
+    formGroupValue,
+    multi,
+    name,
+    form,
+  });
+
   const value: FormGroupContextValue = React.useMemo(() => [
     formGroupValue,
     handleSetFormGroupValue,
     {
+      hasError,
       multi,
       name,
     },
   ], [
     handleSetFormGroupValue,
     formGroupValue,
+    hasError,
     multi,
     name,
   ]);
