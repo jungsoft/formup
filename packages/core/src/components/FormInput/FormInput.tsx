@@ -5,11 +5,34 @@ import { FORMUP_INPUT_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../c
 import DefaultInputComponent from '../DefaultInputComponents/DefaultInputComponent';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
 import checkFormInputError from '../../utils/checkFormInputError';
+import { ExtendedFormupFormInputData } from '../../interfaces';
 import composeInputEvent from '../../utils/composeInputEvent';
 import extractEventValue from '../../utils/extractEventValue';
 
 export interface FormInputComponentProps extends React.Props<any> {
-  error: boolean,
+  /**
+   * Boolean indicating if the component has validation errors.
+   *
+   * This is injected by default to maintain compatibility with the
+   * major React libraries such as Material UI, React Bootstrap, etc.
+   *
+   * Thanks to this formup will be compatible out-of-the box with those
+   * dependencies, making the invalid inputs automatically styled, with
+   * red borders around it and such.
+   */
+  error: boolean;
+
+  /**
+   * This is an object that contains Formup extended information, such
+   * as the validation error message for this input (if any).
+   *
+   * Due to compatibility issues, this will only be injected if the prop
+   * "injectFormupData" is defined as true in <FormInput /> component.
+   *
+   * Remember that this shouldn't be injected into the final <input />
+   * component, in order to avoid React errors.
+   */
+  formupData: ExtendedFormupFormInputData | undefined;
 }
 
 export interface FormInputProps extends React.Props<any> {
@@ -23,6 +46,21 @@ export interface FormInputProps extends React.Props<any> {
   onChange?: (arg0: React.FormEvent<HTMLInputElement>) => void;
   onKeyPress?: (arg0: React.FormEvent<HTMLInputElement>) => void;
   className?: any,
+
+  /**
+   * Defines if the "formupData" prop will be injected into the
+   * <input /> component that is being rendered (default by formup),
+   * or the component passed into "component" prop on FormInput.
+   *
+   * This is false by default in order to avoid compatibility issues,
+   * since when true the component will have to deal with "formupData"
+   * in order to avoid injecting it into the final <input /> component.
+   *
+   * If "formupData" is injected into the final <input /> component,
+   * React will throw an error in the console saying that "formupData"
+   * is not a valid property for <input />. Refer to the docs for more information.
+   */
+  injectFormupData: boolean;
 }
 
 /**
@@ -38,6 +76,7 @@ export interface FormInputProps extends React.Props<any> {
  */
 const FormInput = ({
   component: Component = DefaultInputComponent,
+  injectFormupData = false,
   type = 'text',
   onKeyPress,
   className,
@@ -65,6 +104,8 @@ const FormInput = ({
 
   formInputProps['type'] = type;
 
+  const hasErrors = checkFormInputError(formInputMeta);
+
   const inputProps = {
     ...props,
     ...formInputProps,
@@ -88,7 +129,7 @@ const FormInput = ({
       formInputProps?.onBlur,
       onBlur,
     ),
-    error: checkFormInputError(formInputMeta),
+    error: hasErrors,
   };
 
   const isUntouched = (
@@ -105,11 +146,22 @@ const FormInput = ({
   }
 
   inputProps['className'] = classNames(FORMUP_INPUT_CLASS_NAME, className, {
-    [FORMUP_INPUT_DANGER_CLASS_NAME]: !!(formInputMeta.touched && formInputMeta.error),
+    [FORMUP_INPUT_DANGER_CLASS_NAME]: hasErrors,
   });
 
+  const formupData: ExtendedFormupFormInputData | undefined = (
+    injectFormupData
+      ? {
+        errorMessage: formInputMeta?.error,
+      }
+      : undefined
+  );
+
   return (
-    <Component {...inputProps}>
+    <Component
+      formupData={formupData}
+      {...inputProps}
+    >
       {children}
     </Component>
   );
