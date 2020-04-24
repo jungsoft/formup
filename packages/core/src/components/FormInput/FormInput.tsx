@@ -104,7 +104,7 @@ const FormInput = ({
 
   formInputProps['type'] = type;
 
-  const hasErrors = checkFormInputError(formInputMeta);
+  const formInputError = checkFormInputError(formInputMeta);
 
   const inputProps = {
     ...props,
@@ -129,7 +129,7 @@ const FormInput = ({
       formInputProps?.onBlur,
       onBlur,
     ),
-    error: hasErrors,
+    error: formInputError.hasErrors,
   };
 
   const isUntouched = (
@@ -146,17 +146,13 @@ const FormInput = ({
   }
 
   inputProps['className'] = classNames(FORMUP_INPUT_CLASS_NAME, className, {
-    [FORMUP_INPUT_DANGER_CLASS_NAME]: hasErrors,
+    [FORMUP_INPUT_DANGER_CLASS_NAME]: formInputError.hasErrors,
   });
 
   const formupData: ExtendedFormupFormInputData | undefined = (
     injectFormupData
       ? {
-        errorMessage: (
-          hasErrors
-            ? formInputMeta?.error
-            : undefined
-        ),
+        errorMessage: formInputError.errorMessage,
       }
       : undefined
   );
