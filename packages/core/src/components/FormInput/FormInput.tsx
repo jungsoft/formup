@@ -152,7 +152,11 @@ const FormInput = ({
   const formupData: ExtendedFormupFormInputData | undefined = (
     injectFormupData
       ? {
-        errorMessage: formInputMeta?.error,
+        errorMessage: (
+          hasErrors
+            ? formInputMeta?.error
+            : undefined
+        ),
       }
       : undefined
   );
