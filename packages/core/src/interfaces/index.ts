@@ -115,3 +115,11 @@ export interface FormupFormikForm extends Omit<FormikConfig<FormikValues>, 'onSu
  * Form Context API result.
  */
 export type FormContextResult = FormupFormikForm;
+
+/**
+ * Extended form input data that will be injected into <FormInput />
+ * rendered component in case injectFormupData is true.
+ */
+export interface ExtendedFormupFormInputData {
+  errorMessage?: string;
+}

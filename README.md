@@ -177,6 +177,51 @@ const MyComponent = () => {
 export default MyComponent;
 ```
 
+## Usage - Extended Formup Data in Rendered Inputs
+
+You can gather extended formup data in order to aid your custom inputs, such as the **validation error message**, for example.
+
+To do this, you just need to pass the `injectFormupData` prop to `FormInput`. 🙋
+
+This will mean that `FormInput` will inject a prop named `formupData` into your component, that contains extra information, such as the error message.
+
+⚠️ This is disabled by default to maintain compatibility. If enabled, you need to make sure that `formupData` won't be injected into the final `<input />` component, otherwise React will throw an error saying that `formupData` is an invalid property for `<input />`.
+
+Here's a quick example:
+
+- In `FormInput`, add the `injectFormupData` prop.
+
+```tsx
+  <FormInput
+    component={CustomInputWithErrorMessage}
+    injectFormupData={true}
+    name="email"
+  />
+```
+
+- In your component, handle `formupData` prop:
+
+```tsx
+const CustomInputWithErrorMessage = ({
+  formupData,
+  ...props
+}) => (
+  <>
+    {
+      formupData && formupData.errorMessage && (
+        <label>
+          {`Error: ${formupData && formupData.errorMessage}`}
+        </label>
+      )
+    }
+
+    <input
+      {...props}
+    />
+  </>
+);
+```
+
 ## Contributing
 
 Pull requests are welcome!
