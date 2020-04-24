@@ -19,6 +19,7 @@ import {
   createSchema,
 } from '@formup/core';
 
+import TextFieldWithErrorMessage from './components/TextFieldWithErrorMessage';
 import CustomInput from './components/CustomInput';
 import useStyles from './styles';
 
@@ -50,6 +51,9 @@ const schema = createSchema({
 
   customInput: yup.string()
     .required(),
+
+  errorMessageExample: yup.string()
+    .required('This is a custom validation message =)'),
 
   // You can control single choice fields using Form Groups
   gender: yup.string()
@@ -147,10 +151,14 @@ const App = () => {
 
             <Typography variant="body1" align="left" className={classes.subtitle}>
               You can render <strong>ANY</strong> custom input as a component!
+              Any custom prop passed to <strong>FormInput</strong> will be injected
+              into your component. =)
             </Typography>
 
             <Typography variant="body1" align="left" className={classes.subtitle}>
-              You can pass any custom props to your components too. =)
+              Formup is compatible out-of-the-box with major style libraries such
+              as <strong>Material UI</strong>, <strong>React Bootstrap</strong> and
+              much more!
             </Typography>
 
             <FormInput
@@ -161,6 +169,36 @@ const App = () => {
 
             <FormInput name="email" label="Email" component={TextField} />
             <FormInput name="phone" label="Phone" component={TextField} />
+
+            <Typography variant="h5" align="left" className={classes.marginTop5}>
+              <span role="img" aria-label="Check">✅</span>
+              {' Extended Formup data in inputs'}
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              If you pass the <strong>injectFormupData</strong> prop
+              to <strong>FormInput</strong> component, it will inject a prop
+              named <strong>formupData</strong> into the rendered component.
+              With <strong>formupData</strong>, you can access extended information,
+              such as the <strong>validation error message</strong>, if any.
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              The prop With <strong>injectFormupData</strong> is by
+              default <strong>false</strong> in order to maintain compatibility and
+              prevent errors. Note that when using this, <strong>you must make sure</strong> that
+              the <strong>formupData</strong> prop is not injected into the
+              final <strong>input</strong> component.
+            </Typography>
+
+            <FormInput
+              name="errorMessageExample"
+              label="Input with validation error message"
+              title="I will show the error validation message!"
+              component={TextFieldWithErrorMessage}
+              className={classes.marginTop2}
+              injectFormupData
+            />
 
             <Typography variant="h5" align="left" className={classes.marginTop5}>
               <span role="img" aria-label="Check">✅</span>
@@ -179,14 +217,16 @@ const App = () => {
               type="password"
               name="authentication.password"
               label="Password"
-              component={TextField}
+              component={TextFieldWithErrorMessage}
+              injectFormupData
             />
 
             <FormInput
               type="password"
               name="authentication.confirmPassword"
               label="Confirm Password"
-              component={TextField}
+              component={TextFieldWithErrorMessage}
+              injectFormupData
             />
 
             <Typography variant="h5" align="left" className={classes.marginTop5}>
