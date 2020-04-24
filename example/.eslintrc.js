@@ -46,5 +46,6 @@ module.exports = {
     "react/jsx-boolean-value": 0,
     "react/no-unescaped-entities": 0,
     "react/jsx-one-expression-per-line": 0,
+    "react/prop-types": 0,
   },
 };
