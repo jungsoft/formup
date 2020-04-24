@@ -184,8 +184,8 @@ const App = () => {
             </Typography>
 
             <Typography variant="body1" align="left" className={classes.subtitle}>
-              The prop With <strong>injectFormupData</strong> is by
-              default <strong>false</strong> in order to maintain compatibility and
+              The prop <strong>injectFormupData</strong> is by default set
+              to <strong>false</strong> in order to maintain compatibility and
               prevent errors. Note that when using this, <strong>you must make sure</strong> that
               the <strong>formupData</strong> prop is not injected into the
               final <strong>input</strong> component.
