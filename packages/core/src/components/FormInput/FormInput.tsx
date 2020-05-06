@@ -113,7 +113,6 @@ const FormInput = ({
       const newValue = extractEventValue(event);
 
       form.setFieldValue(name, newValue);
-      form.setFieldTouched(name, true);
 
       if (onChange) {
         onChange(event);
