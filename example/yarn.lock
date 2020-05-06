@@ -969,10 +969,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
   integrity sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==
 
-"@formup/core@^1.2.17":
-  version "1.2.17"
-  resolved "https://registry.yarnpkg.com/@formup/core/-/core-1.2.17.tgz#c5d22da8af226430d1462349921353d25e1276aa"
-  integrity sha512-cDdFnTjWCkkrAyunpy9ngfEfpWMs5u4uH72ohj5GKm6RFDNCgreORoHATnsh/m1NYNEVzHff9d5EOfFuU/MaZg==
+"@formup/core@^1.2.18":
+  version "1.2.18"
+  resolved "https://registry.yarnpkg.com/@formup/core/-/core-1.2.18.tgz#41a0dbba018bfcdbff455686255746a4e4b26cbd"
+  integrity sha512-qlT1Ivi11mobD8V8RvdUAmZ+Uwxb9qkPyv3gv6uwzSDpAoVGPlCF3ko7hAx18HaIE/ByBkoyLcZgV1du19REdQ==
   dependencies:
     classnames "^2.2.6"
     formik "2.1.3"
