@@ -32,7 +32,7 @@ export interface FormInputComponentProps extends React.Props<any> {
    * Remember that this shouldn't be injected into the final <input />
    * component, in order to avoid React errors.
    */
-  formupData: ExtendedFormupFormInputData | undefined;
+  formupData?: ExtendedFormupFormInputData;
 }
 
 export interface FormInputProps extends React.Props<any> {
@@ -149,17 +149,25 @@ const FormInput = ({
     [FORMUP_INPUT_DANGER_CLASS_NAME]: formInputError.hasErrors,
   });
 
-  const formupData: ExtendedFormupFormInputData | undefined = (
-    injectFormupData
-      ? {
-        errorMessage: formInputError.errorMessage,
-      }
-      : undefined
-  );
+  const formupData: ExtendedFormupFormInputData = React.useMemo(() => ({
+    errorMessage: formInputError.errorMessage,
+  }), [
+    formInputError.errorMessage,
+  ]);
+
+  if (injectFormupData) {
+    return (
+      <Component
+        formupData={formupData}
+        {...inputProps}
+      >
+        {children}
+      </Component>
+    );
+  }
 
   return (
     <Component
-      formupData={formupData}
       {...inputProps}
     >
       {children}
