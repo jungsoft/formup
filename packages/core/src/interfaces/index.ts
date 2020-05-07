@@ -85,6 +85,7 @@ export type FormGroupContextValue = [
 export interface FormupFormikForm extends Omit<FormikConfig<FormikValues>, 'onSubmit'> {
   handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
   onSubmit?: (values: object) => void;
+  isValid: boolean;
   values: object;
 
   setFieldTouched: (
