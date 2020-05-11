@@ -6,8 +6,6 @@
  *
  * @param value Value prop passed to FormInput
  */
-const checkFormInputValue = (value: any): boolean => {
-  return value !== undefined && value !== null && value !== '';
-};
+const checkFormInputValue = (value: any): boolean => value !== undefined && value !== null && value !== '';
 
 export default checkFormInputValue;

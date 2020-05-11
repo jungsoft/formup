@@ -40,8 +40,9 @@ const FormGroupContainer = ({
   ]);
 
   React.useEffect(() => {
-    const isEmptyValue = checkFormInputValue(initialValue);
-    if (!isEmptyValue) {
+    const isValidValue = checkFormInputValue(initialValue);
+
+    if (isValidValue) {
       setFormGroupValue(initialValue);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
