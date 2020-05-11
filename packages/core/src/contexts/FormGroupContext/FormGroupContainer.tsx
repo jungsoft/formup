@@ -3,6 +3,7 @@ import update from 'immutability-helper';
 
 import checkFormInputGroupError from '../../utils/checkFormInputGroupError';
 import extractEventValue from '../../utils/extractEventValue';
+import checkFormInputValue from '../../utils/checkFormInputValue';
 import { useFormContext } from '../FormContext/FormContext';
 import { FormGroupContextValue } from '../../interfaces';
 
@@ -39,7 +40,8 @@ const FormGroupContainer = ({
   ]);
 
   React.useEffect(() => {
-    if (initialValue) {
+    const isEmptyValue = checkFormInputValue(initialValue);
+    if (!isEmptyValue) {
       setFormGroupValue(initialValue);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
