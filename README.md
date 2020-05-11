@@ -228,6 +228,35 @@ Pull requests are welcome!
 
 If you have any feedback, issue or suggestion, feel free to open [a new issue](https://github.com/jungsoft/formup/issues/new) so we can talk about it 💬.
 
+## Local testing
+
+To test this locally we can use the `example` application!
+
+- You need to update the dependencies at example's `package.json` to run locally:
+
+```js
+"dependencies": {
+  "@formup/core": "link:../packages/core/dist",
+  "react": "link:../packages/core/node_modules/react",
+  "react-dom": "link:../packages/core/node_modules/react-dom",
+  ...other dependencies
+},
+```
+
+- Then at `example`, run:
+
+```bash
+yarn install
+
+yarn start
+```
+
+- Whenever you change any file at `/packages/core`, you need to rebuild for changes to be applied:
+
+```bash
+yarn build
+```
+
 ## License
 
 MIT © [formup](https://www.npmjs.com/org/formup)
