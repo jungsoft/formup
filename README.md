@@ -177,6 +177,65 @@ const MyComponent = () => {
 export default MyComponent;
 ```
 
+## Usage - Single-choice input groups
+
+Formup can take care of input groups, such as checkboxes too!
+
+You can also define an `initialValue`.
+
+Here's an example:
+
+```jsx
+const {
+  formikForm,
+  Form,
+  FormInputGroup,
+  FormInputGroupItem,
+} = useFormup(...);
+
+<Form formikForm={formikForm}>
+  <FormInputGroup name="gender" initialValue="Male">
+    <p>What's your gender?</p>
+
+    <FormInputGroupItem component={MyCustomRadioButton} value="Male" />
+    <FormInputGroupItem component={MyCustomRadioButton} value="Female" />
+    <FormInputGroupItem component={MyCustomRadioButton} value="Non-binary" />
+  </FormInputGroup>
+</Form>
+```
+
+## Usage - Multiple-choice input groups
+
+What did you expect? Of course we support multiple choice input groups too =).
+
+Just pass `multi` to `FormInputGroup`.
+
+You can also define an `initialValue`, as an array with multiple options.
+
+Here's an example:
+
+```jsx
+const {
+  formikForm,
+  Form,
+  FormInputGroup,
+  FormInputGroupItem,
+} = useFormup(...);
+
+<Form formikForm={formikForm}>
+  <FormInputGroup name="favouriteFood" multi initialValue={['Oreo', 'Pie']}>
+    <p>What's your gender?</p>
+
+    <FormInputGroupItem value="Ice Cream Sandwich" component={Checkbox} />
+    <FormInputGroupItem value="KitKat" component={Checkbox} />
+    <FormInputGroupItem value="Lollipop" component={Checkbox} />
+    <FormInputGroupItem value="Nougat" component={Checkbox} />
+    <FormInputGroupItem value="Oreo" component={Checkbox} />
+    <FormInputGroupItem value="Pie" component={Checkbox} />
+  </FormInputGroup>
+</Form>
+```
+
 ## Usage - Extended Formup Data in Rendered Inputs
 
 You can gather extended formup data in order to aid your custom inputs, such as the **validation error message**, for example.
