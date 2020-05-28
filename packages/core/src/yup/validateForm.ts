@@ -45,7 +45,11 @@ const validateForm = (
         const pathObject = schema.fields[path];
 
         if (pathObject) {
-          setFieldsTouched(form, pathObject.fields, path);
+          if (pathObject['_type'] === 'object') {
+            setFieldsTouched(form, pathObject.fields, path);
+          } else {
+            setFieldsTouched(form, schema.fields, path);
+          }
         }
 
         schema.validateSyncAt(
