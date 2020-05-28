@@ -76,11 +76,12 @@ const useFormup = (
       return;
     }
 
-    formikForm.handleSubmit();
+    options.onSubmit(formikForm.values);
   }, [
     handleValidateForm,
     formikForm,
     onError,
+    options,
   ]);
 
   return {
