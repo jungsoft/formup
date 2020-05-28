@@ -5,6 +5,7 @@ import {
   ValidateFormOptions,
   ValidateFormResult,
   FormupFormikForm,
+  YupValidateOptions,
 } from '../interfaces';
 import defaultValidationOptions from '../constants/defaultValidationOptions';
 import setFieldsTouched from '../utils/setFieldsTouched';
@@ -18,7 +19,8 @@ import setFieldsTouched from '../utils/setFieldsTouched';
 const validateForm = (
   schema: FormupYupSchema,
   form: FormupFormikForm,
-  options: ValidateFormOptions = defaultValidationOptions,
+  options?: ValidateFormOptions,
+  validationOptions: YupValidateOptions = defaultValidationOptions,
 ): ValidateFormResult => {
   const result: ValidateFormResult = {
     error: undefined,
@@ -27,10 +29,7 @@ const validateForm = (
 
   let validatePaths: string[] = [];
 
-  const {
-    paths,
-    ...validationOptions
-  } = options;
+  const paths = options?.paths;
 
   if (Array.isArray(paths) && paths.length > 0) {
     validatePaths = paths;
@@ -46,7 +45,11 @@ const validateForm = (
         const pathObject = schema.fields[path];
 
         if (pathObject) {
-          setFieldsTouched(form, pathObject.fields, path);
+          if (pathObject['_type'] === 'object') {
+            setFieldsTouched(form, pathObject.fields, path);
+          } else {
+            setFieldsTouched(form, schema.fields, path);
+          }
         }
 
         schema.validateSyncAt(

@@ -281,6 +281,64 @@ const CustomInputWithErrorMessage = ({
 );
 ```
 
+## Usage - Custom Validation
+
+When submitting your form with formup, note that your form won't be validated if it isn't valid.
+
+You can choose to validate the whole form (which formup does by default), or:
+ - Validate only one field
+ - Validate an array of fields
+ - Validate only one object (nested fields)
+ - Validate an array of objects (nested fields)
+ - Validate fields + objects
+
+To do this, you simply need to pass `validationOptions.path` to formup's `submitForm` options:
+
+```tsx
+const {
+  submitForm,
+} = useFormup(schema, {
+  onSubmit: handleSubmitForm,
+});
+
+// This will validate only "name" field
+submitForm({
+  validationOptions: {
+    paths: 'name',
+  },
+});
+
+// This will validate "name" and "phone" fields
+submitForm({
+  validationOptions: {
+    paths: [
+      'name',
+      'phone',
+    ],
+  },
+});
+
+// This will validate all fields within "personalInformation" object
+submitForm({
+  validationOptions: {
+    paths: 'personalInformation',
+  },
+});
+
+// This will validate the field "document" within "personalInformation" object,
+// the field "job" within "professionalInformation",
+// and also the "name" field
+submitForm({
+  validationOptions: {
+    paths: [
+      'personalInformation.document',
+      'professionalInformation.job',
+      'name',
+    ],
+  },
+});
+```
+
 ## Contributing
 
 Pull requests are welcome!

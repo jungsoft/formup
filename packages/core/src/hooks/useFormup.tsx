@@ -6,6 +6,8 @@ import {
   UseFormupResult,
   UseFormupOptions,
   FormupFormikForm,
+  SubmitFormOptions,
+  ValidateFormOptions,
 } from '../interfaces';
 import mapFieldsToObject from '../utils/mapFieldsToObject';
 import FormInputGroupItem from '../components/FormInputGroupItem/FormInputGroupItem';
@@ -53,22 +55,18 @@ const useFormup = (
     schema,
   };
 
-  const handleValidateForm = React.useCallback(() => (
-    validateForm(schema, formikForm)
+  const handleValidateForm = React.useCallback((validationOptions?: ValidateFormOptions) => (
+    validateForm(schema, formikForm, validationOptions)
   ), [
     formikForm,
     schema,
   ]);
 
-  const submitForm = React.useCallback((event: any) => {
-    if (event?.preventDefault) {
-      event.preventDefault();
-    }
-
+  const submitForm = React.useCallback((submitFormOptions?: SubmitFormOptions) => {
     const {
       isValid,
       error,
-    } = handleValidateForm();
+    } = handleValidateForm(submitFormOptions?.validationOptions);
 
     if (!isValid) {
       if (onError) {
@@ -78,11 +76,12 @@ const useFormup = (
       return;
     }
 
-    formikForm.handleSubmit();
+    options.onSubmit(formikForm.values);
   }, [
     handleValidateForm,
     formikForm,
     onError,
+    options,
   ]);
 
   return {

@@ -33,8 +33,18 @@ export interface FormupValidationError extends yup.ValidationError {
 /**
  * Options for validateForm.
  */
-export interface ValidateFormOptions extends yup.ValidateOptions {
+export interface ValidateFormOptions {
+  /**
+   * If provided, will validate only a section of the form.
+   * You can pass a field, an array of fields, an object, an array of objects.
+   */
   paths?: string | string[];
+}
+
+/**
+ * Default yup options for validateForm.
+ */
+export interface YupValidateOptions extends yup.ValidateOptions {
 }
 
 /**
@@ -57,12 +67,12 @@ export interface UseFormupOptions extends FormikConfig<any> {
  * Result returned by useFormup.
  */
 export interface UseFormupResult {
+  validateForm: (validationOptions?: ValidateFormOptions) => ValidateFormResult;
   FormInputGroupItem: React.FunctionComponent<FormInputGroupItemProps>;
   FormInputGroup: React.FunctionComponent<FormInputGroupProps>;
+  submitForm: (submitFormOptions?: SubmitFormOptions) => void;
   FormInput: React.FunctionComponent<FormInputProps>;
   Form: React.FunctionComponent<FormProps>;
-  validateForm: () => ValidateFormResult;
-  submitForm: (event?: any) => void;
   formikForm: FormupFormikForm;
 }
 
@@ -123,4 +133,11 @@ export type FormContextResult = FormupFormikForm;
  */
 export interface ExtendedFormupFormInputData {
   errorMessage?: string;
+}
+
+/**
+ * Options provided when submitting the form with useFormup.
+ */
+export interface SubmitFormOptions {
+  validationOptions?: ValidateFormOptions;
 }
