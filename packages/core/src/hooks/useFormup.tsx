@@ -26,7 +26,7 @@ const useFormup = (
   schema: FormupYupSchema,
   options: UseFormupOptions,
 ): UseFormupResult => {
-  const [initialValues] = React.useState(() => {
+  const initialValues = React.useMemo(() => {
     if (options?.initialValues) {
       return options.initialValues;
     }
@@ -36,7 +36,10 @@ const useFormup = (
     }
 
     return null;
-  });
+  }, [
+    options,
+    schema,
+  ]);
 
   if (!schema) {
     throw new Error('You need to provide the "schema" prop.');
