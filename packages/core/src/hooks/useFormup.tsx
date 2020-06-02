@@ -27,6 +27,10 @@ const useFormup = (
   options: UseFormupOptions,
 ): UseFormupResult => {
   const [initialValues] = React.useState(() => {
+    if (options?.initialValues) {
+      return options.initialValues;
+    }
+
     if (schema) {
       return mapFieldsToObject(schema.fields);
     }
