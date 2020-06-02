@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import invariant from 'invariant';
 
 import { FORMUP_INPUT_GROUP_CONTAINER_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../constants/identifiers';
 import { useFormGroupContext } from '../../contexts/FormGroupContext/FormGroupContext';
@@ -32,9 +33,7 @@ const FormInputGroupContent = ({
     hasError,
   }] = useFormGroupContext();
 
-  if (!form) {
-    throw new Error('You need to provide a <Form /> component enclosing FormInputGroup.');
-  }
+  invariant(!!form, 'You need to provide a <Form /> component enclosing FormInputGroup.');
 
   const containerClasses = classNames(FORMUP_INPUT_GROUP_CONTAINER_CLASS_NAME, className, {
     [FORMUP_INPUT_DANGER_CLASS_NAME]: hasError,

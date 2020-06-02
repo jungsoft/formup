@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useFormik } from 'formik';
+import invariant from 'invariant';
 
 import {
   FormupYupSchema,
@@ -41,13 +42,8 @@ const useFormup = (
     schema,
   ]);
 
-  if (!schema) {
-    throw new Error('You need to provide the "schema" prop.');
-  }
-
-  if (!options?.onSubmit) {
-    throw new Error('You need to provide the "onSubmit" option.');
-  }
+  invariant(!!schema, 'You need to provide the "schema" prop.');
+  invariant(!!options?.onSubmit, 'You need to provide the "onSubmit" option.');
 
   const { onError } = options || {};
 

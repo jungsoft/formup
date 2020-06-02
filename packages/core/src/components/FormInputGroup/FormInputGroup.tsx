@@ -1,4 +1,5 @@
 import * as React from 'react';
+import invariant from 'invariant';
 
 import FormGroupContainer from '../../contexts/FormGroupContext/FormGroupContainer';
 import FormInputGroupContent from './FormInputGroupContent';
@@ -30,9 +31,7 @@ const FormInputGroup = ({
   children,
   name,
 }: FormInputGroupProps) => {
-  if (!name) {
-    throw new Error('You need to provide the "name" prop.');
-  }
+  invariant(!!name, 'You need to provide the "name" prop.');
 
   return (
     <FormGroupContainer initialValue={initialValue} name={name} multi={multi}>

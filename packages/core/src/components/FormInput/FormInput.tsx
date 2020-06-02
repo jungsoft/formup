@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import invariant from 'invariant';
 
 import { FORMUP_INPUT_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../constants/identifiers';
 import DefaultInputComponent from '../DefaultInputComponents/DefaultInputComponent';
@@ -89,13 +90,8 @@ const FormInput = ({
   const isInitializedRef = React.useRef(false);
   const form = useFormContext();
 
-  if (!name) {
-    throw new Error('You need to provide the "name" prop.');
-  }
-
-  if (!form) {
-    throw new Error('You need to provide a <Form /> component enclosing FormInput.');
-  }
+  invariant(!!name, 'You need to provide the "name" prop.');
+  invariant(!!form, 'You need to provide a <Form /> component enclosing FormInput.');
 
   const { value, defaultValue } = props;
 

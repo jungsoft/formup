@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import invariant from 'invariant';
 
 import { FORMUP_FORM_CLASS_NAME } from '../../constants/identifiers';
 import FormContainer from '../../contexts/FormContext/FormContainer';
@@ -24,9 +25,7 @@ const Form = ({
   children,
   onSubmit,
 }: FormProps) => {
-  if (!formikForm) {
-    throw new Error('You need to provide the "formikForm" prop.');
-  }
+  invariant(!!formikForm, 'You need to provide the "formikForm" prop.');
 
   const formClassName = classNames(FORMUP_FORM_CLASS_NAME, className);
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import invariant from 'invariant';
 
 import DefaultInputGroupItemComponent from '../DefaultInputComponents/DefaultInputGroupItemComponent';
 import { useFormGroupContext } from '../../contexts/FormGroupContext/FormGroupContext';
@@ -41,14 +42,12 @@ const FormInputGroupItem = ({
   value,
   ...props
 }: FormInputGroupItemProps) => {
+  invariant(value !== undefined, 'You need to provide the "value" prop.');
+
   const [formGroupValue, setFormGroupValue, {
     hasError,
     multi,
   }] = useFormGroupContext();
-
-  if (value === undefined) {
-    throw new Error('You need to provide the "value" prop.');
-  }
 
   const inputContainerClassName = classNames(
     FORMUP_INPUT_GROUP_ITEM_CLASS_NAME,
