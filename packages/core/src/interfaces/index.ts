@@ -58,7 +58,7 @@ export interface ValidateFormResult extends yup.ValidateOptions {
 /**
  * Options for useFormup.
  */
-export interface UseFormupOptions extends FormikConfig<any> {
+export interface UseFormupOptions extends Omit<FormikConfig<any>, 'validationSchema'> {
   onError?: (error: FormupValidationError | undefined) => void;
   onSubmit: (values: object) => void;
 }
