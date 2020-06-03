@@ -339,6 +339,68 @@ submitForm({
 });
 ```
 
+## Usage - Custom form initial values
+
+By default, formup will already create the form initial values according to your yup schema. This means that any `default(...)` will be taken into consideration, and it will always initialize the form as an empty valid object of your schema.
+
+For example, the schema:
+
+```js
+const schema = yup.object().shape({
+  userId: yup
+    .number()
+    .default(100),
+  personalInformation: yup.object().shape({
+    firstName: yup
+      .string()
+      .required(),
+    email: yup
+      .string()
+      .default("user@example.com")
+      .required(),
+  }),
+});
+```
+
+Will automatically translate to:
+
+```js
+{
+  userId: 100,
+  personalInformation: {
+    firstName: "",
+    email: "user@example.com",
+  },
+}
+```
+
+However, you can customize any value generated within your initial values by passing `initialValues` to `useFormup` options. Formup will automatically merge the two objects into one, taking your overrides into consideration.
+
+Here's an example, using the schema declared above:
+
+```js
+useFormup(schema, {
+  initialValues: {
+    userId: 999,
+    personalInformation: {
+      firstName: "Foo",
+    },
+  },
+});
+```
+
+This will produce:
+
+```js
+{
+  userId: 999,
+  personalInformation: {
+    firstName: "Foo",
+    email: "user@example.com",
+  },
+}
+```
+
 ## Contributing
 
 Pull requests are welcome!
