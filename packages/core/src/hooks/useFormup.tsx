@@ -10,8 +10,8 @@ import {
   SubmitFormOptions,
   ValidateFormOptions,
 } from '../interfaces';
-import mapFieldsToObject from '../utils/mapFieldsToObject';
 import FormInputGroupItem from '../components/FormInputGroupItem/FormInputGroupItem';
+import mapInitialValuesFromSchema from '../utils/mapInitialValuesFromSchema';
 import FormInputGroup from '../components/FormInputGroup/FormInputGroup';
 import FormInput from '../components/FormInput/FormInput';
 import validateForm from '../yup/validateForm';
@@ -27,17 +27,9 @@ const useFormup = (
   schema: FormupYupSchema,
   options: UseFormupOptions,
 ): UseFormupResult => {
-  const initialValues = React.useMemo(() => {
-    if (options?.initialValues) {
-      return options.initialValues;
-    }
-
-    if (schema) {
-      return mapFieldsToObject(schema.fields);
-    }
-
-    return null;
-  }, [
+  const initialValues = React.useMemo(() => (
+    mapInitialValuesFromSchema(schema, options?.initialValues)
+  ), [
     options,
     schema,
   ]);
