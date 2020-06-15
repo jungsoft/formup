@@ -31,8 +31,8 @@ const FormGroupContainer = ({
 
   const setFormGroupValue = React.useCallback((newValue) => {
     if (form) {
+      form.setFieldTouched(name, true, false);
       form.setFieldValue(name, newValue);
-      form.setFieldTouched(name, true);
     }
   }, [
     form,
