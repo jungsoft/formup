@@ -2,12 +2,12 @@ import * as React from 'react';
 import update from 'immutability-helper';
 
 import checkFormInputGroupError from '../../utils/checkFormInputGroupError';
-import extractEventValue from '../../utils/extractEventValue';
 import checkFormInputValue from '../../utils/checkFormInputValue';
+import extractEventValue from '../../utils/extractEventValue';
 import { useFormContext } from '../FormContext/FormContext';
 import { FormGroupContextValue } from '../../interfaces';
-
 import { FormGroupProvider } from './FormGroupContext';
+import useDidMount from '../../hooks/useDidMount';
 
 export interface FormGroupContainerProps extends React.Props<any> {
   children?: React.ReactChild;
@@ -39,14 +39,13 @@ const FormGroupContainer = ({
     name,
   ]);
 
-  React.useEffect(() => {
+  useDidMount(() => {
     const isValidValue = checkFormInputValue(initialValue);
 
     if (isValidValue) {
       setFormGroupValue(initialValue);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   const handleSetFormGroupValue = React.useCallback((event: any) => {
     const newValue = extractEventValue(event);
