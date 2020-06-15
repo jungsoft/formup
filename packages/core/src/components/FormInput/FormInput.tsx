@@ -39,6 +39,7 @@ export interface FormInputComponentProps extends React.Props<any> {
 export interface FormInputProps extends React.Props<any> {
   component: React.ElementType<FormInputComponentProps>;
   name: string;
+  id?: string;
   type?: string;
   value?: any;
   defaultValue?: any;
@@ -105,6 +106,7 @@ const FormInput = ({
   const inputProps = {
     ...props,
     ...formInputProps,
+    id: props?.id || name,
     onChange: (event: any) => {
       const newValue = extractEventValue(event);
 
