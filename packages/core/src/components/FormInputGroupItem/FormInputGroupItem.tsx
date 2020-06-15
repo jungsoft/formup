@@ -68,13 +68,23 @@ const FormInputGroupItem = ({
     value,
   ]);
 
-  const inputType = multi ? 'checkbox' : 'radio';
+  const inputType = React.useMemo(() => (
+    multi
+      ? 'checkbox'
+      : 'radio'
+  ), [
+    multi,
+  ]);
 
-  const isChecked = (
+  const isChecked = React.useMemo(() => (
     multi
       ? Array.isArray(formGroupValue) && formGroupValue.includes(value)
       : formGroupValue === value
-  );
+  ), [
+    formGroupValue,
+    multi,
+    value,
+  ]);
 
   const inputProps = {
     ...props,
