@@ -15,6 +15,7 @@ import mapInitialValuesFromSchema from '../utils/mapInitialValuesFromSchema';
 import FormInputGroup from '../components/FormInputGroup/FormInputGroup';
 import FormInput from '../components/FormInput/FormInput';
 import validateForm from '../yup/validateForm';
+import useHasMounted from './useHasMounted';
 import Form from '../components/Form/Form';
 import noop from '../utils/noop';
 
@@ -28,6 +29,10 @@ const useFormup = (
   schema: FormupYupSchema,
   options: UseFormupOptions,
 ): UseFormupResult => {
+  invariant(!!schema, 'You need to provide the "schema" prop.');
+
+  const hasMounted = useHasMounted();
+
   const initialValues = React.useMemo(() => (
     mapInitialValuesFromSchema(schema, options?.initialValues)
   ), [
@@ -35,10 +40,9 @@ const useFormup = (
     schema,
   ]);
 
-  invariant(!!schema, 'You need to provide the "schema" prop.');
-
   const useFormikResult = useFormik({
     ...options,
+    validateOnMount: !hasMounted && options.validateOnMount,
     onSubmit: options?.onSubmit || noop,
     validationSchema: schema,
     initialValues,
