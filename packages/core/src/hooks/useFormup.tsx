@@ -16,6 +16,7 @@ import FormInputGroup from '../components/FormInputGroup/FormInputGroup';
 import FormInput from '../components/FormInput/FormInput';
 import validateForm from '../yup/validateForm';
 import Form from '../components/Form/Form';
+import noop from '../utils/noop';
 
 /**
  * Hook to use formup.
@@ -35,12 +36,12 @@ const useFormup = (
   ]);
 
   invariant(!!schema, 'You need to provide the "schema" prop.');
-  invariant(!!options?.onSubmit, 'You need to provide the "onSubmit" option.');
 
   const { onError } = options || {};
 
   const useFormikResult = useFormik({
     ...options,
+    onSubmit: options?.onSubmit || noop,
     validationSchema: schema,
     initialValues,
   });
@@ -71,7 +72,9 @@ const useFormup = (
       return;
     }
 
-    options.onSubmit(formikForm.values);
+    if (options?.onSubmit) {
+      options.onSubmit(formikForm.values);
+    }
   }, [
     handleValidateForm,
     formikForm,

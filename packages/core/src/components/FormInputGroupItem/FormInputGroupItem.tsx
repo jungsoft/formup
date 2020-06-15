@@ -4,6 +4,7 @@ import invariant from 'invariant';
 
 import DefaultInputGroupItemComponent from '../DefaultInputComponents/DefaultInputGroupItemComponent';
 import { useFormGroupContext } from '../../contexts/FormGroupContext/FormGroupContext';
+import noop from '../../utils/noop';
 import {
   FORMUP_INPUT_GROUP_ITEM_CLASS_NAME,
   FORMUP_INPUT_DANGER_CLASS_NAME,
@@ -88,7 +89,7 @@ const FormInputGroupItem = ({
 
   const inputProps = {
     ...props,
-    onChange: () => {}, // no-op to suppress React error, since onChange is not needed here
+    onChange: noop, // no-op to suppress React error, since onChange is not needed here
     onClick: handleSetFormGroupValue,
     className: inputClassName,
     checked: isChecked,
