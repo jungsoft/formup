@@ -37,8 +37,6 @@ const useFormup = (
 
   invariant(!!schema, 'You need to provide the "schema" prop.');
 
-  const { onError } = options || {};
-
   const useFormikResult = useFormik({
     ...options,
     onSubmit: options?.onSubmit || noop,
@@ -46,10 +44,13 @@ const useFormup = (
     initialValues,
   });
 
-  const formikForm: FormupFormikForm = {
+  const formikForm: FormupFormikForm = React.useMemo(() => ({
     ...useFormikResult,
     schema,
-  };
+  }), [
+    useFormikResult,
+    schema,
+  ]);
 
   const handleValidateForm = React.useCallback((validationOptions?: ValidateFormOptions) => (
     validateForm(schema, formikForm, validationOptions)
@@ -65,8 +66,8 @@ const useFormup = (
     } = handleValidateForm(submitFormOptions?.validationOptions);
 
     if (!isValid) {
-      if (onError) {
-        onError(error);
+      if (options?.onError) {
+        options.onError(error);
       }
 
       return;
@@ -78,7 +79,6 @@ const useFormup = (
   }, [
     handleValidateForm,
     formikForm,
-    onError,
     options,
   ]);
 
