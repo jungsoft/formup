@@ -21,10 +21,6 @@ const evalIsTouched = (value: any) => !!(
  * @param obj The object
  */
 const recursiveMapTouched = (obj?: object): object => {
-  if (!obj) {
-    return {};
-  }
-
   const result = {
     ...(obj || {}),
   };
