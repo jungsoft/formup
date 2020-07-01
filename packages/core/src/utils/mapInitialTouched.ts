@@ -1,3 +1,5 @@
+import merge from 'merge';
+
 /**
  * Returns true if one value is possibly touched.
  *
@@ -18,7 +20,7 @@ const evalIsTouched = (value: any) => !!(
  * Recursively maps touched fields in an object.
  * @param obj The object
  */
-const recursiveMapTouched = (obj: object): object => {
+const recursiveMapTouched = (obj?: object): object => {
   const result = {
     ...(obj || {}),
   };
@@ -47,21 +49,18 @@ const recursiveMapTouched = (obj: object): object => {
  * which is optional.
  *
  * @param initialValues Value of initialValues
- * @param initialTouched Value of initialTouched
+ * @param override Value of initialTouched
  */
 const mapInitialTouched = (
   initialValues?: object,
-  initialTouched?: object,
+  override?: object,
 ) => {
-  if (initialTouched) {
-    return initialTouched;
-  }
+  const touchedFromInitialValues = recursiveMapTouched(initialValues);
 
-  if (!initialValues) {
-    return undefined;
-  }
-
-  return recursiveMapTouched(initialValues);
+  return merge.recursive(
+    (touchedFromInitialValues || {}),
+    (override || {}),
+  );
 };
 
 export default mapInitialTouched;
