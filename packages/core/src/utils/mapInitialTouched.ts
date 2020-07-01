@@ -13,11 +13,10 @@ const recursiveMapTouched = (obj: object): object => {
       const value = result[key];
 
       if (typeof value === 'object') {
-        recursiveMapTouched(value);
+        result[key] = recursiveMapTouched(value);
         return;
       }
 
-      // eslint-disable-next-line no-param-reassign
       result[key] = true;
     });
 
