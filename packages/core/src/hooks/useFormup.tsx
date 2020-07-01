@@ -13,6 +13,7 @@ import {
 import FormInputGroupItem from '../components/FormInputGroupItem/FormInputGroupItem';
 import mapInitialValuesFromSchema from '../utils/mapInitialValuesFromSchema';
 import FormInputGroup from '../components/FormInputGroup/FormInputGroup';
+import mapInitialTouched from '../utils/mapInitialTouched';
 import FormInput from '../components/FormInput/FormInput';
 import validateForm from '../yup/validateForm';
 import useHasMounted from './useHasMounted';
@@ -40,11 +41,18 @@ const useFormup = (
     schema,
   ]);
 
+  const initialTouched = React.useMemo(() => (
+    mapInitialTouched(options?.initialValues, options?.initialTouched)
+  ), [
+    options,
+  ]);
+
   const useFormikResult = useFormik({
     ...options,
     validateOnMount: !hasMounted && options.validateOnMount,
     onSubmit: options?.onSubmit || noop,
     validationSchema: schema,
+    initialTouched,
     initialValues,
   });
 
