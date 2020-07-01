@@ -28,7 +28,7 @@ const recursiveMapTouched = (obj: object): object => {
     .forEach((key) => {
       const value = result[key];
 
-      if (typeof value === 'object') {
+      if (value && typeof value === 'object') {
         result[key] = recursiveMapTouched(value);
         return;
       }
