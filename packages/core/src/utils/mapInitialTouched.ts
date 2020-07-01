@@ -1,4 +1,20 @@
 /**
+ * Returns true if one value is possibly touched.
+ *
+ * This includes the cases:
+ * Is truthy
+ * Is `false` (falsy, but represents checkboxes & radio buttons)
+ * Is `0` (falsy, but represents number inputs already pre-filled)
+ *
+ * @param value The value
+ */
+const evalIsTouched = (value: any) => !!(
+  value
+  || value === false
+  || value === 0
+);
+
+/**
  * Recursively maps touched fields in an object.
  * @param obj The object
  */
@@ -17,7 +33,7 @@ const recursiveMapTouched = (obj: object): object => {
         return;
       }
 
-      result[key] = true;
+      result[key] = evalIsTouched(value);
     });
 
   return result;
