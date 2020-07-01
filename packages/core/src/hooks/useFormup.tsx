@@ -42,8 +42,9 @@ const useFormup = (
   ]);
 
   const initialTouched = React.useMemo(() => (
-    mapInitialTouched(options?.initialValues, options?.initialTouched)
+    mapInitialTouched(initialValues, options?.initialTouched)
   ), [
+    initialValues,
     options,
   ]);
 
