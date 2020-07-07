@@ -129,14 +129,16 @@ const FormInput = ({
     error: formInputError.hasErrors,
   };
 
+  const inputValue = value ?? defaultValue ?? formInputMeta.initialValue;
+
   const isUntouched = (
-    (value || defaultValue || formInputMeta.initialValue)
+    !!inputValue
     && !formInputMeta.touched
     && !isInitializedRef.current
   );
 
   if (isUntouched) {
-    form.setFieldValue(name, value || defaultValue || formInputMeta.initialValue);
+    form.setFieldValue(name, inputValue);
 
     inputProps.defaultValue = undefined;
     isInitializedRef.current = true;
