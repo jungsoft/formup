@@ -142,7 +142,7 @@ const App = () => {
               Simply provide the <strong>name</strong> prop to link with your schema field.
             </Typography>
 
-            <FormInput name="name" label="Name" />
+            <FormInput name="name" />
 
             <Typography variant="h5" align="left" className={classes.marginTop5}>
               <span role="img" aria-label="Check">✅</span>
@@ -216,7 +216,6 @@ const App = () => {
             <FormInput
               type="password"
               name="authentication.password"
-              label="Password"
               component={TextFieldWithErrorMessage}
               injectFormupData
             />
@@ -224,7 +223,6 @@ const App = () => {
             <FormInput
               type="password"
               name="authentication.confirmPassword"
-              label="Confirm Password"
               component={TextFieldWithErrorMessage}
               injectFormupData
             />
