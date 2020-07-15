@@ -6,7 +6,7 @@ Formup integrates Formik with Yup, reducing the code overhead needed to create y
 
 It provides the best of both worlds for all of your forms so you can create, initialize and validate any form in only a few lines of code 📝💯.
 
-Of course, you'll still have all validation options and functionality from Yup and all helpers from Formik. Formup is essentialy a bridge between these two libraries so that you can work easily without worrying about writing any middleware.
+Of course, you'll still have all validation options and functionality from Yup and all helpers from Formik. Formup is essentially a bridge between these two libraries so that you can work easily without worrying about writing any middleware.
 
 ## Online Example
 
@@ -90,13 +90,17 @@ const MyComponent = () => {
   return (
     <Form formikForm={formikForm}>
       {/*
-        FormInput will take care of all validation!
-        Simply provide the "name" prop.
+        FormInput will take care of all validation and property mapping!
+
+        Properties such as "label" will be automatically inherited from your
+        schema, but you can override them by passing the prop to FormInput.
+
+        You simply need to provide the "name" prop.
       */}
 
-      <FormInput name="name" label="Name" />
-      <FormInput name="email" label="Email" />
-      <FormInput name="age" label="Age" />
+      <FormInput name="name" />
+      <FormInput name="email" />
+      <FormInput name="age" label="Custom Age Label" />
 
       <button type="button" className="form-button" onClick={submitForm}>
         Submit!
@@ -223,7 +227,7 @@ const {
 } = useFormup(...);
 
 <Form formikForm={formikForm}>
-  <FormInputGroup name="favouriteFood" multi initialValue={['Oreo', 'Pie']}>
+  <FormInputGroup name="favoriteFood" multi initialValue={['Oreo', 'Pie']}>
     <p>What's your gender?</p>
 
     <FormInputGroupItem value="Ice Cream Sandwich" component={Checkbox} />
@@ -292,7 +296,7 @@ You can choose to validate the whole form (which formup does by default), or:
  - Validate an array of objects (nested fields)
  - Validate fields + objects
 
-To do this, you simply need to pass `validationOptions.path` to formup's `submitForm` options:
+To do this, you simply need to pass `validationOptions.path` to formup `submitForm` options:
 
 ```tsx
 const {
