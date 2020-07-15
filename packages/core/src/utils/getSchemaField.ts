@@ -1,3 +1,5 @@
+import get from 'lodash.get';
+
 import { FormupYupSchema } from '../interfaces';
 
 /**
@@ -9,7 +11,11 @@ const getSchemaField = (
   name: string,
   schema: FormupYupSchema,
 ) => {
-  const schemaField = schema?.fields?.[name];
+  const fieldPath = String(name || '')
+    .split('.')
+    .reduce((prev, curr) => `${prev}.fields.${curr}`);
+
+  const schemaField = get(schema?.fields || {}, fieldPath);
 
   return schemaField;
 };
