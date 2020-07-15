@@ -31,7 +31,7 @@ export interface FormInputGroupItemProps extends React.Props<any> {
  * You need to pass in "value" (value of this distinct input)
  * in order to correctly render and use this component.
  *
- * Can be ovewritten with the "component" prop,
+ * Can be overwritten with the "component" prop,
  * allowing you to render any type of component
  * while still maintaining all validation functionality.
  * @param param0 Options.

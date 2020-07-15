@@ -1,4 +1,10 @@
 language: node_js
+
 node_js:
-  - 9
-  - 8
+  - 12
+
+before_install:
+  - cd packages/core
+
+script:
+  - yarn build
