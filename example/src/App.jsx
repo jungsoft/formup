@@ -65,8 +65,8 @@ const schema = createSchema({
     .label('Accepted terms'),
 
   // You can control single choice fields using Form Groups
-  favouriteFood: yup.string()
-    .label('Favourite Food'),
+  favoriteFood: yup.string()
+    .label('Favorite Food'),
 
   // And even multi-level nested fields!
   authentication: yup.object().shape({
@@ -90,7 +90,7 @@ const App = () => {
     setSubmissionResult(`Form validation errors! \n ${JSON.stringify(errors, null, 2)}`);
   };
 
-  // Here we'll handle submiting the form
+  // Here we'll handle submitting the form
   const handleSubmitForm = (values) => {
     setSubmissionResult(`Form is valid! \n ${JSON.stringify(values, null, 2)}`);
 
@@ -298,9 +298,9 @@ const App = () => {
               to set the initial checked items?
             </Typography>
 
-            <FormInputGroup name="favouriteFood" multi initialValue={['Cupcake', 'Donut']}>
+            <FormInputGroup name="favoriteFood" multi initialValue={['Cupcake', 'Donut']}>
               <Typography variant="body2" align="left" className={classes.marginTop2}>
-                What's favourite food? You can pick as many as you want!
+                What's favorite food? You can pick as many as you want!
               </Typography>
 
               <FormControlLabel
@@ -360,7 +360,7 @@ const App = () => {
             </Typography>
 
             <Typography variant="body1" align="left" className={classes.subtitle}>
-              Here's your fancy form value in a beaultiful real-time JSON string.
+              Here's your fancy form value in a beautiful real-time JSON string.
             </Typography>
 
             <TextField
