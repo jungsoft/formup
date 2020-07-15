@@ -1,4 +1,5 @@
 import { FormupYupSchema } from '../interfaces';
+import getSchemaField from './getSchemaField';
 
 /**
  * If defined, extracts the field label from the schema.
@@ -9,7 +10,7 @@ const getFieldLabel = (
   name: string,
   schema: FormupYupSchema,
 ) => {
-  const schemaField = schema?.fields?.[name];
+  const schemaField = getSchemaField(name, schema);
 
   return schemaField?.['_label'];
 };
