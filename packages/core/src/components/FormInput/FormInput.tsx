@@ -68,7 +68,7 @@ export interface FormInputProps extends React.Props<any> {
 /**
  * Input that auto-validates itself within the form.
  *
- * Can be ovewritten with the "component" prop,
+ * Can be overwritten with the "component" prop,
  * allowing you to render any type of component
  * while still maintaining all validation functionality.
  *
