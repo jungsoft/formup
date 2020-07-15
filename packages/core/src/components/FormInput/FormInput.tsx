@@ -56,6 +56,7 @@ const FormInput = ({
     ...props,
     ...formInputProps,
     label: inputLabel,
+    'aria-label': inputLabel,
     id: props?.id || name,
     onChange: (event: any) => {
       const newValue = extractEventValue(event);
