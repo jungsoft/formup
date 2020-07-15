@@ -9,7 +9,7 @@ import { useFormContext } from '../../contexts/FormContext/FormContext';
 import checkFormInputError from '../../utils/checkFormInputError';
 import composeInputEvent from '../../utils/composeInputEvent';
 import extractEventValue from '../../utils/extractEventValue';
-import getInputLabel from '../../utils/getInputLabel';
+import getFieldLabel from '../../utils/getFieldLabel';
 
 /**
  * Input that auto-validates itself within the form.
@@ -50,7 +50,7 @@ const FormInput = ({
 
   const formInputError = checkFormInputError(formInputMeta);
 
-  const inputLabel = label ?? getInputLabel(name, form?.schema);
+  const inputLabel = label ?? getFieldLabel(name, form?.schema);
 
   const inputProps = {
     ...props,

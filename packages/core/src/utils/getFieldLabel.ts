@@ -5,7 +5,7 @@ import { FormupYupSchema } from '../interfaces';
  * @param name The field name
  * @param schema The schema
  */
-const getInputLabel = (
+const getFieldLabel = (
   name: string,
   schema: FormupYupSchema,
 ) => {
@@ -14,4 +14,4 @@ const getInputLabel = (
   return schemaField?.['_label'];
 };
 
-export default getInputLabel;
+export default getFieldLabel;

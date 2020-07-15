@@ -5,9 +5,9 @@ import { FormupYupSchema } from '../interfaces';
  * @param schema Yup schema
  */
 const isFieldRequired = (name: string, schema: FormupYupSchema) => {
-  const field = schema && schema?.fields[name];
+  const schemaField = schema?.fields?.[name];
 
-  return field?._exclusive?.required || false;
+  return schemaField?._exclusive?.required || false;
 };
 
 export default isFieldRequired;
