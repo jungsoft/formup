@@ -4,81 +4,12 @@ import invariant from 'invariant';
 
 import { FORMUP_INPUT_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../constants/identifiers';
 import DefaultInputComponent from '../DefaultInputComponents/DefaultInputComponent';
+import { ExtendedFormupFormInputData, FormInputProps } from '../../interfaces';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
 import checkFormInputError from '../../utils/checkFormInputError';
-import { ExtendedFormupFormInputData } from '../../interfaces';
 import composeInputEvent from '../../utils/composeInputEvent';
 import extractEventValue from '../../utils/extractEventValue';
 import getInputLabel from '../../utils/getInputLabel';
-
-export interface FormInputComponentProps extends React.Props<any> {
-  /**
-   * Boolean indicating if the component has validation errors.
-   *
-   * This is injected by default to maintain compatibility with the
-   * major React libraries such as Material UI, React Bootstrap, etc.
-   *
-   * Thanks to this formup will be compatible out-of-the box with those
-   * dependencies, making the invalid inputs automatically styled, with
-   * red borders around it and such.
-   */
-  error: boolean;
-
-  /**
-   * Input's label, inherited from the schema definition, or from
-   * FormInput's "label" property.
-   */
-  label: string;
-
-  /**
-   * This is an object that contains Formup extended information, such
-   * as the validation error message for this input (if any).
-   *
-   * Due to compatibility issues, this will only be injected if the prop
-   * "injectFormupData" is defined as true in <FormInput /> component.
-   *
-   * Remember that this shouldn't be injected into the final <input />
-   * component, in order to avoid React errors.
-   */
-  formupData?: ExtendedFormupFormInputData;
-}
-
-export interface FormInputProps extends React.Props<any> {
-  component: React.ElementType<FormInputComponentProps>;
-  name: string;
-  id?: string;
-  type?: string;
-  value?: any;
-  defaultValue?: any;
-  children?: React.ReactChild;
-  onBlur?: (arg0: React.FormEvent<HTMLInputElement>) => void;
-  onChange?: (arg0: React.FormEvent<HTMLInputElement>) => void;
-  onKeyPress?: (arg0: React.FormEvent<HTMLInputElement>) => void;
-  className?: any;
-
-  /**
-   * Component label.
-   *
-   * Will be automatically inherited from the schema (if defined on the field),
-   * but you can still override it by passing this property to FormInput.
-   */
-  label?: string;
-
-  /**
-   * Defines if the "formupData" prop will be injected into the
-   * <input /> component that is being rendered (default by formup),
-   * or the component passed into "component" prop on FormInput.
-   *
-   * This is false by default in order to avoid compatibility issues,
-   * since when true the component will have to deal with "formupData"
-   * in order to avoid injecting it into the final <input /> component.
-   *
-   * If "formupData" is injected into the final <input /> component,
-   * React will throw an error in the console saying that "formupData"
-   * is not a valid property for <input />. Refer to the docs for more information.
-   */
-  injectFormupData: boolean;
-}
 
 /**
  * Input that auto-validates itself within the form.
