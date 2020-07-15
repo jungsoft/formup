@@ -9,6 +9,7 @@ import checkFormInputError from '../../utils/checkFormInputError';
 import { ExtendedFormupFormInputData } from '../../interfaces';
 import composeInputEvent from '../../utils/composeInputEvent';
 import extractEventValue from '../../utils/extractEventValue';
+import getInputLabel from '../../utils/getInputLabel';
 
 export interface FormInputComponentProps extends React.Props<any> {
   /**
@@ -22,6 +23,12 @@ export interface FormInputComponentProps extends React.Props<any> {
    * red borders around it and such.
    */
   error: boolean;
+
+  /**
+   * Input's label, inherited from the schema definition, or from
+   * FormInput's "label" property.
+   */
+  label: string;
 
   /**
    * This is an object that contains Formup extended information, such
@@ -47,7 +54,15 @@ export interface FormInputProps extends React.Props<any> {
   onBlur?: (arg0: React.FormEvent<HTMLInputElement>) => void;
   onChange?: (arg0: React.FormEvent<HTMLInputElement>) => void;
   onKeyPress?: (arg0: React.FormEvent<HTMLInputElement>) => void;
-  className?: any,
+  className?: any;
+
+  /**
+   * Component label.
+   *
+   * Will be automatically inherited from the schema (if defined on the field),
+   * but you can still override it by passing this property to FormInput.
+   */
+  label?: string;
 
   /**
    * Defines if the "formupData" prop will be injected into the
@@ -85,6 +100,7 @@ const FormInput = ({
   children,
   onChange,
   onBlur,
+  label,
   name,
   ...props
 }: FormInputProps) => {
@@ -103,9 +119,12 @@ const FormInput = ({
 
   const formInputError = checkFormInputError(formInputMeta);
 
+  const inputLabel = label ?? getInputLabel(name, form?.schema);
+
   const inputProps = {
     ...props,
     ...formInputProps,
+    label: inputLabel,
     id: props?.id || name,
     onChange: (event: any) => {
       const newValue = extractEventValue(event);
