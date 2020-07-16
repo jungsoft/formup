@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import * as yup from 'yup';
 import classNames from 'classnames';
 
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -14,73 +13,12 @@ import Radio from '@material-ui/core/Radio';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 
-import {
-  useFormup,
-  createSchema,
-} from '@formup/core';
+import { useFormup } from '@formup/core';
 
 import TextFieldWithErrorMessage from './components/TextFieldWithErrorMessage';
+import exampleSchema from './schemas/exampleSchema';
 import CustomInput from './components/CustomInput';
 import useStyles from './styles';
-
-// You can customize your locale to support multiple languages easily using createSchema!
-const locale = {
-  mixed: {
-    default: 'Invalid field!',
-  },
-};
-
-// You don't need to use createSchema if you're not customizing your locale.
-// You can use yup instead, no problems!
-const schema = createSchema({
-  // Your schema supports simple field
-  name: yup.string()
-    .required()
-    .label('Name'),
-
-  // Or a field with custom validations
-  email: yup.string()
-    .required()
-    .email()
-    .label('Email'),
-
-  // Optional fields too
-  phone: yup.string()
-    .required()
-    .label('Phone'),
-
-  customInput: yup.string()
-    .required(),
-
-  errorMessageExample: yup.string()
-    .required('This is a custom validation message =)'),
-
-  // You can control single choice fields using Form Groups
-  gender: yup.string()
-    .required()
-    .label('Gender'),
-
-  acceptedTerms: yup.boolean()
-    .default(false)
-    .label('Accepted terms'),
-
-  // You can control single choice fields using Form Groups
-  favoriteFood: yup.string()
-    .label('Favorite Food'),
-
-  // And even multi-level nested fields!
-  authentication: yup.object().shape({
-    password: yup.string()
-      .required()
-      .min(5)
-      .label('Password'),
-    confirmPassword: yup.string()
-      .required()
-      .min(5)
-      .oneOf([yup.ref('password'), null])
-      .label('Confirm your password'),
-  }),
-}, locale);
 
 const App = () => {
   const [submissionResult, setSubmissionResult] = useState('');
@@ -106,7 +44,7 @@ const App = () => {
     submitForm,
     FormInput,
     Form,
-  } = useFormup(schema, {
+  } = useFormup(exampleSchema, {
     // Formik options
     onError: handleValidationError,
     onSubmit: handleSubmitForm,
