@@ -1,3 +1,4 @@
+import yupSchemaFieldProperties from '../constants/yupSchemaFieldProperties';
 import { FormupYupSchema } from '../interfaces';
 import getSchemaField from './getSchemaField';
 
@@ -11,7 +12,10 @@ const isFieldRequired = (
 ) => {
   const schemaField = getSchemaField(name, schema);
 
-  return schemaField?._exclusive?.required || false;
+  return (
+    schemaField?.[yupSchemaFieldProperties.exclusive]?.required
+    || false
+  );
 };
 
 export default isFieldRequired;

@@ -1,3 +1,4 @@
+import yupSchemaFieldProperties from '../constants/yupSchemaFieldProperties';
 import { FormupYupSchema } from '../interfaces';
 import getSchemaField from './getSchemaField';
 
@@ -12,7 +13,7 @@ const getFieldLabel = (
 ) => {
   const schemaField = getSchemaField(name, schema);
 
-  return schemaField?.['_label'];
+  return schemaField?.[yupSchemaFieldProperties.label];
 };
 
 export default getFieldLabel;

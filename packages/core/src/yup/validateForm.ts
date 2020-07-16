@@ -8,6 +8,7 @@ import {
   YupValidateOptions,
 } from '../interfaces';
 import defaultValidationOptions from '../constants/defaultValidationOptions';
+import yupSchemaFieldProperties from '../constants/yupSchemaFieldProperties';
 import setFieldsTouched from '../utils/setFieldsTouched';
 
 /**
@@ -45,7 +46,7 @@ const validateForm = (
         const pathObject = schema.fields[path];
 
         if (pathObject) {
-          if (pathObject['_type'] === 'object') {
+          if (pathObject[yupSchemaFieldProperties.type] === 'object') {
             setFieldsTouched(form, pathObject.fields, path);
           } else {
             setFieldsTouched(form, schema.fields, path);
