@@ -1,6 +1,12 @@
 # Formup
 
-[![NPM](https://img.shields.io/npm/v/formup.svg)](https://www.npmjs.com/package/@formup/core) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@formup/core.svg?style=flat-square)](https://www.npmjs.com/package/@formup/core)
+[![Languages](https://img.shields.io/github/languages/count/jungsoft/formup?style=flat-square)](#)
+[![Stars](https://img.shields.io/github/stars/jungsoft/formup?style=flat-square)](https://github.com/jungsoft/formup/stargazers)
+[![Forks](https://img.shields.io/github/forks/jungsoft/formup?style=flat-square)](https://github.com/jungsoft/formup/network/members)
+[![Contributors](https://img.shields.io/github/contributors/jungsoft/formup?style=flat-square)](https://github.com/jungsoft/formup/graphs/contributors)
+
+> Integrated form validation using Formik + Yup.
 
 Formup integrates Formik with Yup, reducing the code overhead needed to create your forms to zero!
 
