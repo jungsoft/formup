@@ -22,6 +22,14 @@ const DefaultInputComponent = ({
     }
 
     <input {...props} />
+
+    {
+      error && formupData?.errorMessage && (
+        <p>
+          {formupData?.errorMessage}
+        </p>
+      )
+    }
   </>
 );
 
