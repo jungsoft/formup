@@ -40,6 +40,7 @@ const App = () => {
   const {
     FormInputGroupItem,
     FormInputGroup,
+    FormArrayField,
     formikForm,
     submitForm,
     FormInput,
@@ -289,6 +290,28 @@ const App = () => {
                 label="Pie"
               />
             </FormInputGroup>
+
+
+            <Typography variant="h5" align="left" className={classes.marginTop5}>
+              <span role="img" aria-label="Check">✅</span>
+              {' Simple array fields'}
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              Formup also supports simple array fields - such as
+              arrays of primitive types and strings!
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              You can use formup to easily render any array type,
+              by using <strong>FormArrayField</strong>.
+            </Typography>
+
+            <FormArrayField name="colors">
+              {(items) => items.map((item) => (
+                <FormInput name={item.path} />
+              ))}
+            </FormArrayField>
 
             <Typography variant="h5" align="left" className={classes.marginTop5}>
               <span role="img" aria-label="Check">📝</span>
