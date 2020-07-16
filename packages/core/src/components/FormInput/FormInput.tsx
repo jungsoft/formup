@@ -20,6 +20,7 @@ import getFieldLabel from '../../utils/getFieldLabel';
  *
  * You need to pass in "name" (name of the field on the form)
  * in order to correctly render and use this component.
+ *
  * @param param0 Options.
  */
 const FormInput = ({
