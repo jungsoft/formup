@@ -1,20 +1,13 @@
 import * as React from 'react';
 import update from 'immutability-helper';
 
+import { FormGroupContextValue, FormGroupContainerProps } from '../../interfaces';
 import checkFormInputGroupError from '../../utils/checkFormInputGroupError';
 import checkFormInputValue from '../../utils/checkFormInputValue';
 import extractEventValue from '../../utils/extractEventValue';
 import { useFormContext } from '../FormContext/FormContext';
-import { FormGroupContextValue } from '../../interfaces';
 import { FormGroupProvider } from './FormGroupContext';
 import useDidMount from '../../hooks/useDidMount';
-
-export interface FormGroupContainerProps extends React.Props<any> {
-  children?: React.ReactChild;
-  initialValue: any;
-  multi?: boolean;
-  name: string;
-}
 
 /**
  * Container for FormGroup context API.

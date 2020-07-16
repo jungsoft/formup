@@ -1,19 +1,17 @@
 import React from 'react';
 
-export interface DefaultInputComponentProps extends React.Props<any> {
-  label?: string,
-  error?: boolean,
-}
+import { FormInputComponentProps } from '../../interfaces';
 
 /**
  * Default Formup input component.
  * @param param0 Options.
 */
 const DefaultInputComponent = ({
-  label,
+  formupData,
   error,
+  label,
   ...props
-}: DefaultInputComponentProps) => (
+}: FormInputComponentProps) => (
   <>
     {
       label && (

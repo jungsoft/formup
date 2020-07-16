@@ -7,14 +7,13 @@ import {
   FieldHelperProps,
 } from 'formik';
 
-import { FormInputGroupItemProps } from '../components/FormInputGroupItem/FormInputGroupItem';
-import { FormInputGroupProps } from '../components/FormInputGroup/FormInputGroup';
-import { FormProps } from '../components/Form/Form';
-
 /**
  * Yup schema as used by Formup.
  */
 export interface FormupYupSchema extends yup.Schema<any> {
+  /**
+   * Schema fields.
+   */
   fields: object;
 }
 
@@ -52,6 +51,195 @@ export interface YupValidateOptions extends yup.ValidateOptions {
 export interface ValidateFormResult extends yup.ValidateOptions {
   isValid: boolean;
   error?: FormupValidationError | undefined;
+}
+
+/**
+ * Interface to define component properties inherited by FormInputGroup's component.
+ */
+export interface FormInputGroupComponentProps extends React.Props<any> {
+  type: string;
+}
+
+/**
+ * Interface to define FormInputGroupItem properties.
+ */
+export interface FormInputGroupItemProps extends React.Props<any> {
+  /**
+   * The component to render.
+   */
+  component: React.ElementType<FormInputGroupComponentProps>;
+
+  /**
+   * Classnames to inject into the container.
+   */
+  containerClassName?: any;
+
+  /**
+   * Classnames to inject.
+   */
+  className?: any;
+
+  /**
+   * The option value.
+   */
+  value: any;
+}
+
+/**
+ * Interface to define DefaultInputGroupItemComponent properties.
+ */
+export interface DefaultInputGroupItemComponentProps extends FormInputGroupComponentProps {
+  /**
+   * The input label.
+   */
+  label?: string,
+}
+
+/**
+ * Interface to define FormContainer properties.
+ */
+export interface FormContainerProps extends React.Props<any> {
+  /**
+   * Children to be rendered.
+   */
+  children?: React.ReactChild,
+
+  /**
+   * The formik form component, returned by useFormup.
+   */
+  form: FormupFormikForm,
+}
+
+/**
+ * Interface to define FormGroupContainer properties.
+ */
+export interface FormGroupContainerProps extends React.Props<any> {
+  /**
+   * Children to be rendered.
+   */
+  children?: React.ReactChild;
+
+  /**
+   * The initial value, if any.
+   */
+  initialValue: any;
+
+  /**
+   * Defines if multiple values can be selected on this component.
+   */
+  multi?: boolean;
+
+  /**
+   * Schema field name.
+   */
+  name: string;
+}
+
+/**
+ * Interface to define CheckFormInputGroupError properties.
+ */
+export interface CheckFormInputGroupErrorProps {
+  /**
+   * The schema field name.
+   */
+  name: string;
+
+  /**
+   * Defines if the input contains errors.
+   */
+  error?: boolean;
+
+  /**
+   * Defines if multiple values can be selected on this component.
+   */
+  multi?: boolean;
+
+  /**
+   * Defines the value for this form group.
+   */
+  formGroupValue: any;
+
+  /**
+   * The formik form component, returned by useFormup.
+   */
+  form: FormupFormikForm;
+}
+
+/**
+ * Interface to define FormInputGroupContent properties.
+ */
+export interface FormInputGroupContentProps extends React.Props<any> {
+  /**
+   * Children to be rendered.
+   */
+  children?: React.ReactChild;
+
+  /**
+   * Classnames to inject.
+   */
+  className?: any,
+}
+
+/**
+ * Interface to define FormInputGroup properties.
+ */
+export interface FormInputGroupProps extends React.Props<any> {
+  /**
+   * Children to be rendered.
+   */
+  children?: React.ReactChild;
+
+  /**
+   * The initial value.
+   */
+  initialValue?: any;
+
+  /**
+   * Defines if multiple values can be selected on this component.
+   */
+  multi?: boolean;
+
+  /**
+   * Classnames to inject.
+   */
+  className?: any;
+
+  /**
+   * Schema field name.
+   */
+  name: string;
+}
+
+/**
+ * Interface to define Form properties.
+ */
+export interface FormProps {
+  /**
+   * Children to be rendered.
+   */
+  children?: React.ReactChild,
+
+  /**
+   * The formik form returned by useFormup.
+   */
+  formikForm: FormupFormikForm,
+
+  /**
+   * Classnames to inject.
+   */
+  className?: any,
+
+  /**
+   * The event for onSubmit, in case renderAsForm is true.
+   */
+  onSubmit?: (payload: any) => void,
+
+  /**
+   * Defines if the DOM element is going to be rendered as <form />.
+   *
+   * False by default.
+   */
+  renderAsForm?: boolean,
 }
 
 /**
@@ -93,16 +281,63 @@ export interface FormInputComponentProps extends React.Props<any> {
  * Interface to define FormInput component properties.
  */
 export interface FormInputProps extends React.Props<any> {
+  /**
+   * The component to render.
+   */
   component: React.ElementType<FormInputComponentProps>;
+
+  /**
+   * Schema field name.
+   */
   name: string;
+
+  /**
+   * Input id.
+   * Defaults to field name.
+   */
   id?: string;
+
+  /**
+   * Input type.
+   */
   type?: string;
+
+  /**
+   * Input value.
+   */
   value?: any;
+
+  /**
+   * Input default value.
+   */
   defaultValue?: any;
+
+  /**
+   * Children to render.
+   */
   children?: React.ReactChild;
+
+  /**
+   * The onBlur event.
+   * Executes before formik's onBlur.
+   */
   onBlur?: (arg0: React.FormEvent<HTMLInputElement>) => void;
+
+  /**
+   * The onChange event.
+   * Executes before formik's onChange.
+   */
   onChange?: (arg0: React.FormEvent<HTMLInputElement>) => void;
+
+  /**
+   * The onKeyPress event.
+   * Executes before formik's onKeyPress.
+   */
   onKeyPress?: (arg0: React.FormEvent<HTMLInputElement>) => void;
+
+  /**
+   * Classnames to inject.
+   */
   className?: any;
 
   /**

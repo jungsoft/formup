@@ -3,14 +3,7 @@ import invariant from 'invariant';
 
 import FormGroupContainer from '../../contexts/FormGroupContext/FormGroupContainer';
 import FormInputGroupContent from './FormInputGroupContent';
-
-export interface FormInputGroupProps extends React.Props<any> {
-  children?: React.ReactChild;
-  initialValue?: any;
-  multi?: boolean;
-  className?: any,
-  name: string;
-}
+import { FormInputGroupProps } from '../../interfaces';
 
 /**
  * Input group that supports multiple FormInputGroupItem children.

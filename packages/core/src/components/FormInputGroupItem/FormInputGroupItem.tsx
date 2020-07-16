@@ -4,23 +4,13 @@ import invariant from 'invariant';
 
 import DefaultInputGroupItemComponent from '../DefaultInputComponents/DefaultInputGroupItemComponent';
 import { useFormGroupContext } from '../../contexts/FormGroupContext/FormGroupContext';
+import { FormInputGroupItemProps } from '../../interfaces';
 import noop from '../../utils/noop';
 import {
   FORMUP_INPUT_GROUP_ITEM_CLASS_NAME,
   FORMUP_INPUT_DANGER_CLASS_NAME,
   FORMUP_INPUT_CLASS_NAME,
 } from '../../constants/identifiers';
-
-export interface FormInputGroupComponentProps extends React.Props<any> {
-  type: string;
-}
-
-export interface FormInputGroupItemProps extends React.Props<any> {
-  component: React.ElementType<FormInputGroupComponentProps>;
-  containerClassName?: any;
-  className?: any;
-  value: any;
-}
 
 /**
  * Input group item that holds a distinct value and should be inside FormInputGroup component.
@@ -34,6 +24,7 @@ export interface FormInputGroupItemProps extends React.Props<any> {
  * Can be overwritten with the "component" prop,
  * allowing you to render any type of component
  * while still maintaining all validation functionality.
+ *
  * @param param0 Options.
  */
 const FormInputGroupItem = ({

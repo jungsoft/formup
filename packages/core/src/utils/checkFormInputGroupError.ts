@@ -1,17 +1,10 @@
-import { FormupFormikForm } from '../interfaces';
+import { CheckFormInputGroupErrorProps } from '../interfaces';
 import isFieldRequired from './isFieldRequired';
-
-export interface CheckFormInputGroupErrorParams {
-  name: string;
-  error?: boolean;
-  multi?: boolean;
-  formGroupValue: any;
-  form: FormupFormikForm;
-}
 
 /**
  * Checks if FormInputGroup is invalid.
- * @param param0 Params
+ *
+ * @param param0 Options.
  */
 const checkFormInputGroupError = ({
   formGroupValue,
@@ -19,7 +12,7 @@ const checkFormInputGroupError = ({
   multi,
   name,
   form,
-}: CheckFormInputGroupErrorParams) => {
+}: CheckFormInputGroupErrorProps) => {
   const required = isFieldRequired(name, form?.schema);
 
   const formInputMeta = form?.getFieldMeta(name);
