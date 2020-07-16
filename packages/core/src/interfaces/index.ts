@@ -181,6 +181,68 @@ export interface FormInputGroupContentProps extends React.Props<any> {
 }
 
 /**
+ * Defines the properties of each array item rendered by FormArrayField.
+ */
+export interface FormArrayFieldItem {
+  /**
+   * The interpolated path to be used as the "name" prop of your <FormInput />.
+   *
+   * This is calculated automatically to interpolate the whole path up to this
+   * point in the schema. For example, if your schema array field is named
+   * "nicknames", and the item to be rendered is at index 3:
+   *
+   * This will result to "nicknames[3]".
+   */
+  path: string;
+
+  /**
+   * Builds a path to access object properties, so that you don't need to interpolate
+   * strings manually. It uses the "path" property of this object and the "subpath"
+   * provided as an argument.
+   *
+   * For example, if you want to reach the property "name" from your schema array field
+   * that is named "people", on the object of index 3:
+   *
+   * Running getPath("name") would result into "people[3].name".
+   */
+  getPath: (subpath: string) => string;
+
+  /**
+   * The present value of this item in the current index of the array of your schema field.
+   */
+  value: any;
+}
+
+/**
+ * Properties that will be injected into the component returned by FormArrayField.
+ */
+export interface FormArrayFieldInjectedProps {
+  items: FormArrayFieldItem[];
+}
+
+/**
+ * Interface to define FormArrayField component properties.
+ */
+export interface FormArrayFieldProps extends React.Props<any> {
+  /**
+   * Field name in schema.
+   * Note that this field must be an array type.
+   */
+  name: string;
+
+  /**
+   * Children to be rendered. Can either be a function or component.
+   *
+   * Both will receive FormInputComponentProps as properties, in order to
+   * help rendering & building your array-type field.
+   */
+  children?: (
+    (items: FormArrayFieldItem[]) => React.ReactChild
+    | React.ElementType<FormInputComponentProps>
+  );
+}
+
+/**
  * Interface to define FormInputGroup properties.
  */
 export interface FormInputGroupProps extends React.Props<any> {
@@ -387,6 +449,7 @@ export interface UseFormupResult {
   validateForm: (validationOptions?: ValidateFormOptions) => ValidateFormResult;
   FormInputGroupItem: React.FunctionComponent<FormInputGroupItemProps>;
   FormInputGroup: React.FunctionComponent<FormInputGroupProps>;
+  FormArrayField: React.FunctionComponent<FormArrayFieldProps>;
   submitForm: (submitFormOptions?: SubmitFormOptions) => void;
   FormInput: React.FunctionComponent<FormInputProps>;
   Form: React.FunctionComponent<FormProps>;
