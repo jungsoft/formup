@@ -30,7 +30,6 @@
     "lodash.get": "^4.4.2",
     "lodash.isfunction": "^3.0.9",
     "merge": "^1.2.1",
-    "scheduler": "^0.18.0",
     "yup": "0.28.1"
   },
   "peerDependencies": {
@@ -71,6 +70,7 @@
     "rollup-plugin-postcss": "^1.6.2",
     "rollup-plugin-typescript2": "^0.17.0",
     "rollup-plugin-url": "^1.4.0",
+    "scheduler": "0.18.0",
     "typescript": "^3.7.5"
   },
   "files": [
