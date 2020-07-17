@@ -1,16 +1,6 @@
 import yupSchemaFieldProperties from '../constants/yupSchemaFieldProperties';
+import fieldDefaultValues from '../constants/fieldDefaultValues';
 import tryGetSchemaValue from './tryGetSchemaValue';
-
-/**
- * Default values for mapping object types.
- */
-const MAP_DEFAULTS = {
-  string: '',
-  boolean: false,
-  number: 0,
-  date: new Date(),
-  object: {},
-};
 
 /**
  * Recursively create an object mapping the fields of one schema.
@@ -39,11 +29,11 @@ const mapFieldsToObject = (fields: object) => {
     });
 
     const descriptionTypeMapper = (type: string): object => ({
-      object: addKeyValue(mapFieldsToObject(fields[key].fields), MAP_DEFAULTS.object),
-      boolean: addKeyValue(defaultValue, MAP_DEFAULTS.boolean),
-      string: addKeyValue(defaultValue, MAP_DEFAULTS.string),
-      number: addKeyValue(defaultValue, MAP_DEFAULTS.number),
-      date: addKeyValue(defaultValue, MAP_DEFAULTS.date),
+      object: addKeyValue(mapFieldsToObject(fields[key].fields), fieldDefaultValues.object),
+      boolean: addKeyValue(defaultValue, fieldDefaultValues.boolean),
+      string: addKeyValue(defaultValue, fieldDefaultValues.string),
+      number: addKeyValue(defaultValue, fieldDefaultValues.number),
+      date: addKeyValue(defaultValue, fieldDefaultValues.date),
     })[type] || acc;
 
     return descriptionTypeMapper(description.type);
