@@ -18,6 +18,11 @@ const yupSchemaFieldProperties = {
   exclusive: '_exclusive',
 
   /**
+   * Defines the default function.
+   */
+  default: 'default',
+
+  /**
    * The field subtype.
    */
   subType: '_subType',
