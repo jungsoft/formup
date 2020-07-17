@@ -410,9 +410,13 @@ const App = () => {
                   ))}
 
                   <button
-                    onClick={() => arrayHelpers.push()}
                     className={classes.marginTop2}
                     type="button"
+                    onClick={() => arrayHelpers.push({
+                      name: 'John Foo clone',
+                      age: 10,
+                      email: 'foo@bar.com',
+                    })}
                   >
                     +
                   </button>
