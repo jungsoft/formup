@@ -1,3 +1,4 @@
+import yupSchemaFieldProperties from '../constants/yupSchemaFieldProperties';
 import tryGetSchemaValue from './tryGetSchemaValue';
 
 /**
@@ -21,8 +22,16 @@ const mapFieldsToObject = (fields: object) => {
   }
 
   return fields && Object.keys(fields).reduce((acc, key) => {
-    const description = tryGetSchemaValue(fields[key], 'describe', {});
-    const defaultValue = tryGetSchemaValue(fields[key], 'default');
+    const description = tryGetSchemaValue(
+      fields[key],
+      yupSchemaFieldProperties.describe,
+      {},
+    );
+
+    const defaultValue = tryGetSchemaValue(
+      fields[key],
+      yupSchemaFieldProperties.default,
+    );
 
     const addKeyValue = (value: any, fallbackValue: any) => ({
       ...acc,

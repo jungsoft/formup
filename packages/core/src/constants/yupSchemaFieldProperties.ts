@@ -23,6 +23,11 @@ const yupSchemaFieldProperties = {
   default: 'default',
 
   /**
+   * Defines the describe function.
+   */
+  describe: 'describe',
+
+  /**
    * The field subtype.
    */
   subType: '_subType',
