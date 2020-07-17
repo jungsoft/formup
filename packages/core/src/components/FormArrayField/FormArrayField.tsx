@@ -4,6 +4,7 @@ import invariant from 'invariant';
 
 import { FormArrayFieldProps, FormArrayFieldItem, FormArrayFieldHelpers } from '../../interfaces';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
+import { getArrayItemPath, getArrayObjectPath } from './pathHelpers';
 import formArrayFieldHelpers from './formArrayFieldHelpers';
 import getSchemaField from '../../utils/getSchemaField';
 import getFieldValue from '../../utils/getFieldValue';
@@ -49,10 +50,10 @@ const FormArrayField = ({
     const formItems = getFieldValue(name, form) || [];
 
     return formItems.map((item: any, index: number) => {
-      const path = `${name}[${index}]`;
+      const path = getArrayItemPath(name, index);
 
       return {
-        getPath: (subpath: string) => `${path}.${subpath}`,
+        getPath: (subpath: string) => getArrayObjectPath(path, subpath),
         value: item,
         path,
       };
