@@ -49,6 +49,12 @@ const App = () => {
     // Formik options
     onError: handleValidationError,
     onSubmit: handleSubmitForm,
+    initialValues: {
+      colors: [
+        'Blue',
+        'Red',
+      ],
+    },
   });
 
   const classes = useStyles();
@@ -309,7 +315,10 @@ const App = () => {
 
             <FormArrayField name="colors">
               {(items) => items.map((item) => (
-                <FormInput name={item.path} />
+                <FormInput
+                  name={item.path}
+                  key={item.path}
+                />
               ))}
             </FormArrayField>
 
