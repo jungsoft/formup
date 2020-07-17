@@ -332,7 +332,7 @@ const App = () => {
                         />
                       </Grid>
 
-                      <Grid item>
+                      <Grid item className={classes.arrayButton}>
                         <button
                           onClick={() => arrayHelpers.remove(index)}
                           type="button"
@@ -344,8 +344,8 @@ const App = () => {
                   ))}
 
                   <button
-                    onClick={() => arrayHelpers.push()}
                     className={classes.marginTop2}
+                    onClick={() => arrayHelpers.push()}
                     type="button"
                   >
                     +
@@ -398,7 +398,7 @@ const App = () => {
                         />
                       </Grid>
 
-                      <Grid item>
+                      <Grid item className={classes.arrayButton}>
                         <button
                           onClick={() => arrayHelpers.remove(index)}
                           type="button"
