@@ -11,6 +11,8 @@ const familyMemberSchema = createSchema({
     .label('Name'),
 
   age: yup.number()
+    .min(0)
+    .max(120)
     .label('Age'),
 
   email: yup.string()
