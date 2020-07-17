@@ -37,7 +37,7 @@ const FormArrayField = ({
 
   const schemaField = getSchemaField(name, form?.schema);
 
-  invariant(!!schemaField, `The field ${name} was not found in the schema.`);
+  invariant(!!schemaField, `The field "${name}" was not found in the schema.`);
 
   const fieldType = getFieldType(name, form?.schema);
 

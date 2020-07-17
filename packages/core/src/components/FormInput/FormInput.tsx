@@ -45,7 +45,7 @@ const FormInput = ({
 
   const schemaField = getSchemaField(name, form?.schema);
 
-  invariant(!!schemaField, `The field ${name} was not found in the schema.`);
+  invariant(!!schemaField, `The field "${name}" was not found in the schema.`);
 
   const { value, defaultValue } = props;
 

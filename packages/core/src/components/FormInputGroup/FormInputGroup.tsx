@@ -33,7 +33,7 @@ const FormInputGroup = ({
 
   const schemaField = getSchemaField(name, form?.schema);
 
-  invariant(!!schemaField, `The field ${name} was not found in the schema.`);
+  invariant(!!schemaField, `The field "${name}" was not found in the schema.`);
 
   return (
     <FormGroupContainer initialValue={initialValue} name={name} multi={multi}>
