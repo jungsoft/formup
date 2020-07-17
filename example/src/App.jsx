@@ -54,6 +54,13 @@ const App = () => {
         'Blue',
         'Red',
       ],
+      familyMembers: [
+        {
+          name: 'John Foo',
+          age: 30,
+          email: 'foo@example.com',
+        },
+      ],
     },
   });
 
@@ -297,7 +304,6 @@ const App = () => {
               />
             </FormInputGroup>
 
-
             <Typography variant="h5" align="left" className={classes.marginTop5}>
               <span role="img" aria-label="Check">✅</span>
               {' Simple array fields'}
@@ -339,6 +345,73 @@ const App = () => {
 
                   <button
                     onClick={() => arrayHelpers.push()}
+                    className={classes.marginTop2}
+                    type="button"
+                  >
+                    +
+                  </button>
+                </>
+              )}
+            </FormArrayField>
+
+            <Typography variant="h5" align="left" className={classes.marginTop5}>
+              <span role="img" aria-label="Check">✅</span>
+              {' Object array fields'}
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              In addition to simple array fields, you can also use object arrays!
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              Instead of using <strong>item.path</strong>, you can
+              use <strong>item.getPath("...")</strong> to
+              build the path to your property.
+            </Typography>
+
+            <FormArrayField name="familyMembers">
+              {(items, arrayHelpers) => (
+                <>
+                  {items.map((item, index) => (
+                    <Grid container spacing={3} key={item.path}>
+                      <Grid item>
+                        <FormInput
+                          component={TextFieldWithErrorMessage}
+                          name={item.getPath('name')}
+                          injectFormupData
+                        />
+                      </Grid>
+
+                      <Grid item>
+                        <FormInput
+                          component={TextFieldWithErrorMessage}
+                          name={item.getPath('age')}
+                          injectFormupData
+                        />
+                      </Grid>
+
+                      <Grid item>
+                        <FormInput
+                          component={TextFieldWithErrorMessage}
+                          name={item.getPath('email')}
+                          injectFormupData
+                        />
+                      </Grid>
+
+                      <Grid item>
+                        <button
+                          onClick={() => arrayHelpers.remove(index)}
+                          type="button"
+                        >
+                          -
+                        </button>
+                      </Grid>
+                    </Grid>
+                  ))}
+
+                  <button
+                    onClick={() => arrayHelpers.push()}
+                    className={classes.marginTop2}
                     type="button"
                   >
                     +
