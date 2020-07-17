@@ -214,10 +214,38 @@ export interface FormArrayFieldItem {
 }
 
 /**
+ * Helpers to manage adding, removing and updating the array items.
+ */
+export interface FormArrayFieldHelpers {
+  /**
+   * Pushes a new item to the array.
+   *
+   * Defaults to the default value of the array type on the schema,
+   * but you can override this value by passing the "value" argument.
+   */
+  push: (value?: any) => void;
+
+  /**
+   * Removes one item from the array at one index, if it exists.
+   *
+   * @param index The index of the item.
+   */
+  remove: (index: number) => void;
+}
+
+/**
  * Properties that will be injected into the component returned by FormArrayField.
  */
 export interface FormArrayFieldInjectedProps {
+  /**
+   * The array of current values on the form.
+   */
   items: FormArrayFieldItem[];
+
+  /**
+   * Helpers to manage adding, removing and updating the array items.
+   */
+  arrayHelpers: FormArrayFieldHelpers;
 }
 
 /**
@@ -237,7 +265,17 @@ export interface FormArrayFieldProps extends React.Props<any> {
    * help rendering & building your array-type field.
    */
   children?: (
-    (items: FormArrayFieldItem[]) => React.ReactChild
+    (
+      /**
+       * The array of current values on the form.
+       */
+      items: FormArrayFieldItem[],
+
+      /**
+       * Helpers to manage adding, removing and updating the array items.
+       */
+      arrayHelpers: FormArrayFieldHelpers,
+    ) => React.ReactChild
     | React.ElementType<FormInputComponentProps>
   );
 }

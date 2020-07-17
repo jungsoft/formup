@@ -1,11 +1,12 @@
 import * as React from 'react';
 import isFunction from 'lodash.isfunction';
 import invariant from 'invariant';
-import get from 'lodash.get';
 
-import { FormArrayFieldProps, FormArrayFieldItem } from '../../interfaces';
+import { FormArrayFieldProps, FormArrayFieldItem, FormArrayFieldHelpers } from '../../interfaces';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
+import formArrayFieldHelpers from './formArrayFieldHelpers';
 import getSchemaField from '../../utils/getSchemaField';
+import getFieldValue from '../../utils/getFieldValue';
 import getFieldType from '../../utils/getFieldType';
 
 /**
@@ -45,7 +46,7 @@ const FormArrayField = ({
   invariant(fieldType === 'array', `The field type of ${name} must be an array in your schema in order to use <FormArrayField />.`);
 
   const items = React.useMemo<FormArrayFieldItem[]>(() => {
-    const formItems = get(form.values || {}, name) || [];
+    const formItems = getFieldValue(name, form) || [];
 
     return formItems.map((item: any, index: number) => {
       const path = `${name}[${index}]`;
@@ -57,14 +58,22 @@ const FormArrayField = ({
       };
     });
   }, [
-    form.values,
+    form,
+    name,
+  ]);
+
+  const arrayHelpers = React.useMemo<FormArrayFieldHelpers>(() => ({
+    push: (value?: any) => formArrayFieldHelpers.push(form, name, value),
+    remove: (index: number) => formArrayFieldHelpers.remove(form, name, index),
+  }), [
+    form,
     name,
   ]);
 
   if (isFunction(children)) {
     return (
       <>
-        {children(items)}
+        {children(items, arrayHelpers)}
       </>
     );
   }
