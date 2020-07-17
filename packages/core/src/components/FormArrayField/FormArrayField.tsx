@@ -1,6 +1,7 @@
 import * as React from 'react';
-import invariant from 'invariant';
 import isFunction from 'lodash.isfunction';
+import invariant from 'invariant';
+import get from 'lodash.get';
 
 import { FormArrayFieldProps, FormArrayFieldItem } from '../../interfaces';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
@@ -43,7 +44,22 @@ const FormArrayField = ({
 
   invariant(fieldType === 'array', `The field type of ${name} must be an array in your schema in order to use <FormArrayField />.`);
 
-  const items = React.useMemo<FormArrayFieldItem[]>(() => [], []);
+  const items = React.useMemo<FormArrayFieldItem[]>(() => {
+    const formItems = get(form.values || {}, name) || [];
+
+    return formItems.map((item: any, index: number) => {
+      const path = `${name}[${index}]`;
+
+      return {
+        getPath: (subpath: string) => `${path}.${subpath}`,
+        value: item,
+        path,
+      };
+    });
+  }, [
+    form.values,
+    name,
+  ]);
 
   if (isFunction(children)) {
     return (
