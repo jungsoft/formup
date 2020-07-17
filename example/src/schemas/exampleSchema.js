@@ -61,7 +61,11 @@ const exampleSchema = createSchema({
 
   // Also, array fields! <3
   colors: yup.array()
-    .of(yup.string()),
+    .of(
+      yup
+        .string()
+        .required(),
+    ),
 
   // Object arrays too!
   familyMembers: yup.array()

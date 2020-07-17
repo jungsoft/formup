@@ -316,6 +316,8 @@ const App = () => {
             <FormArrayField name="colors">
               {(items) => items.map((item) => (
                 <FormInput
+                  component={TextFieldWithErrorMessage}
+                  injectFormupData
                   name={item.path}
                   key={item.path}
                 />
