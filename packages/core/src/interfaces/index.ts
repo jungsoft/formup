@@ -511,32 +511,80 @@ export type FormGroupContextValue = [
  * Formik Form object customized by Formup.
  */
 export interface FormupFormikForm extends Omit<FormikConfig<FormikValues>, 'onSubmit'> {
+  /**
+   * Defines the handleSubmit event for the form.
+   */
   handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
+
+  /**
+   * Defines the onSubmit event for the form.
+   */
   onSubmit?: (values: object) => void;
+
+  /**
+   * Defines if the form is valid.
+   */
   isValid: boolean;
+
+  /**
+   * Form values.
+   */
   values: object;
 
+  /**
+   * Form touched fields.
+   */
+  touched: object;
+
+  /**
+   * Form errors.
+   */
+  errors: object;
+
+  /**
+   * Sets one field as touched.
+   */
   setFieldTouched: (
     field: string,
     touched?: boolean | undefined,
     shouldValidate?: boolean | undefined,
   ) => any;
 
+  /**
+   * Sets the value to one field directly.
+   */
   setFieldValue: (
     field: string,
     value: any,
     shouldValidate?: boolean | undefined,
   ) => any;
 
+  /**
+   * Sets the error to one field directly.
+   */
   setFieldError: (
     field: string,
     value: string | undefined,
   ) => void;
 
+  /**
+   * Returns the properties of one field.
+   */
   getFieldProps: (nameOrOptions: any) => FieldInputProps<any>;
+
+  /**
+   * Returns the helpers of one field.
+   */
   getFieldHelpers: (name: string) => FieldHelperProps<any>;
+
+  /**
+   * Returns the metadata of one field.
+   */
   getFieldMeta: (name: string) => FieldMetaProps<any>;
 
+  /**
+   * The validation schema of the form.
+   */
   schema: FormupYupSchema;
 }
 
