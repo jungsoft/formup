@@ -26,6 +26,11 @@ const fieldDefaultValues = {
    * Default value for object types.
    */
   object: {},
+
+  /**
+   * Default value for array types.
+   */
+  array: [],
 };
 
 export default fieldDefaultValues;
