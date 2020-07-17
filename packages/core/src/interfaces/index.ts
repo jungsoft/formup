@@ -521,3 +521,16 @@ export interface ExtendedFormupFormInputData {
 export interface SubmitFormOptions {
   validationOptions?: ValidateFormOptions;
 }
+
+/**
+ * Options for getSchemaField.
+ */
+export interface getSchemaFieldOptions {
+  /**
+   * If true, will return the subtype instead of the type.
+   *
+   * For example, on an array type field, instead of returning
+   * ArraySchema, it will return the type of the array items.
+   */
+  returnSubtype?: boolean;
+}

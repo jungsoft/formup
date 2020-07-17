@@ -16,6 +16,11 @@ const yupSchemaFieldProperties = {
    * Defines if the field is exclusive.
    */
   exclusive: '_exclusive',
+
+  /**
+   * The field subtype.
+   */
+  subType: '_subType',
 };
 
 export default yupSchemaFieldProperties;
