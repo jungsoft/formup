@@ -30,12 +30,12 @@
     "lodash.get": "^4.4.2",
     "lodash.isfunction": "^3.0.9",
     "merge": "^1.2.1",
-    "yup": "0.28.1"
+    "yup": "0.29.1"
   },
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "yup": "0.28.1"
+    "yup": "0.29.1"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
@@ -46,7 +46,7 @@
     "@types/lodash.isfunction": "^3.0.6",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.0.5",
-    "@types/yup": "^0.26.29",
+    "@types/yup": "^0.29.3",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "babel-core": "^6.26.3",
