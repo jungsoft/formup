@@ -314,14 +314,37 @@ const App = () => {
             </Typography>
 
             <FormArrayField name="colors">
-              {(items) => items.map((item) => (
-                <FormInput
-                  component={TextFieldWithErrorMessage}
-                  injectFormupData
-                  name={item.path}
-                  key={item.path}
-                />
-              ))}
+              {(items, arrayHelpers) => (
+                <>
+                  {items.map((item, index) => (
+                    <Grid container spacing={3} key={item.path}>
+                      <Grid item>
+                        <FormInput
+                          component={TextFieldWithErrorMessage}
+                          injectFormupData
+                          name={item.path}
+                        />
+                      </Grid>
+
+                      <Grid item>
+                        <button
+                          onClick={() => arrayHelpers.remove(index)}
+                          type="button"
+                        >
+                          -
+                        </button>
+                      </Grid>
+                    </Grid>
+                  ))}
+
+                  <button
+                    onClick={() => arrayHelpers.push()}
+                    type="button"
+                  >
+                    +
+                  </button>
+                </>
+              )}
             </FormArrayField>
 
             <Typography variant="h5" align="left" className={classes.marginTop5}>
