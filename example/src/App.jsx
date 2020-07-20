@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import * as yup from 'yup';
 import classNames from 'classnames';
 
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -14,73 +13,12 @@ import Radio from '@material-ui/core/Radio';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 
-import {
-  useFormup,
-  createSchema,
-} from '@formup/core';
+import { useFormup } from '@formup/core';
 
 import TextFieldWithErrorMessage from './components/TextFieldWithErrorMessage';
+import exampleSchema from './schemas/exampleSchema';
 import CustomInput from './components/CustomInput';
 import useStyles from './styles';
-
-// You can customize your locale to support multiple languages easily using createSchema!
-const locale = {
-  mixed: {
-    default: 'Invalid field!',
-  },
-};
-
-// You don't need to use createSchema if you're not customizing your locale.
-// You can use yup instead, no problems!
-const schema = createSchema({
-  // Your schema supports simple field
-  name: yup.string()
-    .required()
-    .label('Name'),
-
-  // Or a field with custom validations
-  email: yup.string()
-    .required()
-    .email()
-    .label('Email'),
-
-  // Optional fields too
-  phone: yup.string()
-    .required()
-    .label('Phone'),
-
-  customInput: yup.string()
-    .required(),
-
-  errorMessageExample: yup.string()
-    .required('This is a custom validation message =)'),
-
-  // You can control single choice fields using Form Groups
-  gender: yup.string()
-    .required()
-    .label('Gender'),
-
-  acceptedTerms: yup.boolean()
-    .default(false)
-    .label('Accepted terms'),
-
-  // You can control single choice fields using Form Groups
-  favoriteFood: yup.string()
-    .label('Favorite Food'),
-
-  // And even multi-level nested fields!
-  authentication: yup.object().shape({
-    password: yup.string()
-      .required()
-      .min(5)
-      .label('Password'),
-    confirmPassword: yup.string()
-      .required()
-      .min(5)
-      .oneOf([yup.ref('password'), null])
-      .label('Confirm your password'),
-  }),
-}, locale);
 
 const App = () => {
   const [submissionResult, setSubmissionResult] = useState('');
@@ -102,14 +40,28 @@ const App = () => {
   const {
     FormInputGroupItem,
     FormInputGroup,
+    FormArrayField,
     formikForm,
     submitForm,
     FormInput,
     Form,
-  } = useFormup(schema, {
+  } = useFormup(exampleSchema, {
     // Formik options
     onError: handleValidationError,
     onSubmit: handleSubmitForm,
+    initialValues: {
+      colors: [
+        'Blue',
+        'Red',
+      ],
+      familyMembers: [
+        {
+          name: 'John Foo',
+          age: 30,
+          email: 'foo@example.com',
+        },
+      ],
+    },
   });
 
   const classes = useStyles();
@@ -351,6 +303,126 @@ const App = () => {
                 label="Pie"
               />
             </FormInputGroup>
+
+            <Typography variant="h5" align="left" className={classes.marginTop5}>
+              <span role="img" aria-label="Check">✅</span>
+              {' Simple array fields'}
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              Formup also supports simple array fields - such as
+              arrays of primitive types and strings!
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              You can use formup to easily render any array type,
+              by using <strong>FormArrayField</strong>.
+            </Typography>
+
+            <FormArrayField name="colors">
+              {(items, arrayHelpers) => (
+                <>
+                  {items.map((item, index) => (
+                    <Grid container spacing={3} key={item.path}>
+                      <Grid item>
+                        <FormInput
+                          component={TextFieldWithErrorMessage}
+                          injectFormupData
+                          name={item.path}
+                        />
+                      </Grid>
+
+                      <Grid item className={classes.arrayButton}>
+                        <button
+                          onClick={() => arrayHelpers.remove(index)}
+                          type="button"
+                        >
+                          -
+                        </button>
+                      </Grid>
+                    </Grid>
+                  ))}
+
+                  <button
+                    className={classes.marginTop2}
+                    onClick={() => arrayHelpers.push()}
+                    type="button"
+                  >
+                    +
+                  </button>
+                </>
+              )}
+            </FormArrayField>
+
+            <Typography variant="h5" align="left" className={classes.marginTop5}>
+              <span role="img" aria-label="Check">✅</span>
+              {' Object array fields'}
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              In addition to simple array fields, you can also use object arrays!
+            </Typography>
+
+            <Typography variant="body1" align="left" className={classes.subtitle}>
+              Instead of using <strong>item.path</strong>, you can
+              use <strong>item.getPath("...")</strong> to
+              build the path to your property.
+            </Typography>
+
+            <FormArrayField name="familyMembers">
+              {(items, arrayHelpers) => (
+                <>
+                  {items.map((item, index) => (
+                    <Grid container spacing={3} key={item.path}>
+                      <Grid item>
+                        <FormInput
+                          component={TextFieldWithErrorMessage}
+                          name={item.getPath('name')}
+                          injectFormupData
+                        />
+                      </Grid>
+
+                      <Grid item>
+                        <FormInput
+                          component={TextFieldWithErrorMessage}
+                          name={item.getPath('age')}
+                          injectFormupData
+                        />
+                      </Grid>
+
+                      <Grid item>
+                        <FormInput
+                          component={TextFieldWithErrorMessage}
+                          name={item.getPath('email')}
+                          injectFormupData
+                        />
+                      </Grid>
+
+                      <Grid item className={classes.arrayButton}>
+                        <button
+                          onClick={() => arrayHelpers.remove(index)}
+                          type="button"
+                        >
+                          -
+                        </button>
+                      </Grid>
+                    </Grid>
+                  ))}
+
+                  <button
+                    className={classes.marginTop2}
+                    type="button"
+                    onClick={() => arrayHelpers.push({
+                      name: 'John Foo clone',
+                      age: 10,
+                      email: 'foo@bar.com',
+                    })}
+                  >
+                    +
+                  </button>
+                </>
+              )}
+            </FormArrayField>
 
             <Typography variant="h5" align="left" className={classes.marginTop5}>
               <span role="img" aria-label="Check">📝</span>

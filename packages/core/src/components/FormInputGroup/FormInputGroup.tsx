@@ -2,15 +2,10 @@ import * as React from 'react';
 import invariant from 'invariant';
 
 import FormGroupContainer from '../../contexts/FormGroupContext/FormGroupContainer';
+import { useFormContext } from '../../contexts/FormContext/FormContext';
 import FormInputGroupContent from './FormInputGroupContent';
-
-export interface FormInputGroupProps extends React.Props<any> {
-  children?: React.ReactChild;
-  initialValue?: any;
-  multi?: boolean;
-  className?: any,
-  name: string;
-}
+import getSchemaField from '../../utils/getSchemaField';
+import { FormInputGroupProps } from '../../interfaces';
 
 /**
  * Input group that supports multiple FormInputGroupItem children.
@@ -31,7 +26,14 @@ const FormInputGroup = ({
   children,
   name,
 }: FormInputGroupProps) => {
+  const form = useFormContext();
+
   invariant(!!name, 'You need to provide the "name" prop.');
+  invariant(!!form, 'You need to provide a <Form /> component enclosing FormInputGroup.');
+
+  const schemaField = getSchemaField(name, form?.schema);
+
+  invariant(!!schemaField, `The field "${name}" was not found in the schema.`);
 
   return (
     <FormGroupContainer initialValue={initialValue} name={name} multi={multi}>

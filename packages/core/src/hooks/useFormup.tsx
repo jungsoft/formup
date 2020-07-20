@@ -13,6 +13,7 @@ import {
 import FormInputGroupItem from '../components/FormInputGroupItem/FormInputGroupItem';
 import mapInitialValuesFromSchema from '../utils/mapInitialValuesFromSchema';
 import FormInputGroup from '../components/FormInputGroup/FormInputGroup';
+import FormArrayField from '../components/FormArrayField/FormArrayField';
 import mapInitialTouched from '../utils/mapInitialTouched';
 import FormInput from '../components/FormInput/FormInput';
 import validateForm from '../yup/validateForm';
@@ -98,6 +99,7 @@ const useFormup = (
   return {
     validateForm: handleValidateForm,
     FormInputGroupItem,
+    FormArrayField,
     FormInputGroup,
     submitForm,
     formikForm,

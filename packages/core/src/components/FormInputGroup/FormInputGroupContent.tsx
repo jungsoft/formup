@@ -5,11 +5,7 @@ import invariant from 'invariant';
 import { FORMUP_INPUT_GROUP_CONTAINER_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../constants/identifiers';
 import { useFormGroupContext } from '../../contexts/FormGroupContext/FormGroupContext';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
-
-export interface FormInputGroupContentProps extends React.Props<any> {
-  children?: React.ReactChild;
-  className?: any,
-}
+import { FormInputGroupContentProps } from '../../interfaces';
 
 /**
  * Input group that supports multiple FormInputGroupItem children.

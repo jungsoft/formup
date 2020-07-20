@@ -28,14 +28,14 @@
     "immutability-helper": "^3.0.2",
     "invariant": "^2.2.4",
     "lodash.get": "^4.4.2",
+    "lodash.isfunction": "^3.0.9",
     "merge": "^1.2.1",
-    "scheduler": "^0.18.0",
-    "yup": "0.28.1"
+    "yup": "0.29.1"
   },
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "yup": "0.28.1"
+    "yup": "0.29.1"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
@@ -43,9 +43,10 @@
     "@types/invariant": "^2.2.33",
     "@types/jest": "^23.1.5",
     "@types/lodash.get": "^4.4.6",
+    "@types/lodash.isfunction": "^3.0.6",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.0.5",
-    "@types/yup": "^0.26.29",
+    "@types/yup": "^0.29.3",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "babel-core": "^6.26.3",
@@ -56,7 +57,7 @@
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.3",
-    "eslint-plugin-react-hooks": "^2.5.0",
+    "eslint-plugin-react-hooks": "^4.0.8",
     "gh-pages": "^1.2.0",
     "react": "16.8.1",
     "react-dom": "16.8.1",
@@ -69,6 +70,7 @@
     "rollup-plugin-postcss": "^1.6.2",
     "rollup-plugin-typescript2": "^0.17.0",
     "rollup-plugin-url": "^1.4.0",
+    "scheduler": "0.18.0",
     "typescript": "^3.7.5"
   },
   "files": [

@@ -3,19 +3,19 @@ import { FormupYupSchema, getSchemaFieldOptions } from '../interfaces';
 import getSchemaField from './getSchemaField';
 
 /**
- * If defined, extracts the field label from the schema.
+ * Extracts the field type from the schema.
  * @param name The field name
  * @param schema The schema
  * @param options The options
  */
-const getFieldLabel = (
+const getFieldType = (
   name: string,
   schema: FormupYupSchema,
   options?: getSchemaFieldOptions,
 ) => {
   const schemaField = getSchemaField(name, schema, options);
 
-  return schemaField?.[yupSchemaFieldProperties.label];
+  return schemaField?.[yupSchemaFieldProperties.type];
 };
 
-export default getFieldLabel;
+export default getFieldType;

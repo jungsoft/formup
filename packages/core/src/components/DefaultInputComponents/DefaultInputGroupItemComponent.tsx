@@ -1,10 +1,6 @@
 import React from 'react';
 
-import { FormInputGroupComponentProps } from '../FormInputGroupItem/FormInputGroupItem';
-
-export interface DefaultInputGroupItemComponentProps extends FormInputGroupComponentProps {
-  label?: string,
-}
+import { DefaultInputGroupItemComponentProps } from '../../interfaces';
 
 /**
  * Default Formup input component.

@@ -9,6 +9,7 @@ import { useFormContext } from '../../contexts/FormContext/FormContext';
 import checkFormInputError from '../../utils/checkFormInputError';
 import composeInputEvent from '../../utils/composeInputEvent';
 import extractEventValue from '../../utils/extractEventValue';
+import getSchemaField from '../../utils/getSchemaField';
 import getFieldLabel from '../../utils/getFieldLabel';
 
 /**
@@ -20,6 +21,7 @@ import getFieldLabel from '../../utils/getFieldLabel';
  *
  * You need to pass in "name" (name of the field on the form)
  * in order to correctly render and use this component.
+ *
  * @param param0 Options.
  */
 const FormInput = ({
@@ -40,6 +42,10 @@ const FormInput = ({
 
   invariant(!!name, 'You need to provide the "name" prop.');
   invariant(!!form, 'You need to provide a <Form /> component enclosing FormInput.');
+
+  const schemaField = getSchemaField(name, form?.schema);
+
+  invariant(!!schemaField, `The field "${name}" was not found in the schema.`);
 
   const { value, defaultValue } = props;
 

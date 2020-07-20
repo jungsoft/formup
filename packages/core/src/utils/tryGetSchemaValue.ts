@@ -9,15 +9,14 @@ const tryGetSchemaValue = (
   key: string,
   defaultValue?: any,
 ) => {
-  const yupProperty = object && object[`_${key}`];
+  const yupProperty = object?.[`_${key}`];
 
   if (yupProperty !== undefined) {
     return yupProperty;
   }
 
   return (
-    object
-    && object[key]
+    object?.[key]
     && object[key]()
   ) || defaultValue;
 };

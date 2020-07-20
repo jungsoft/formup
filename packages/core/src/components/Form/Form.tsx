@@ -4,15 +4,7 @@ import invariant from 'invariant';
 
 import { FORMUP_FORM_CLASS_NAME } from '../../constants/identifiers';
 import FormContainer from '../../contexts/FormContext/FormContainer';
-import { FormupFormikForm } from '../../interfaces';
-
-export interface FormProps {
-  onSubmit?: (payload: any) => void,
-  children?: React.ReactChild,
-  formikForm: FormupFormikForm,
-  className?: any,
-  renderAsForm?: boolean,
-}
+import { FormProps } from '../../interfaces';
 
 /**
  * Form component that will make use of Formik to validate all inputs declared as its children.

@@ -7,14 +7,13 @@ import {
   FieldHelperProps,
 } from 'formik';
 
-import { FormInputGroupItemProps } from '../components/FormInputGroupItem/FormInputGroupItem';
-import { FormInputGroupProps } from '../components/FormInputGroup/FormInputGroup';
-import { FormProps } from '../components/Form/Form';
-
 /**
  * Yup schema as used by Formup.
  */
 export interface FormupYupSchema extends yup.Schema<any> {
+  /**
+   * Schema fields.
+   */
   fields: object;
 }
 
@@ -52,6 +51,295 @@ export interface YupValidateOptions extends yup.ValidateOptions {
 export interface ValidateFormResult extends yup.ValidateOptions {
   isValid: boolean;
   error?: FormupValidationError | undefined;
+}
+
+/**
+ * Interface to define component properties inherited by FormInputGroup's component.
+ */
+export interface FormInputGroupComponentProps extends React.Props<any> {
+  type: string;
+}
+
+/**
+ * Interface to define FormInputGroupItem properties.
+ */
+export interface FormInputGroupItemProps extends React.Props<any> {
+  /**
+   * The component to render.
+   */
+  component: React.ElementType<FormInputGroupComponentProps>;
+
+  /**
+   * Classnames to inject into the container.
+   */
+  containerClassName?: any;
+
+  /**
+   * Classnames to inject.
+   */
+  className?: any;
+
+  /**
+   * The option value.
+   */
+  value: any;
+}
+
+/**
+ * Interface to define DefaultInputGroupItemComponent properties.
+ */
+export interface DefaultInputGroupItemComponentProps extends FormInputGroupComponentProps {
+  /**
+   * The input label.
+   */
+  label?: string,
+}
+
+/**
+ * Interface to define FormContainer properties.
+ */
+export interface FormContainerProps extends React.Props<any> {
+  /**
+   * Children to be rendered.
+   */
+  children?: React.ReactChild,
+
+  /**
+   * The formik form component, returned by useFormup.
+   */
+  form: FormupFormikForm,
+}
+
+/**
+ * Interface to define FormGroupContainer properties.
+ */
+export interface FormGroupContainerProps extends React.Props<any> {
+  /**
+   * Children to be rendered.
+   */
+  children?: React.ReactChild;
+
+  /**
+   * The initial value, if any.
+   */
+  initialValue: any;
+
+  /**
+   * Defines if multiple values can be selected on this component.
+   */
+  multi?: boolean;
+
+  /**
+   * Schema field name.
+   */
+  name: string;
+}
+
+/**
+ * Interface to define CheckFormInputGroupError properties.
+ */
+export interface CheckFormInputGroupErrorProps {
+  /**
+   * The schema field name.
+   */
+  name: string;
+
+  /**
+   * Defines if the input contains errors.
+   */
+  error?: boolean;
+
+  /**
+   * Defines if multiple values can be selected on this component.
+   */
+  multi?: boolean;
+
+  /**
+   * Defines the value for this form group.
+   */
+  formGroupValue: any;
+
+  /**
+   * The formik form component, returned by useFormup.
+   */
+  form: FormupFormikForm;
+}
+
+/**
+ * Interface to define FormInputGroupContent properties.
+ */
+export interface FormInputGroupContentProps extends React.Props<any> {
+  /**
+   * Children to be rendered.
+   */
+  children?: React.ReactChild;
+
+  /**
+   * Classnames to inject.
+   */
+  className?: any,
+}
+
+/**
+ * Defines the properties of each array item rendered by FormArrayField.
+ */
+export interface FormArrayFieldItem {
+  /**
+   * The interpolated path to be used as the "name" prop of your <FormInput />.
+   *
+   * This is calculated automatically to interpolate the whole path up to this
+   * point in the schema. For example, if your schema array field is named
+   * "nicknames", and the item to be rendered is at index 3:
+   *
+   * This will result to "nicknames[3]".
+   */
+  path: string;
+
+  /**
+   * Builds a path to access object properties, so that you don't need to interpolate
+   * strings manually. It uses the "path" property of this object and the "subpath"
+   * provided as an argument.
+   *
+   * For example, if you want to reach the property "name" from your schema array field
+   * that is named "people", on the object of index 3:
+   *
+   * Running getPath("name") would result into "people[3].name".
+   */
+  getPath: (subpath: string) => string;
+
+  /**
+   * The present value of this item in the current index of the array of your schema field.
+   */
+  value: any;
+}
+
+/**
+ * Helpers to manage adding, removing and updating the array items.
+ */
+export interface FormArrayFieldHelpers {
+  /**
+   * Pushes a new item to the array.
+   *
+   * Defaults to the default value of the array type on the schema,
+   * but you can override this value by passing the "value" argument.
+   */
+  push: (value?: any) => void;
+
+  /**
+   * Removes one item from the array at one index, if it exists.
+   *
+   * @param index The index of the item.
+   */
+  remove: (index: number) => void;
+}
+
+/**
+ * Properties that will be injected into the component returned by FormArrayField.
+ */
+export interface FormArrayFieldInjectedProps {
+  /**
+   * The array of current values on the form.
+   */
+  items: FormArrayFieldItem[];
+
+  /**
+   * Helpers to manage adding, removing and updating the array items.
+   */
+  arrayHelpers: FormArrayFieldHelpers;
+}
+
+/**
+ * Interface to define FormArrayField component properties.
+ */
+export interface FormArrayFieldProps extends React.Props<any> {
+  /**
+   * Field name in schema.
+   * Note that this field must be an array type.
+   */
+  name: string;
+
+  /**
+   * Children to be rendered. Can either be a function or component.
+   *
+   * Both will receive FormInputComponentProps as properties, in order to
+   * help rendering & building your array-type field.
+   */
+  children?: (
+    (
+      /**
+       * The array of current values on the form.
+       */
+      items: FormArrayFieldItem[],
+
+      /**
+       * Helpers to manage adding, removing and updating the array items.
+       */
+      arrayHelpers: FormArrayFieldHelpers,
+    ) => React.ReactChild
+    | React.ElementType<FormInputComponentProps>
+  );
+}
+
+/**
+ * Interface to define FormInputGroup properties.
+ */
+export interface FormInputGroupProps extends React.Props<any> {
+  /**
+   * Children to be rendered.
+   */
+  children?: React.ReactChild;
+
+  /**
+   * The initial value.
+   */
+  initialValue?: any;
+
+  /**
+   * Defines if multiple values can be selected on this component.
+   */
+  multi?: boolean;
+
+  /**
+   * Classnames to inject.
+   */
+  className?: any;
+
+  /**
+   * Schema field name.
+   */
+  name: string;
+}
+
+/**
+ * Interface to define Form properties.
+ */
+export interface FormProps {
+  /**
+   * Children to be rendered.
+   */
+  children?: React.ReactChild,
+
+  /**
+   * The formik form returned by useFormup.
+   */
+  formikForm: FormupFormikForm,
+
+  /**
+   * Classnames to inject.
+   */
+  className?: any,
+
+  /**
+   * The event for onSubmit, in case renderAsForm is true.
+   */
+  onSubmit?: (payload: any) => void,
+
+  /**
+   * Defines if the DOM element is going to be rendered as <form />.
+   *
+   * False by default.
+   */
+  renderAsForm?: boolean,
 }
 
 /**
@@ -93,16 +381,63 @@ export interface FormInputComponentProps extends React.Props<any> {
  * Interface to define FormInput component properties.
  */
 export interface FormInputProps extends React.Props<any> {
+  /**
+   * The component to render.
+   */
   component: React.ElementType<FormInputComponentProps>;
+
+  /**
+   * Schema field name.
+   */
   name: string;
+
+  /**
+   * Input id.
+   * Defaults to field name.
+   */
   id?: string;
+
+  /**
+   * Input type.
+   */
   type?: string;
+
+  /**
+   * Input value.
+   */
   value?: any;
+
+  /**
+   * Input default value.
+   */
   defaultValue?: any;
+
+  /**
+   * Children to render.
+   */
   children?: React.ReactChild;
+
+  /**
+   * The onBlur event.
+   * Executes before formik's onBlur.
+   */
   onBlur?: (arg0: React.FormEvent<HTMLInputElement>) => void;
+
+  /**
+   * The onChange event.
+   * Executes before formik's onChange.
+   */
   onChange?: (arg0: React.FormEvent<HTMLInputElement>) => void;
+
+  /**
+   * The onKeyPress event.
+   * Executes before formik's onKeyPress.
+   */
   onKeyPress?: (arg0: React.FormEvent<HTMLInputElement>) => void;
+
+  /**
+   * Classnames to inject.
+   */
   className?: any;
 
   /**
@@ -152,6 +487,7 @@ export interface UseFormupResult {
   validateForm: (validationOptions?: ValidateFormOptions) => ValidateFormResult;
   FormInputGroupItem: React.FunctionComponent<FormInputGroupItemProps>;
   FormInputGroup: React.FunctionComponent<FormInputGroupProps>;
+  FormArrayField: React.FunctionComponent<FormArrayFieldProps>;
   submitForm: (submitFormOptions?: SubmitFormOptions) => void;
   FormInput: React.FunctionComponent<FormInputProps>;
   Form: React.FunctionComponent<FormProps>;
@@ -175,32 +511,80 @@ export type FormGroupContextValue = [
  * Formik Form object customized by Formup.
  */
 export interface FormupFormikForm extends Omit<FormikConfig<FormikValues>, 'onSubmit'> {
+  /**
+   * Defines the handleSubmit event for the form.
+   */
   handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
+
+  /**
+   * Defines the onSubmit event for the form.
+   */
   onSubmit?: (values: object) => void;
+
+  /**
+   * Defines if the form is valid.
+   */
   isValid: boolean;
+
+  /**
+   * Form values.
+   */
   values: object;
 
+  /**
+   * Form touched fields.
+   */
+  touched: object;
+
+  /**
+   * Form errors.
+   */
+  errors: object;
+
+  /**
+   * Sets one field as touched.
+   */
   setFieldTouched: (
     field: string,
     touched?: boolean | undefined,
     shouldValidate?: boolean | undefined,
   ) => any;
 
+  /**
+   * Sets the value to one field directly.
+   */
   setFieldValue: (
     field: string,
     value: any,
     shouldValidate?: boolean | undefined,
   ) => any;
 
+  /**
+   * Sets the error to one field directly.
+   */
   setFieldError: (
     field: string,
     value: string | undefined,
   ) => void;
 
+  /**
+   * Returns the properties of one field.
+   */
   getFieldProps: (nameOrOptions: any) => FieldInputProps<any>;
+
+  /**
+   * Returns the helpers of one field.
+   */
   getFieldHelpers: (name: string) => FieldHelperProps<any>;
+
+  /**
+   * Returns the metadata of one field.
+   */
   getFieldMeta: (name: string) => FieldMetaProps<any>;
 
+  /**
+   * The validation schema of the form.
+   */
   schema: FormupYupSchema;
 }
 
@@ -222,4 +606,17 @@ export interface ExtendedFormupFormInputData {
  */
 export interface SubmitFormOptions {
   validationOptions?: ValidateFormOptions;
+}
+
+/**
+ * Options for getSchemaField.
+ */
+export interface getSchemaFieldOptions {
+  /**
+   * If true, will return the subtype instead of the type.
+   *
+   * For example, on an array type field, instead of returning
+   * ArraySchema, it will return the type of the array items.
+   */
+  returnSubtype?: boolean;
 }
