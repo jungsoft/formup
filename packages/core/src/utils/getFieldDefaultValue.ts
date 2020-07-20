@@ -3,6 +3,8 @@ import isFunction from 'lodash.isfunction';
 import yupSchemaFieldProperties from '../constants/yupSchemaFieldProperties';
 import { FormupYupSchema, getSchemaFieldOptions } from '../interfaces';
 import fieldDefaultValues from '../constants/fieldDefaultValues';
+import mapFieldsToObject from './mapFieldsToObject';
+import fieldTypes from '../constants/fieldTypes';
 import getSchemaField from './getSchemaField';
 import getFieldType from './getFieldType';
 
@@ -25,6 +27,7 @@ const getFieldDefaultValue = (
 
   let result;
 
+  // Get default value from schema default function
   if (isFunction(defaultFn)) {
     try {
       result = defaultFn();
@@ -33,10 +36,13 @@ const getFieldDefaultValue = (
     }
   }
 
+  // Coalesce to type default value or object initialized value
   if (result === undefined) {
     const fieldType = getFieldType(name, schema, options);
 
-    if (fieldType && fieldDefaultValues[fieldType] !== undefined) {
+    if (fieldType === fieldTypes.object && schemaField?.fields) {
+      result = mapFieldsToObject(schemaField?.fields);
+    } else if (fieldType) {
       result = fieldDefaultValues[fieldType];
     }
   }
