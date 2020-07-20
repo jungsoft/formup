@@ -1,6 +1,7 @@
 import yupSchemaFieldProperties from '../constants/yupSchemaFieldProperties';
 import fieldDefaultValues from '../constants/fieldDefaultValues';
 import tryGetSchemaValue from './tryGetSchemaValue';
+import fieldTypes from '../constants/fieldTypes';
 
 /**
  * Recursively create an object mapping the fields of one schema.
@@ -29,11 +30,30 @@ const mapFieldsToObject = (fields: object) => {
     });
 
     const descriptionTypeMapper = (type: string): object => ({
-      object: addKeyValue(mapFieldsToObject(fields[key].fields), fieldDefaultValues.object),
-      boolean: addKeyValue(defaultValue, fieldDefaultValues.boolean),
-      string: addKeyValue(defaultValue, fieldDefaultValues.string),
-      number: addKeyValue(defaultValue, fieldDefaultValues.number),
-      date: addKeyValue(defaultValue, fieldDefaultValues.date),
+      [fieldTypes.object]: addKeyValue(
+        mapFieldsToObject(fields[key].fields),
+        fieldDefaultValues.object,
+      ),
+
+      [fieldTypes.boolean]: addKeyValue(
+        defaultValue,
+        fieldDefaultValues.boolean,
+      ),
+
+      [fieldTypes.string]: addKeyValue(
+        defaultValue,
+        fieldDefaultValues.string,
+      ),
+
+      [fieldTypes.number]: addKeyValue(
+        defaultValue,
+        fieldDefaultValues.number,
+      ),
+
+      [fieldTypes.date]: addKeyValue(
+        defaultValue,
+        fieldDefaultValues.date,
+      ),
     })[type] || acc;
 
     return descriptionTypeMapper(description.type);
