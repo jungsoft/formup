@@ -16,9 +16,13 @@ const formArrayFieldHelpers = {
   ) => {
     const arrayValue = getFieldValue(name, form) || [];
 
-    const itemValue = value ?? getFieldDefaultValue(name, form?.schema, {
-      returnSubtype: true,
-    });
+    let itemValue = value;
+
+    if (itemValue === undefined) {
+      itemValue = getFieldDefaultValue(name, form?.schema, {
+        returnSubtype: true,
+      });
+    }
 
     const newValue = [
       ...arrayValue,
