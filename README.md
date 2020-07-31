@@ -565,5 +565,8 @@ Thanks to [jaredpalmer](https://github.com/jaredpalmer/) and all maintainers for
 
 Thanks to [jquense](https://github.com/jquense/) and all maintainers for developing [yup](https://github.com/jquense/yup).
 
+## Made possible by
 
-Made with ❤️ by [Pedro Bini](https://github.com/pedro-lb/) @ [Jungsoft](https://jungsoft.io/).
+<a href="https://github.com/jungsoft/formup/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=jungsoft/formup" />
+</a>
