@@ -246,6 +246,115 @@ const {
 </Form>
 ```
 
+## Usage - Rendering array of objects
+
+You can use formup to easily render any array type, by using `FormArrayField`.
+
+The `FormArrayField` component will provide both the `items` from the array field and an
+`arrayHelpers` object which contains methods to add or remove new items to the list.
+
+Here's an example:
+
+ ```jsx
+const {
+  formikForm,
+  Form,
+  FormArrayField,
+} = useFormup(...);
+
+<Form formikForm={formikForm}>
+  <FormArrayField name="colors">
+    {(items, arrayHelpers) => (
+      <>
+        {items.map((item, index) => (
+          <div>
+            <FormInput
+              component={TextFieldWithErrorMessage}
+              injectFormupData
+              name={item.path}
+            />
+
+            <button
+              onClick={() => arrayHelpers.remove(index)}
+              type="button"
+            >
+              Remove item
+            </button>
+          </div>
+        ))}
+
+        <button
+          onClick={() => arrayHelpers.push()}
+          type="button"
+        >
+          Add item
+        </button>
+      </>
+    )}
+  </FormArrayField>
+</Form>
+```
+
+But don't worry, if your array contains a complex object inside of it, `FormArrayField` can
+help as well.
+
+You can use the `getPath` function in each item to get the full path of the nested object
+of that item of the list.
+
+And you can also push a new item with initial values, pretty cool, isn't it?
+
+Here's an example:
+
+ ```jsx
+const {
+  formikForm,
+  Form,
+  FormArrayField,
+} = useFormup(...);
+
+<Form formikForm={formikForm}>
+  <FormArrayField name="familyMembers">
+    {(items, arrayHelpers) => (
+      <>
+        {items.map((item, index) => (
+          <div>
+            <FormInput
+              component={TextFieldWithErrorMessage}
+              name={item.getPath('name')}
+              injectFormupData
+            />
+
+            <FormInput
+              component={TextFieldWithErrorMessage}
+              name={item.getPath('age')}
+              injectFormupData
+            />
+
+            <button
+              onClick={() => arrayHelpers.remove(index)}
+              type="button"
+            >
+              Remove item
+            </button>
+          </div>
+        ))}
+
+        <button
+          onClick={() => arrayHelpers.push({
+            name: 'John Foo clone',
+            age: 10,
+          })}
+          type="button"
+        >
+          Add item
+        </button>
+      </>
+    )}
+  </FormArrayField>
+</Form>
+```
+
+
 ## Usage - Extended Formup Data in Rendered Inputs
 
 You can gather extended formup data in order to aid your custom inputs, such as the **validation error message**, for example.
