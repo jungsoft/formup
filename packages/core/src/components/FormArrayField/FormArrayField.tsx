@@ -83,6 +83,7 @@ const FormArrayField = ({
     <>
       {React.cloneElement(children, {
         items,
+        arrayHelpers,
       })}
     </>
   );
