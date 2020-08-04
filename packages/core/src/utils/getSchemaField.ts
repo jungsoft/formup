@@ -33,9 +33,9 @@ const getSchemaField = (
     if (schemaField?.[yupSchemaFieldProperties.type] === fieldTypes.array) {
       const nestedPath = originalPath.replace(/\.fields/g, '').split('.');
       const subType = schemaField?.[yupSchemaFieldProperties.subType];
-      const isSchemaObject = subType?.[yupSchemaFieldProperties.type] === fieldTypes.object;
+      const isObjectType = subType?.[yupSchemaFieldProperties.type] === fieldTypes.object;
 
-      if (!isSchemaObject || nestedPath.length <= 1) {
+      if (!isObjectType || nestedPath.length <= 1) {
         return subType;
       }
 
