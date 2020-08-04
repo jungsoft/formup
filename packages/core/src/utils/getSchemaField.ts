@@ -1,6 +1,7 @@
 import get from 'lodash.get';
 
 import yupSchemaFieldProperties from '../constants/yupSchemaFieldProperties';
+import fieldTypes from '../constants/fieldTypes';
 import { FormupYupSchema, getSchemaFieldOptions } from '../interfaces';
 
 /**
@@ -13,21 +14,38 @@ const getSchemaField = (
   name: string,
   schema: FormupYupSchema,
   options?: getSchemaFieldOptions,
-) => {
+): FormupYupSchema => {
   // Support nested fields
-  let fieldPath = String(name || '')
+  const originalPath = String(name || '')
     .split('.')
     .reduce((prev, curr) => `${prev}.fields.${curr}`);
 
-  // Remove array indexes
-  if (fieldPath.includes('[')) {
+  let fieldPath = originalPath;
+
+  // Get array schema
+  if (originalPath.includes('[')) {
     fieldPath = fieldPath.substring(0, fieldPath.indexOf('['));
   }
 
   const schemaField = get(schema?.fields || {}, fieldPath);
 
   if (options?.returnSubtype) {
-    return schemaField?.[yupSchemaFieldProperties.subType];
+    if (schemaField?.[yupSchemaFieldProperties.type] === fieldTypes.array) {
+      const nestedPath = originalPath.replace(/\.fields/g, '').split('.');
+      const subType = schemaField?.[yupSchemaFieldProperties.subType];
+      const isSchemaObject = subType?.[yupSchemaFieldProperties.type] === fieldTypes.object;
+
+      if (!isSchemaObject || nestedPath.length <= 1) {
+        return subType;
+      }
+
+      // Get schema field for nested objects
+      return getSchemaField(
+        nestedPath.filter((_, index) => index >= 1).join('.'),
+        subType,
+        options,
+      );
+    }
   }
 
   return schemaField;
