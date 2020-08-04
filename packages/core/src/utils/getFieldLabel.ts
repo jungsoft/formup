@@ -1,6 +1,7 @@
 import yupSchemaFieldProperties from '../constants/yupSchemaFieldProperties';
 import { FormupYupSchema, getSchemaFieldOptions } from '../interfaces';
 import getSchemaField from './getSchemaField';
+import defaultSchemaFieldOptions from '../constants/defaultSchemaFieldOptions';
 
 /**
  * If defined, extracts the field label from the schema.
@@ -13,13 +14,9 @@ const getFieldLabel = (
   schema: FormupYupSchema,
   options?: getSchemaFieldOptions,
 ) => {
-  const defaultOptions = {
-    returnSubtype: true,
-  };
-
   const schemaField = getSchemaField(name, schema, {
-    ...defaultOptions,
-    ...options,
+    ...defaultSchemaFieldOptions,
+    ...(options || {}),
   });
 
   return schemaField?.[yupSchemaFieldProperties.label];

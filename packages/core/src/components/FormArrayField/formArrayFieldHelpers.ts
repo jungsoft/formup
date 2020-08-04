@@ -1,6 +1,7 @@
 import getFieldDefaultValue from '../../utils/getFieldDefaultValue';
 import getFieldValue from '../../utils/getFieldValue';
 import { FormupFormikForm } from '../../interfaces';
+import defaultSchemaFieldOptions from '../../constants/defaultSchemaFieldOptions';
 
 /**
  * Base helpers for FormArrayField.
@@ -19,9 +20,7 @@ const formArrayFieldHelpers = {
     let itemValue = value;
 
     if (itemValue === undefined) {
-      itemValue = getFieldDefaultValue(name, form?.schema, {
-        returnSubtype: true,
-      });
+      itemValue = getFieldDefaultValue(name, form?.schema, defaultSchemaFieldOptions);
     }
 
     const newValue = [
