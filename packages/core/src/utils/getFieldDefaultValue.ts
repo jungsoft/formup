@@ -21,7 +21,14 @@ const getFieldDefaultValue = (
   schema: FormupYupSchema,
   options?: getSchemaFieldOptions,
 ) => {
-  const schemaField = getSchemaField(name, schema, options);
+  const defaultOptions = {
+    returnSubtype: true,
+  };
+
+  const schemaField = getSchemaField(name, schema, {
+    ...defaultOptions,
+    ...options,
+  });
 
   const defaultFn = schemaField?.[yupSchemaFieldProperties.default];
 

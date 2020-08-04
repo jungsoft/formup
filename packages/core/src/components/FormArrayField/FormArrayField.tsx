@@ -42,7 +42,7 @@ const FormArrayField = ({
 
   invariant(!!schemaField, `The field "${name}" was not found in the schema.`);
 
-  const fieldType = getFieldType(name, form?.schema);
+  const fieldType = getFieldType(name, form?.schema, { returnSubtype: false });
 
   invariant(fieldType === 'array', `The field type of ${name} must be an array in your schema in order to use <FormArrayField />.`);
 
