@@ -64,7 +64,8 @@ const exampleSchema = createSchema({
     .of(
       yup
         .string()
-        .required(),
+        .required()
+        .label('Color'),
     ),
 
   // Object arrays too!
