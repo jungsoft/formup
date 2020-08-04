@@ -1,6 +1,7 @@
 import yupSchemaFieldProperties from '../constants/yupSchemaFieldProperties';
 import { FormupYupSchema, getSchemaFieldOptions } from '../interfaces';
 import getSchemaField from './getSchemaField';
+import defaultSchemaFieldOptions from '../constants/defaultSchemaFieldOptions';
 
 /**
  * Extracts the field type from the schema.
@@ -13,7 +14,10 @@ const getFieldType = (
   schema: FormupYupSchema,
   options?: getSchemaFieldOptions,
 ) => {
-  const schemaField = getSchemaField(name, schema, options);
+  const schemaField = getSchemaField(name, schema, {
+    ...defaultSchemaFieldOptions,
+    ...(options || {}),
+  });
 
   return schemaField?.[yupSchemaFieldProperties.type];
 };

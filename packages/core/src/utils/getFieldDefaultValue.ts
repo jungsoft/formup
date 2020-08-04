@@ -7,6 +7,7 @@ import mapFieldsToObject from './mapFieldsToObject';
 import fieldTypes from '../constants/fieldTypes';
 import getSchemaField from './getSchemaField';
 import getFieldType from './getFieldType';
+import defaultSchemaFieldOptions from '../constants/defaultSchemaFieldOptions';
 
 /**
  * Extracts the default value on the field definition from the schema, if it exists.
@@ -21,7 +22,10 @@ const getFieldDefaultValue = (
   schema: FormupYupSchema,
   options?: getSchemaFieldOptions,
 ) => {
-  const schemaField = getSchemaField(name, schema, options);
+  const schemaField = getSchemaField(name, schema, {
+    ...defaultSchemaFieldOptions,
+    ...(options || {}),
+  });
 
   const defaultFn = schemaField?.[yupSchemaFieldProperties.default];
 
