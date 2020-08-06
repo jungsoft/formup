@@ -16,32 +16,35 @@ const getSchemaField = (
   options?: getSchemaFieldOptions,
 ): FormupYupSchema => {
   // Support nested fields
-  const originalPath = String(name || '')
-    .split('.')
-    .reduce((prev, curr) => `${prev}.fields.${curr}`);
+  const originalPath = String(name || '').split('.');
 
-  let fieldPath = originalPath;
+  let fieldPath = originalPath.reduce((prev, curr) => `${prev}.fields.${curr}`);
 
   // Get array schema
   if (originalPath.includes('[')) {
     fieldPath = fieldPath.substring(0, fieldPath.indexOf('['));
   }
 
+  // Remove .fields added previously since is recursive (will be added in the next iteration)
+  const nestedPath = fieldPath.replace(/\.fields/g, '');
+
+  // Regex to remove current level path
+  const nestedPathRegex = new RegExp(`${nestedPath}\\[(\\d*)\\].`);
+
   const schemaField = get(schema?.fields || {}, fieldPath);
 
   if (options?.returnSubtype) {
     if (schemaField?.[yupSchemaFieldProperties.type] === fieldTypes.array) {
-      const nestedPath = originalPath.replace(/\.fields/g, '').split('.');
       const subType = schemaField?.[yupSchemaFieldProperties.subType];
       const isObjectType = subType?.[yupSchemaFieldProperties.type] === fieldTypes.object;
 
-      if (!isObjectType || nestedPath.length <= 1) {
+      if (!isObjectType || originalPath.length <= 1) {
         return subType;
       }
 
       // Get schema field for nested objects
       return getSchemaField(
-        nestedPath.filter((_, index) => index >= 1).join('.'),
+        name.replace(nestedPathRegex, ''),
         subType,
         options,
       );
