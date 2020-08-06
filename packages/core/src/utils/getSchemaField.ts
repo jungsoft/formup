@@ -15,13 +15,13 @@ const getSchemaField = (
   schema: FormupYupSchema,
   options?: getSchemaFieldOptions,
 ): FormupYupSchema => {
-  // Support nested fields
   const originalPath = String(name || '').split('.');
 
+  // Support nested fields
   let fieldPath = originalPath.reduce((prev, curr) => `${prev}.fields.${curr}`);
 
   // Get array schema
-  if (originalPath.includes('[')) {
+  if (fieldPath.includes('[')) {
     fieldPath = fieldPath.substring(0, fieldPath.indexOf('['));
   }
 
