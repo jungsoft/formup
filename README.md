@@ -91,6 +91,12 @@ const MyComponent = () => {
   } = useFormup(schema, {
     onError: handleValidationError,
     onSubmit: handleSubmitForm,
+
+    /**
+     * When this prop is set to true, formup will apply transform functions defined
+     * in your schema before submitting the values.
+     */
+    transformOnSubmit: true,
   });
 
   return (

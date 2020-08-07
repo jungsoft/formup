@@ -25,6 +25,7 @@ const exampleSchema = createSchema({
   // Optional fields too
   phone: yup.string()
     .required()
+    .transform((value) => `(DDD) ${value}`)
     .label('Phone'),
 
   customInput: yup.string()
@@ -65,6 +66,7 @@ const exampleSchema = createSchema({
       yup
         .string()
         .required()
+        .transform((value) => `${(value || '').toLowerCase()}`)
         .label('Color'),
     ),
 

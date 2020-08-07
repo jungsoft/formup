@@ -478,6 +478,12 @@ export interface UseFormupOptions extends
 {
   onError?: (error: FormupValidationError | undefined) => void;
   onSubmit?: (values: object) => void;
+
+  /**
+   * If true, it will cast schema on Submit which
+   * will apply `transform` functions defined in schema.
+   */
+  transformOnSubmit?: boolean;
 }
 
 /**
