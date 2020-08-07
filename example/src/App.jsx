@@ -50,6 +50,7 @@ const App = () => {
     // Formik options
     onError: handleValidationError,
     onSubmit: handleSubmitForm,
+    transformOnSubmit: true,
     initialValues: {
       colors: [
         'Blue',
@@ -398,6 +399,8 @@ const App = () => {
 
             <Typography variant="body1" align="left" className={classes.subtitle}>
               If you press the button below you'll see the results here!
+              These values are automatically transformed if the `transformOnSubmit`
+              prop is set to true.
             </Typography>
 
             <TextField

@@ -88,9 +88,16 @@ const useFormup = (
     }
 
     if (options?.onSubmit) {
-      options.onSubmit(formikForm.values);
+      let formValues = formikForm.values;
+
+      if (options?.transformOnSubmit) {
+        formValues = schema.cast(formValues);
+      }
+
+      options.onSubmit(formValues);
     }
   }, [
+    schema,
     handleValidateForm,
     formikForm,
     options,

@@ -8,6 +8,7 @@ import locale from '../locale';
 const familyMemberSchema = createSchema({
   name: yup.string()
     .required()
+    .transform((value) => `${(value || '').toUpperCase()}`)
     .label('Name'),
 
   age: yup.number()
