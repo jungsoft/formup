@@ -38,7 +38,7 @@
     "yup": "0.29.1"
   },
   "devDependencies": {
-    "@svgr/rollup": "^2.4.1",
+    "@svgr/rollup": "^5.4.0",
     "@types/classnames": "^2.2.9",
     "@types/invariant": "^2.2.33",
     "@types/jest": "^23.1.5",
