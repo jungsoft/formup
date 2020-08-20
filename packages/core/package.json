@@ -30,12 +30,12 @@
     "lodash.get": "^4.4.2",
     "lodash.isfunction": "^3.0.9",
     "merge": "^1.2.1",
-    "yup": "0.29.1"
+    "yup": "0.29.3"
   },
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "yup": "0.29.1"
+    "yup": "0.29.3"
   },
   "devDependencies": {
     "@svgr/rollup": "^5.4.0",
