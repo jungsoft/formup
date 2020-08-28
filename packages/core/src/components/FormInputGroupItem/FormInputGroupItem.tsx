@@ -1,6 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import invariant from 'invariant';
+import isEqual from 'lodash.isequal';
 
 import DefaultInputGroupItemComponent from '../DefaultInputComponents/DefaultInputGroupItemComponent';
 import { useFormGroupContext } from '../../contexts/FormGroupContext/FormGroupContext';
@@ -68,11 +69,16 @@ const FormInputGroupItem = ({
     multi,
   ]);
 
-  const isChecked = React.useMemo(() => (
-    multi
-      ? Array.isArray(formGroupValue) && formGroupValue.includes(value)
-      : formGroupValue === value
-  ), [
+  const isChecked = React.useMemo(() => {
+    if (multi) {
+      return (
+        Array.isArray(formGroupValue)
+        && formGroupValue.some((item) => isEqual(item, value))
+      );
+    }
+
+    return isEqual(formGroupValue, value);
+  }, [
     formGroupValue,
     multi,
     value,
