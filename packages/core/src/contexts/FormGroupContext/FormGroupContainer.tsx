@@ -1,5 +1,6 @@
 import * as React from 'react';
 import update from 'immutability-helper';
+import isEqual from 'lodash.isequal';
 
 import { FormGroupContextValue, FormGroupContainerProps } from '../../interfaces';
 import checkFormInputGroupError from '../../utils/checkFormInputGroupError';
@@ -44,7 +45,7 @@ const FormGroupContainer = ({
     const newValue = extractEventValue(event);
 
     if (!multi) {
-      setFormGroupValue(formGroupValue === newValue ? initialValue : newValue);
+      setFormGroupValue(isEqual(formGroupValue, newValue) ? initialValue : newValue);
       return;
     }
 
@@ -56,7 +57,7 @@ const FormGroupContainer = ({
       return;
     }
 
-    const valueIndex = formGroupValue.findIndex((item) => item === newValue);
+    const valueIndex = formGroupValue.findIndex((item) => isEqual(item, newValue));
 
     if (valueIndex !== -1) {
       setFormGroupValue(update(formGroupValue, {
