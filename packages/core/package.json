@@ -72,7 +72,7 @@
     "rollup-plugin-postcss": "^1.6.2",
     "rollup-plugin-typescript2": "0.17.2",
     "rollup-plugin-url": "^3.0.1",
-    "scheduler": "0.18.0",
+    "scheduler": "0.19.1",
     "typescript": "^3.7.5"
   },
   "files": [
