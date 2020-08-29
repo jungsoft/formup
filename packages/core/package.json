@@ -70,7 +70,7 @@
     "rollup-plugin-node-resolve": "3.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^1.6.2",
-    "rollup-plugin-typescript2": "0.17.2",
+    "rollup-plugin-typescript2": "0.18.1",
     "rollup-plugin-url": "^3.0.1",
     "scheduler": "0.18.0",
     "typescript": "^3.7.5"
