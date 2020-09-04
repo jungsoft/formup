@@ -374,7 +374,7 @@ export interface FormInputComponentProps extends React.Props<any> {
    * Remember that this shouldn't be injected into the final <input />
    * component, in order to avoid React errors.
    */
-  formupData?: ExtendedFormupFormInputData;
+  formupData?: InputFormupData;
 }
 
 /**
@@ -603,7 +603,7 @@ export type FormContextResult = FormupFormikForm;
  * Extended form input data that will be injected into <FormInput />
  * rendered component in case injectFormupData is true.
  */
-export interface ExtendedFormupFormInputData {
+export interface InputFormupData {
   errorMessage?: string;
 }
 

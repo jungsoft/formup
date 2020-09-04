@@ -4,8 +4,8 @@ import invariant from 'invariant';
 
 import { FORMUP_INPUT_CLASS_NAME, FORMUP_INPUT_DANGER_CLASS_NAME } from '../../constants/identifiers';
 import DefaultInputComponent from '../DefaultInputComponents/DefaultInputComponent';
-import { ExtendedFormupFormInputData, FormInputProps } from '../../interfaces';
 import { useFormContext } from '../../contexts/FormContext/FormContext';
+import { InputFormupData, FormInputProps } from '../../interfaces';
 import checkFormInputError from '../../utils/checkFormInputError';
 import composeInputEvent from '../../utils/composeInputEvent';
 import extractEventValue from '../../utils/extractEventValue';
@@ -105,7 +105,7 @@ const FormInput = ({
     [FORMUP_INPUT_DANGER_CLASS_NAME]: formInputError.hasErrors,
   });
 
-  const formupData: ExtendedFormupFormInputData = React.useMemo(() => ({
+  const formupData: InputFormupData = React.useMemo(() => ({
     errorMessage: formInputError.errorMessage,
   }), [
     formInputError.errorMessage,
